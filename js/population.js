@@ -9,10 +9,13 @@ class Population {
 		}
 		this.matingpool = [];
 		this.generation = 0;
-		this.average;
+		this.average = [];
+		this.max = [];
+		this.min = [];
 		this.gps = createVector(5, 5);
 		this.on_what_terrain;
 		this.clearFog(this.gps);
+		this.rested = 0;
 	}
 
 
@@ -35,9 +38,14 @@ class Population {
 
 
 	show() {
+		//translateを使った方がいいかもしれない
 		fill(100, 255, 100);
 		ellipseMode(CORNER)
 		ellipse(this.gps.x * cell_size, this.gps.y * cell_size, cell_size, cell_size);
+	}
+
+	rest() {
+		this.rested++;
 	}
 
 

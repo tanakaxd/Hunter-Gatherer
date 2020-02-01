@@ -2,8 +2,8 @@
 let game_manager, scene_manager, global_map, population, event, info;
 
 //settings
-let cell_size = 50;
-let map_size = 10;
+let cell_size = 30;
+let map_size = 30;
 let mutationRate = 0.03;
 
 //utility
@@ -24,14 +24,16 @@ function draw() {
 	// scene_manager.stateの値によって、描写する内容をスイッチ
 	// アイドル状態の場合、描写自体をストップ(draw内部が空白)してもよい。入力があった場合フラグを立てる？
 	background(230);
-	//game_manager.run();
+	// game_manager.run();
+	// scene_manager.run();
+	// event_manager.run();
 	global_map.show();
 	population.show();
 }
 
 function mousePressed() {
 	//global_map上の移動
-	if (scene_manager.global_map_scene) {
+	if (game_manager.focus == 1) {
 		let p = createVector(mouseX, mouseY);
 		let cell_cordinate = global_map.convertToCellCordinate(p);
 		if (global_map.verifyCell(cell_cordinate)) {
@@ -60,8 +62,9 @@ function initialize() {
 	// frameRate(1);
 	noiseSeed(new Date().getTime());
 	createCanvas(cell_size * map_size, cell_size * map_size);
-	// game_manager = new GameManager();
+	game_manager = new GameManager();
 	scene_manager = new SceneManager();
+	event_manager = new EventManager();
 	global_map = new GlobalMap();
 	population = new Population();
 	// event = new Event();

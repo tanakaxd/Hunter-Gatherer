@@ -4,16 +4,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.sound.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-<body>
-  <button id="pause">STOP THIS SHIT!</button>
-  <button id="resume">RESUME THIS SHIT!</button>
-  <button id="restart">RESTART THIS SHIT!</button>
   <script src="js/sketch.js"></script>
   <script src="js/gameManager.js"></script>
   <script src="js/sceneManager.js"></script>
+  <script src="js/eventManager.js"></script>
+
 
   <script src="js/globalMap.js"></script>
   <script src="js/localMap.js"></script>
@@ -25,6 +23,24 @@
 
   <script src="js/event.js"></script>
   <script src="js/info.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+  <button id="pause">STOP THIS SHIT!</button>
+  <button id="resume">RESUME THIS SHIT!</button>
+  <button id="restart">RESTART THIS SHIT!</button>
+  <div class="popup" id="js-popup">
+    <div class="popup-inner">
+      <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
+      <!-- <a href="#"><img src="./img/kaeru.png" alt="ポップアップ画像"></a> -->
+      <div id="description"></div>
+      <div id="choices"></div>
+    </div>
+    <div class="black-background" id="js-black-bg"></div>
+  </div>
+  <button id="js-show-popup">Show Popup</button>
 
 </body>
 

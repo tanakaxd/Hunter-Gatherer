@@ -4,12 +4,21 @@
 class Animal {
 
 	constructor() {
-		this.gene = new Gene();
+		this.genotype = new Gene();
+		// this.phenotype = this.calcPhenotype(this.genotype);
 		this.fitness = null;
-		this.pos = createVector(0, 0);
+		this.hungriness;
+		this.health;
+		// this.pos = createVector(0, 0);
 	}
 
-	calcFitness() {}
+	calcPhenotype(genotype) {
+		return phenotype;
+	}
+
+	calcFitness() {
+
+	}
 
 	intercourse(partner) {
 		let child = new Animal();
