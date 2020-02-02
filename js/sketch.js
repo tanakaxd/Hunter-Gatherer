@@ -57,6 +57,10 @@ function restart() {
 	initialize();
 }
 
+function popEvent() {
+	game_manager.run();
+}
+
 function initialize() {
 
 	// frameRate(1);
@@ -74,9 +78,11 @@ function initialize() {
 	let button1 = select("#pause");
 	let button2 = select("#resume");
 	let button3 = select("#restart");
+	let button4 = select("#popup-event")
 	button1.mousePressed(pause);
 	button2.mousePressed(resume);
 	button3.mousePressed(restart);
+	button4.mousePressed(popEvent);
 
 
 

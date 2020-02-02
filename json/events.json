@@ -1,13 +1,85 @@
 [{
         "eventID": "001",
         "title": "餌を発見！",
-        "description": "食料になりそうな木の実を大量に発見した。すばらしい！",
-        "choices": 50
+        "description": "食料になりそうな木の実を大量に発見した。どうしよう？",
+        "choices": [{
+                "optionID": 1,
+                "optionTitle": "みんなでありったけ食べる",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "equality",
+                    "criterion": 5
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": 1
+                    }
+                ]
+            },
+            {
+                "optionID": 2,
+                "optionTitle": "木の実におびき寄せられる獲物を待つ",
+                "condition": {
+                    "qualifier": "max",
+                    "phenotype": "equality",
+                    "criterion": 5
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": 1
+                    }
+                ]
+            },
+            {
+                "optionID": 3,
+                "optionTitle": "何かの交渉に使えるかもしれない。半分残しておこう",
+                "condition": {
+                    "qualifier": "max",
+                    "phenotype": "equality",
+                    "criterion": 5
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": 1
+                    }
+                ]
+            },
+            {
+                "optionID": 4,
+                "optionTitle": "力こそ正義。強い奴からありつこう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "equality",
+                    "criterion": 5
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": 1
+                    }
+                ]
+            }
+        ]
     },
     {
         "eventID": "002",
         "title": "見知らぬ群れを発見！",
-        "description": "仲間になりたそうなやつを二人発見した。すばらしい！",
+        "description": "仲間になりたそうなやつを二人発見した。どうしよう？",
         "choices": 50
     }
 ]

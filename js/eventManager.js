@@ -9,8 +9,10 @@ class EventManager {
     }
 
     popEvent() {
-        let event_data;
+        let specific_event;
         //どのイベントを発生させるかを決める
+        let eventID = this.chooseEvent();
+
 
 
         //そのイベントのjsonを取得
@@ -19,7 +21,7 @@ class EventManager {
         // $.get("events.json", function (data) {
         //     event_data = data;
         // })
-        // $.ajax
+
         $.ajax({
                 url: "./json/events.json",
                 data: {
@@ -29,16 +31,28 @@ class EventManager {
                 },
                 dataType: "json"
             })
-            .done(function (data) {
-                event_data = data;
-                console.log(event_data);
+            .done(function (events_data) {
+                events_data.forEach(function (event, index) {
+                    if (event.eventID == eventID) {
+                        specific_event = event;
+                    }
+                });
+                //Eventに渡す。データに基づいてイベントを発生させる
+                event_manager.current_event = new Event(specific_event); //this.にすると通信オブジェクトになる？
+                // console.log(this.current_event);
 
+                event_manager.current_event.display();
             })
             .fail(function () {
                 console.log('$.ajax failed!');
             })
 
-        //Eventに渡す。データに基づいてイベントを発生させる
-        this.current_event = new Event(event_data);
+
+    }
+
+    chooseEvent() {
+        let eventID = "001";
+
+        return eventID;
     }
 }

@@ -16,6 +16,8 @@ class Population {
 		this.on_what_terrain;
 		this.clearFog(this.gps);
 		this.rested = 0;
+
+		this.ethics;
 	}
 
 

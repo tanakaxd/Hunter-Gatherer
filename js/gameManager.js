@@ -28,8 +28,13 @@ class GameManager {
 
 
         //イベント発生条件
-        this.focus = 2;
-        event_manager.popEvent();
+        if (true) {
+            game_manager.focus = 2;
+            // console.log(this.focus === game_manager.focus);
+
+
+            event_manager.popEvent();
+        }
     }
 
 }
