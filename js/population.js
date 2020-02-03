@@ -3,27 +3,51 @@ class Population {
 
 	constructor() {
 		this.animals = [];
-		this.size = 30;
+		this.size = 4;
 		for (let x = 0; x < this.size; x++) {
-			this.animals.push(new Animal());
+			this.animals.push(new Animal(createVector(50 + x * 75, 60), null));
 		}
+		this.leaders = [];
 		this.matingpool = [];
 		this.generation = 0;
-		this.average = [];
-		this.max = [];
-		this.min = [];
-		this.gps = createVector(5, 5);
-		this.on_what_terrain;
+		this.average = {
+			"equality": 2,
+			"hunting": 6,
+			"negotiation": 3
+		};
+		this.max = {
+			"equality": 7,
+			"hunting": 9,
+			"negotiation": 6
+		};
+		this.min = {
+			"equality": 1,
+			"hunting": 3,
+			"negotiation": 2
+		};
+		this.gps = createVector(floor(map_size / 2), floor(map_size / 2));
+		this.on_what_terrain = global_map.getTerrain(this.gps);
 		this.clearFog(this.gps);
 		this.rested = 0;
+		this.ethics = {
+			"egalitarian": 5,
+			polygamy: 5,
+			pacifist: 5,
+			xenophile: 5,
+			innovative: 5,
+			centralized: 5
 
-		this.ethics;
+		};
 	}
 
 
 	move(p) {
 		this.gps = p;
+		this.on_what_terrain = global_map.getTerrain(this.gps);
+		console.log(this.on_what_terrain);
+
 		this.clearFog(this.gps);
+
 	}
 
 	clearFog(p) {

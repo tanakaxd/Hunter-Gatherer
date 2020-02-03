@@ -11,6 +11,7 @@ class EventManager {
     popEvent() {
         let specific_event;
         //どのイベントを発生させるかを決める
+        //例えばxmlファイルを読み込んで、タイル種別のイベント比率に基づいてランダムに発生させる
         let eventID = this.chooseEvent();
 
 

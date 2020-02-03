@@ -4,6 +4,21 @@ body {
   padding: 0;
 }
 
+.container {
+  padding: 20px;
+  display: flex;
+}
+
+.buttons {
+  padding: 20px;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  margin: 5px;
+}
+
 .popup {
   position: fixed;
   left: 0;

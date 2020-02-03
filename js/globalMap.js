@@ -102,6 +102,10 @@ class GlobalMap {
         }
     }
 
+    getTerrain(p) {
+        return this.terrain[p.x][p.y];
+    }
+
 
 
 }
