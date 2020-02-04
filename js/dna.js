@@ -1,24 +1,31 @@
 class DNA {
-	constructor() {
-		this.genes = [];
-		this.size = 30;
-		for (let i = 0; i < this.size; i++) {
-			this.genes.push(random(0, 1));
+	constructor(genes) {
+		this.size = 40;
+		if (genes) {
+			this.genes = genes;
+
+		} else {
+			this.genes = [];
+			for (let i = 0; i < this.size; i++) {
+				this.genes.push(random(0, 1));
+			}
+
 		}
 	}
 
-	crossover(partner_gene) {
-		// Gene object→Gene object
-		let child_gene = [];
-		for (let x = 0; x < this.length; x++) {
+	crossover(partner_dna) {
+		let child_genes = [];
+		for (let x = 0; x < this.size; x++) {
 			if (random() < 0.5) {
-				child_gene[x] = this.genotype[x];
+				child_genes[x] = this.genes[x];
 			} else {
-				child_gene[x] = partner_gene.genotype[x];
+				child_genes[x] = partner_dna.genes[x];
 			}
-			this.mutate(child_gene);
-			return new this.constructor(child_gene);
+			// this.mutate(child_genes);
 		}
+		console.log(child_genes.length);
+
+		return new DNA(child_genes);
 	}
 
 	// mutation(){

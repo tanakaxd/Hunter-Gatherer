@@ -6,6 +6,7 @@ let cell_size = 30;
 let map_size = 15;
 let mutationRate = 0.03;
 let pops_width = 70 * 5;
+let events_per_ethic = 3;
 
 //utility
 let debug = true;

@@ -30,14 +30,17 @@ class Population {
 		this.clearFog(this.gps);
 		this.rested = 0;
 		this.ethics = {
-			"egalitarian": 5,
-			polygamy: 5,
-			pacifist: 5,
-			xenophile: 5,
-			innovative: 5,
-			centralized: 5
-
+			"egalitarian": 8, //jsでは連想配列のkeyに""があってもなくても同じ。jsonは必須
+			polygamy: 8,
+			pacifist: 7,
+			xenophile: 4,
+			innovative: 6,
+			order: 2
 		};
+		//例えばhuntingの高さを集団が重要視する。ethicsと同列の役割？
+		this.fitness_coefficient_modifier = {
+			"hunting": 1.2
+		}
 	}
 
 

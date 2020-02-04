@@ -85,9 +85,14 @@ class Event {
 
             }
         }
-        //作った配列をDOMに反映
-        for (let choice of this.certified_choices) {
-            buttons += `<div class="btn" id="${choice.optionID}">${choice.optionTitle}</div>`;
+        //作った配列をDOMに反映。該当する選択肢がない場合の処理
+        if (this.certified_choices.length != 0) {
+            console.log(this.certified_choices);
+            for (let choice of this.certified_choices) {
+                buttons += `<div class="btn" id="${choice.optionID}">${choice.optionTitle}</div>`;
+            }
+        } else {
+            buttons += '<div class="btn">できることが何もない…</div>';
         }
         $("#choices").html(buttons);
 
@@ -118,27 +123,27 @@ class Event {
     }
 
 
-    popupEvent() {
+    // popupEvent() {
 
 
-        var blackBg = document.getElementById('js-black-bg');
-        var closeBtn = document.getElementById('js-close-btn');
-        var showBtn = document.getElementById('js-show-popup');
+    //     var blackBg = document.getElementById('js-black-bg');
+    //     var closeBtn = document.getElementById('js-close-btn');
+    //     var showBtn = document.getElementById('js-show-popup');
 
 
 
-        function closeEvent(elem) {
-            if (!elem) return;
-            // elem.addEventListener('click', function () {
-            //     popup.classList.toggle('is-show');
-            //     console.log(elem);
-            //     //initializeしたとき、イベントが二重に登録されてしまう
-            // });
-            // console.log(elem.onclick);
+    //     function closeEvent(elem) {
+    //         if (!elem) return;
+    //         // elem.addEventListener('click', function () {
+    //         //     popup.classList.toggle('is-show');
+    //         //     console.log(elem);
+    //         //     //initializeしたとき、イベントが二重に登録されてしまう
+    //         // });
+    //         // console.log(elem.onclick);
 
-            elem.onclick = function () {
-                popup.classList.toggle('is-show');
-            }
-        }
-    }
+    //         elem.onclick = function () {
+    //             popup.classList.toggle('is-show');
+    //         }
+    //     }
+    // }
 }

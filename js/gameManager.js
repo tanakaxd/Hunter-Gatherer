@@ -17,7 +17,7 @@ class GameManager {
 
     constructor() {
         this.focus = 1; //0:start 1:global_map 2:event
-        this.state = 0; //0:day 1:night
+        this.state = 1; //0:hunt-time 1:event-time 2:night
         this.score;
         this.day = 1;
         this.food = 0;
