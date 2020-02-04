@@ -105,6 +105,7 @@ class GlobalMap {
     getTerrain(p) {
         return this.terrain[p.x][p.y];
     }
+    //javascriptではoverload不可
     // getTerrain(x, y) {
     //     return this.terrain[x][y];
     // }
