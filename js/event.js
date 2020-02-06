@@ -5,6 +5,8 @@
 // どのイベントを発生させるかはevent_managerが決める
 // このクラスは可能な選択肢とその結果をjsonから生成して、 DOMに反映。
 
+// その都度ajax通信しているけど、実際には一度でいい
+
 
 class Event {
     constructor(event_data) {

@@ -38,8 +38,35 @@ class Population {
 			order: 2
 		};
 		//例えばhuntingの高さを集団が重要視する。ethicsと同列の役割？
-		this.fitness_coefficient_modifier = {
-			"hunting": 1.2
+		this.fitness_coefficient = {
+			"hunting": 2,
+			"foraging": 1,
+			"climbing": 1,
+			"hiding": 1,
+			"fighting": 1,
+			"swimming": 1,
+			"scouting": 1,
+
+			"negotiation": 1,
+			"anticipation": 1,
+			"deception": 1,
+			"leadership": 1,
+			"abstraction": 1,
+
+			"digestion": 1,
+			"attraction": 1,
+			"fertility": 1,
+			"stamina": 1,
+			"thermal-efficiency": 1,
+			"resistance": 1,
+
+			"innovativeness": 1,
+			"equality": 1,
+			"curiosity": 1,
+			"aggressivity": 1,
+			"open-minded": 1,
+			"independency": 1,
+			"risktaking": 1
 		}
 	}
 
@@ -77,8 +104,6 @@ class Population {
 		this.rested++;
 	}
 
-
-
 	evaluate() {
 		for (var i = 0; i < this.animals.length; i++) {
 			this.animals[i].calcFitness();
@@ -87,13 +112,18 @@ class Population {
 
 	selection() {
 		for (let animal of this.animals) {
-			for (let x = 0; x < animal.fitness; x++) {
+			for (let x = 0; x < population.ethics.polygamy; x++) {
+				this.matingpool.push(animal);
+			}
+			for (let x = 0; x < animal.fitness * (10 - population.ethics.egalitarian); x++) {
 				this.matingpool.push(animal);
 			}
 		}
 		let nextGeneration = [];
 		for (var i = 0; i < this.size; i++) {
 			let parentA = random(this.matingpool);
+			//親となる個体の非同一性を保障すべきか
+			//例えばpolygamy-authoritarianの時
 			let parentB = random(this.matingpool);
 			let child = parentA.intercourse(parentB);
 			nextGeneration.push(child);

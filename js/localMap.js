@@ -3,14 +3,15 @@ class LocalMap {
         this.geography = noise;
         this.color = noise * 255;
         this.xy = createVector(x, y); //セル座標
-        this.herbifood;
-        this.carnifood;
-        this.ecologial_density;
+        this.herbifood = 100;
+        this.carnifood = 100;
+        this.ecologial_density = 100;
         this.visited = false;
         this.fog = true;
         this.traversable;
         this.selectable = true;
         this.accessible = false;
+
     }
 
     converToGeography(noise) {

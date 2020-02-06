@@ -1,9 +1,9 @@
 class DNA {
 	constructor(genes) {
 		this.size = 40;
+		// this.genes = genes || 
 		if (genes) {
 			this.genes = genes;
-
 		} else {
 			this.genes = [];
 			for (let i = 0; i < this.size; i++) {

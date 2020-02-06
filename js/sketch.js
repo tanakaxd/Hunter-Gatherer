@@ -35,7 +35,7 @@ function setup() {
 function draw() {
 	// scene_manager.stateの値によって、描写する内容をスイッチ
 	// アイドル状態の場合、描写自体をストップ(draw内部が空白)してもよい。入力があった場合フラグを立てる？
-	background(250);
+	background(250); //local_mapに合わせた色にする
 	// game_manager.run();
 	// scene_manager.run();
 	// event_manager.run();
