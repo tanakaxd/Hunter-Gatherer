@@ -76,7 +76,6 @@ function restart() {
 
 function popEvent() {
 	game_manager.run();
-	console.log("popEvent!");
 
 }
 
@@ -100,7 +99,7 @@ function initialize() {
 	scene_manager = new SceneManager();
 	event_manager = new EventManager();
 	global_map = new GlobalMap();
-	population = new Population();
+	population = new Player();
 	// event = new Event();
 	// info = new Info();
 	global_map.examineAccessibility(population.gps);

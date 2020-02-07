@@ -23,7 +23,7 @@ class DNA {
 			}
 			// this.mutate(child_genes);
 		}
-		console.log(child_genes.length);
+		// console.log(child_genes.length);
 
 		return new DNA(child_genes);
 	}
@@ -32,18 +32,4 @@ class DNA {
 
 	// }
 
-	// returnObjectLiteral(){
-	// 	let obl = {
-	// 		sight : this.sight,
-	// 		maxForce : this.maxForce,
-	// 		maxSpeed : this.maxSpeed,
-	// 		aggressivity : this.aggressivity,
-	// 		punctuality : this.punctuality,
-	// 		softheadted : this.softhearted,
-	// 		mass : this.mass,
-	// 		lifespan : this.lifespan,
-	// 		flying : this.flying
-	// 	}
-	// 	return obl;
-	// }
 }

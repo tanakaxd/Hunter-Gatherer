@@ -56,7 +56,7 @@ class EventManager {
 
     //idを返す
     chooseEvent(tile, ethics) {
-        if (game_manager.state == 0) { //狩りイベント
+        if (game_manager.state == "hunt") { //狩りイベント
             let events_pool = [];
 
 
@@ -65,7 +65,7 @@ class EventManager {
 
             return eventID;
 
-        } else if (game_manager.state == 1) { //ethicsイベント
+        } else if (game_manager.state == "event") { //ethicsイベント
             let events_pool = []; //idが発生確率に比例して大量に入れられた配列
             for (let key in population.ethics) {
                 for (let i = 0; i < population.ethics[key]; i++) {

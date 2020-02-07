@@ -9,6 +9,7 @@
 
 class SceneManager {
     constructor() {
+        // どの要素を描画するか
         this.state;
         this.global_map_scene = true;
         this.local_map_scene = false;

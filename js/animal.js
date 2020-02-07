@@ -9,55 +9,40 @@
 class Animal {
 
 	constructor(p, dna) {
-		// if (dna) {
-		// 	this.dna = dna;
-		// } else {
-		// 	this.dna = new DNA();
-		// }
 		this.dna = dna || new DNA();
 		this.phenotype = this.calcPhenotype(this.dna);
 		// this.weighted_phenotype;
-		this.ability;
+		this.ability; //phenotypeとabilityは現時点では区別しない
 		this.fitness = 1;
-		this.nutriture;
+		// this.nutriture;
 		this.health = 1;
 		this.pos = p || createVector(0, 0);
 		this.wh = 70;
 		this.scale = 1.7;
 	}
 
-	//現時点ではdnaが持つ数値の配列をkeyをもつオブジェクトに変換する役割
+	//現時点ではdnaが持つ数値の配列をkeyをもつオブジェクト（連想配列）に変換する役割
 	calcPhenotype(dna) {
 		let genes = dna.genes;
 		let phenotype = {
 			"hunting": ~~(genes[10] * 10),
 			"foraging": ~~(genes[11] * 10),
-			"climbing": ~~(genes[12] * 10),
+			"swimming": ~~(genes[15] * 10),
+
 			"hiding": ~~(genes[13] * 10),
 			"fighting": ~~(genes[14] * 10),
-			"swimming": ~~(genes[15] * 10),
-			"scouting": ~~(genes[16] * 10),
+			"fleeing": ~~(genes[12] * 10),
 
 			"negotiation": ~~(genes[17] * 10),
-			"anticipation": ~~(genes[18] * 10),
 			"deception": ~~(genes[19] * 10),
-			"leadership": ~~(genes[20] * 10),
-			"abstraction": ~~(genes[21] * 10),
-
-			"digestion": ~~(genes[22] * 10),
 			"attraction": ~~(genes[23] * 10),
-			"fertility": ~~(genes[24] * 10),
-			"stamina": ~~(genes[25] * 10),
-			"thermal-efficiency": ~~(genes[26] * 10),
-			"resistance": ~~(genes[27] * 10),
 
-			"innovativeness": ~~(genes[28] * 10),
 			"equality": ~~(genes[29] * 10),
-			"curiosity": ~~(genes[30] * 10),
+			"lust": ~~(genes[34] * 10),
 			"aggressivity": ~~(genes[31] * 10),
 			"open-minded": ~~(genes[32] * 10),
-			"independency": ~~(genes[33] * 10),
-			"risktaking": ~~(genes[34] * 10)
+			"curiosity": ~~(genes[30] * 10),
+			"independency": ~~(genes[33] * 10)
 		};
 		return phenotype;
 	}
@@ -74,10 +59,10 @@ class Animal {
 		return weighted_phenotype;
 	}
 	//
-	calcFitness() {
+	calcFitness(coefficient) {
 		// population.ethics
 		let fitness = 0; //undefinedにすると数を足せない。NaNになる
-		let weighted_phenotype = this.weightPhenotype(population.fitness_coefficient);
+		let weighted_phenotype = this.weightPhenotype(coefficient);
 		for (let key in weighted_phenotype) {
 			fitness += weighted_phenotype[key];
 
@@ -90,6 +75,18 @@ class Animal {
 		let child_DNA = this.dna.crossover(partner.dna);
 		let child = new Animal(null, child_DNA);
 		return child; //Animal object
+	}
+
+	calcHealth(terrain) { //localMapオブジェクトを受け取る
+		let health;
+		let phenotype = this.phenotype;
+		//100が基準値になるようにする
+		let a = max([phenotype.hunting * terrain.meats, phenotype.foraging * terrain.berries, phenotype.swimming * terrain.fishes]);
+		let b = max([phenotype.hiding, phenotype.fighting, phenotype.fleeing]) * terrain.ecological_density * terrain.ecological_density;
+		let avg = terrain.inhabitant.avg;
+		let c = min([phenotype.negotiation * avg.])
+
+		this.health = health * (a / 100) + b;
 	}
 
 

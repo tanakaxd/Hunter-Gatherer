@@ -41,7 +41,7 @@ class GlobalMap {
         for (let y = 0; y < rows; y++) {
             let xoff = 0;
             for (let x = 0; x < cols; x++) {
-                terrain[x][y] = new LocalMap(noise(xoff, yoff));
+                terrain[x][y] = new LocalMap(noise(xoff, yoff), x, y);
                 // terrain[x][y] = noise(xoff, yoff) * 255;
                 xoff += this.increment;
             }

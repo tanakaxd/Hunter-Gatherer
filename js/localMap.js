@@ -3,9 +3,14 @@ class LocalMap {
         this.geography = noise;
         this.color = noise * 255;
         this.xy = createVector(x, y); //セル座標
-        this.herbifood = 100;
-        this.carnifood = 100;
-        this.ecologial_density = 100;
+
+        this.berries = 20;
+        this.meats = 20;
+        this.fishes = 20;
+        this.ecologial_density = 20;
+        this.enemy = 20;
+        this.inhabitant = new Habitant(this.xy);
+
         this.visited = false;
         this.fog = true;
         this.traversable;
