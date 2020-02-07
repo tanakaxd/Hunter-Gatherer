@@ -7,9 +7,9 @@ class LocalMap {
         this.berries = 20;
         this.meats = 20;
         this.fishes = 20;
-        this.ecologial_density = 20;
-        this.enemy = 20;
-        this.inhabitant = new Habitant(this.xy);
+        this.ecological_density = 1;
+        this.enemy = 1;
+        this.habitant = new Habitant(this.xy);
 
         this.visited = false;
         this.fog = true;

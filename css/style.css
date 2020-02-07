@@ -8,6 +8,7 @@ body {
 }
 
 .container {
+  margin-top: 40px;
   padding: 20px;
   display: flex;
 }
@@ -61,17 +62,6 @@ body {
   margin: 2px 0;
 }
 
-.close-btn {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  cursor: pointer;
-}
-
 .close-btn i {
   font-size: 20px;
   color: #333;
@@ -85,4 +75,38 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, .8);
   z-index: 1;
+}
+
+#dialog {
+  position: fixed;
+  display: none;
+  transition: 0.3s;
+  left: 240;
+  top: 0;
+  width: 400px;
+  /* height: 100%; */
+  margin: 0 auto;
+  padding: 10px;
+  z-index: 9999;
+  /* opacity: 0; */
+  /* visibility: hidden; */
+}
+
+#dialog.is-show {
+  position: fixed;
+  display: block;
+  transition: 0.3s;
+  left: 240;
+  top: 0;
+  width: 400px;
+  /* height: 100%; */
+  margin: 0 auto;
+  padding: 10px;
+  z-index: 9999;
+  /* opacity: 0; */
+  /* visibility: hidden; */
+}
+
+.slider {
+  display: block;
 }

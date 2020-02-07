@@ -114,8 +114,8 @@
                 "optionTitle": "周囲に仲間がいるかもしれない。慎重に状況を確認しよう",
                 "condition": {
                     "qualifier": "avg",
-                    "phenotype": "anticipation",
-                    "operator": "more",
+                    "phenotype": "independency",
+                    "operator": "less",
                     "criterion": 5
                 },
                 "outcome": [{
@@ -133,7 +133,7 @@
                 "optionTitle": "相手は強敵だ。陣形を整えて集団で戦おう",
                 "condition": {
                     "qualifier": "max",
-                    "phenotype": "leadership",
+                    "phenotype": "hunting",
                     "operator": "more",
                     "criterion": 8
                 },
@@ -152,7 +152,7 @@
                 "optionTitle": "攻撃は危険すぎる。そっとしておこう",
                 "condition": {
                     "qualifier": "avg",
-                    "phenotype": "risktaking",
+                    "phenotype": "aggressivity",
                     "operator": "less",
                     "criterion": 5
                 },

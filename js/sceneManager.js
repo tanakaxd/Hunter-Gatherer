@@ -22,4 +22,28 @@ class SceneManager {
 
     }
 
+    displayInfo() {
+
+    }
+
+
+    run() {
+        global_map.show();
+        population.show();
+        let row = 0;
+        let col = 0;
+        for (let i = 0; i < population.animals.length; i++) {
+            if (i != 0 && i % pops_col == 0) {
+                row++;
+                col = 0;
+            }
+            population.animals[i].display(50 + col * 75, 50 + row * pops_cell);
+            col++;
+        }
+
+        for (let i = 0; i < Object.keys(population.ethics).length; i++) {
+
+        }
+    }
+
 }

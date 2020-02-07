@@ -37,9 +37,9 @@ class Event {
         let qualifiers = {
             "avg": function (phenotype, criterion, operator) {
                 if (operator == "more") {
-                    return population.average[phenotype] >= criterion;
+                    return population.avg[phenotype] >= criterion;
                 } else {
-                    return population.average[phenotype] <= criterion;
+                    return population.avg[phenotype] <= criterion;
                 }
             },
             "max": function (phenotype, criterion, operator) {
@@ -83,13 +83,13 @@ class Event {
             let bool = qualifiers[condition.qualifier](condition.phenotype, condition.criterion, condition.operator);
             if (bool) {
                 this.certified_choices.push(choice);
-                console.log(this.certified_choices);
+                // console.log(this.certified_choices);
 
             }
         }
         //作った配列をDOMに反映。該当する選択肢がない場合の処理
         if (this.certified_choices.length != 0) {
-            console.log(this.certified_choices);
+            // console.log(this.certified_choices);
             for (let choice of this.certified_choices) {
                 buttons += `<div class="btn" id="${choice.optionID}">${choice.optionTitle}</div>`;
             }
@@ -102,7 +102,9 @@ class Event {
         //全ての選択肢ボタンに共通する処理を登録
         $(".btn").click(function () {
             $("#js-popup").toggleClass('is-show');
-            game_manager.focus = 1;
+            game_manager.focus = "global_map";
+            game_manager.state = "night";
+
         });
 
         // それぞれのボタンに対してイベントハンドラーを設定。
@@ -112,6 +114,7 @@ class Event {
                 for (let func of choice.outcome) {
                     modifiers[func.modifier](func.scale);
                 }
+                population.adjustSlider();
             })
         }
         //イベント要素全体をpopup

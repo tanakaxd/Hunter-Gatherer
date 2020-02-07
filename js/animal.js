@@ -17,7 +17,7 @@ class Animal {
 		// this.nutriture;
 		this.health = 1;
 		this.pos = p || createVector(0, 0);
-		this.wh = 70;
+		this.wh = pops_cell;
 		this.scale = 1.7;
 	}
 
@@ -78,30 +78,31 @@ class Animal {
 	}
 
 	calcHealth(terrain) { //localMapオブジェクトを受け取る
-		let health;
 		let phenotype = this.phenotype;
-		//100が基準値になるようにする
-		let a = max([phenotype.hunting * terrain.meats, phenotype.foraging * terrain.berries, phenotype.swimming * terrain.fishes]);
-		let b = max([phenotype.hiding, phenotype.fighting, phenotype.fleeing]) * terrain.ecological_density * terrain.ecological_density;
-		let avg = terrain.inhabitant.avg;
-		let c = min([phenotype.negotiation * avg.])
+		//恣意的な計算式
+		let a = max(phenotype.hunting * terrain.meats, phenotype.foraging * terrain.berries, phenotype.swimming * terrain.fishes); //100が基準値。大抵それ以上
 
-		this.health = health * (a / 100) + b;
-	}
+		let b = (max(phenotype.hiding, phenotype.fighting, phenotype.fleeing) / 10 - 1) * (terrain.ecological_density ** 2); //負の値
 
+		let avg = terrain.habitant.calcAvg();
+		let c = min(phenotype.negotiation - avg.deception, phenotype.deception - avg.attraction, phenotype.attraction - avg.negotiation) *
+			(terrain.ecological_density ** 2) / 10; //-1~1
 
-	showPersonality() {
-		let personality = {
-			maxForce: this.DNA.maxForce.toFixed(3),
-			maxSpeed: this.DNA.maxSpeed.toFixed(2),
-			sight: this.DNA.sight.toFixed(1),
-			aggressivity: this.DNA.aggressivity.toFixed(1),
-			punctuality: this.DNA.punctuality.toFixed(3),
-			softhearted: this.DNA.softhearted.toFixed(3),
-			mass: this.DNA.mass.toFixed(3),
-			fitness: this.fitness
+		// let d = map(c, -10, 10, )
+		this.health = this.health * (a / 100) + b + c;
+		console.log(this.health);
+
+		if (this.health <= 0) {
+			population.animals.splice(this, 1);
 		}
-		return personality;
+		// let d = this.health;
+		// console.table({
+		// 	a,
+		// 	b,
+		// 	c,
+		// 	d
+		// });
+
 	}
 
 	display(offsetX, offsetY) {
@@ -151,9 +152,9 @@ class Animal {
 		pop();
 
 		// Display fitness value
-		textAlign(CENTER);
-		fill(0.25);
-		text('' + floor(this.fitness), cell_size * map_size + offsetX / scale, offsetY / scale + 55 / scale);
+		// textAlign(CENTER);
+		// fill(0.25);
+		// text('' + floor(this.fitness), cell_size * map_size + offsetX / scale, offsetY / scale + 55 / scale);
 	}
 
 }
