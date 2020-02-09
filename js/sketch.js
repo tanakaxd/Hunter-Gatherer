@@ -8,10 +8,10 @@ let sliders = [];
 let cell_size = 30;
 let map_size = 15;
 let mutationRate = 0.03;
-let pops_cell = 70;
+let pops_cell = 70; //セルのサイズ
 let pops_col = 5;
-let pops_scale = 1.7;
-// let pops_width = pops_cell * pops_col;
+let pops_scale = 1.7; //顔のパーツが絶対的な値で定義されているので縮尺によって調節する
+let pops_width = pops_cell * pops_col;
 let events_per_ethic = 3;
 
 //utility
@@ -85,7 +85,7 @@ function mousePressed() {
 				$("#dialog").html("");
 				game_manager.state = "hunt";
 				game_manager.focus = "forbidden";
-				noLoop();
+				// noLoop();
 			}
 		}
 	}
@@ -140,7 +140,7 @@ function initialize() {
 
 	// frameRate(1);
 	noiseSeed(new Date().getTime());
-	canvas = createCanvas(cell_size * map_size + 230, cell_size * map_size);
+	canvas = createCanvas(cell_size * map_size + pops_width / pops_scale, cell_size * map_size);
 	let container = select(".container");
 	container.child(canvas);
 	// let p = createP("paragraph");
@@ -163,7 +163,9 @@ function initialize() {
 	for (let y = 0; y < map_size; y++) {
 		for (let x = 0; x < map_size; x++) {
 			for (let i = 0; i < 1; i++) {
+				// console.log(global_map.terrain[x][y].habitant);
 				global_map.terrain[x][y].habitant.evolve();
+
 			}
 		}
 	}

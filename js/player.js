@@ -3,15 +3,15 @@ class Player extends Population {
 
     constructor(gps) {
         super();
-        this.size = 20;
+        this.size = 15;
         for (let x = 0; x < this.size; x++) {
             this.animals.push(new Animal());
         }
 
         //animalに依存する値だから親クラスで呼べない
-        this.avg = this.calcAvg();
-        this.max = this.calcMax();
-        this.min = this.calcMin();
+        this.avg = super.calcAvg();
+        this.max = super.calcMax();
+        this.min = super.calcMin();
 
         this.gps = gps || createVector(floor(map_size / 2), floor(map_size / 2));
         this.clearFog(this.gps);
@@ -42,9 +42,11 @@ class Player extends Population {
 
     show() {
         //translateを使った方がいいかもしれない
+        push();
         fill(100, 255, 100);
         ellipseMode(CORNER)
         ellipse(this.gps.x * cell_size, this.gps.y * cell_size, cell_size, cell_size);
+        pop();
     }
 
     adjustSlider() {

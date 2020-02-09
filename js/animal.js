@@ -16,7 +16,7 @@ class Animal {
 		this.fitness = 1;
 		// this.nutriture;
 		this.health = 1;
-		this.pos; //中心点をあらわす
+		this.pos; //画面上の位置。中心点をあらわす
 		this.wh = pops_cell / pops_scale;
 		this.scale = pops_scale;
 		this.r;
@@ -74,7 +74,7 @@ class Animal {
 
 	intercourse(partner) {
 		let child_DNA = this.dna.crossover(partner.dna);
-		let child = new Animal(null, child_DNA);
+		let child = new Animal(child_DNA);
 		return child; //Animal object
 	}
 

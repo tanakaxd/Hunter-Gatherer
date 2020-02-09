@@ -30,6 +30,8 @@ class DNA {
 	mutate(gene) {
 		if (random() <= mutationRate) {
 			gene = random();
+			// console.log("mutaetd");
+
 		}
 	}
 

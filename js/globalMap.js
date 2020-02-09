@@ -28,8 +28,8 @@ class GlobalMap {
 
 
     make2Darray(cols, rows) {
-        var array = new Array(cols);
-        for (var i = 0; i < array.length; i++) {
+        let array = new Array(cols);
+        for (let i = 0; i < array.length; i++) {
             array[i] = new Array(rows);
         }
         return array;

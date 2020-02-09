@@ -109,22 +109,25 @@ class Population {
 	}
 
 	naturalSelection() {
-		for (var i = this.animals.length - 1; i < 0; i--) {
+		for (let i = this.animals.length - 1; i >= 0; i--) {
 			this.animals[i].calcHealth(global_map.getTerrain(this.gps));
 			if (this.animals[i].health <= 0) {
-				this.animals.splice(this.animals[i], 1);
+				// console.log(this.animals[i]);
+
+				this.animals.splice(i, 1);
 			}
-
-			console.log(i);
-
+			// console.log(i);
 		}
+		// console.log("naturalselection");
 
 	}
 
 	evaluate() {
-		for (var i = 0; i < this.animals.length; i++) {
+		for (let i = 0; i < this.animals.length; i++) {
 			this.animals[i].calcFitness(this.fitness_coefficient);
 		}
+		// console.log("evaluate");
+
 
 	}
 
@@ -138,7 +141,9 @@ class Population {
 			}
 		}
 		let nextGeneration = [];
-		for (var i = 0; i < this.size; i++) {
+		// console.log(this.matingpool);
+		for (let i = 0; i < this.size; i++) {
+
 			let parentA = random(this.matingpool);
 			//親となる個体の非同一性を保障すべきか
 			//例えばpolygamy-authoritarianの時
@@ -146,12 +151,19 @@ class Population {
 			let child = parentA.intercourse(parentB);
 			nextGeneration.push(child);
 		}
+		// console.log(nextGeneration);
 
 		this.animals = nextGeneration;
 		this.matingpool = [];
 		this.generation++;
 		this.calcStats();
-		this.setPosition();
+		if (this instanceof Habitant) {
+			this.setPosition(555);
+		} else if (this instanceof Player) {
+			this.setPosition();
+		}
+		// console.log("sexualselection");
+
 	}
 
 	consolePopulation(full) {
