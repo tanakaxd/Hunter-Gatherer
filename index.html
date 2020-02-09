@@ -25,40 +25,68 @@
 
   <script src="js/event.js"></script>
   <script src="js/info.js"></script>
+  <script src="js/rectangle.js"></script>
 
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
+  <div id="dialog">
+    <!-- 移動先のタイルを選択してください -->
+  </div>
   <div class="container">
     <div class="buttons">
       <button class="button" id="pause">PAUSE</button>
       <button class="button" id="resume">RESUME</button>
       <button class="button" id="restart">RESTART</button>
       <button class="button" id="popup-event">POPUP</button>
-
     </div>
-    <div class="popup" id="js-popup">
-      <div class="popup-inner">
-        <div id="description"></div>
-        <div id="choices"></div>
+    <div class="info">
+      <div class="numbers">
+        <p class="number" id="day">Day: 1</p>
+        <p class="number" id="score">Score: 12344</p>
       </div>
-      <div class="black-background" id="js-black-bg"></div>
+      <div class="ethics">
+        <div class="ethic">
+          <div class="left">Authoritarian</div>
+          <input type="range" class="slider" id="egalitarian" min="0" max="10" disabled>
+          <div class="right">Egalitarian</div>
+        </div>
+        <div class="ethic">
+          <div class="left">Monogamy</div>
+          <input type="range" class="slider" id="polygamy" min="0" max="10" disabled>
+          <div class="right">Polygamy</div>
+        </div>
+        <div class="ethic">
+          <div class="left">Militarist</div>
+          <input type="range" class="slider" id="pacifist" min="0" max="10" disabled>
+          <div class="right">Pacifist</div>
+        </div>
+        <div class="ethic">
+          <div class="left">Xenophobe</div>
+          <input type="range" class="slider" id="xenophile" min="0" max="10" disabled>
+          <div class="right">Xenophile</div>
+        </div>
+        <div class="ethic">
+          <div class="left">Traditional</div>
+          <input type="range" class="slider" id="innovative" min="0" max="10" disabled>
+          <div class="right">Innovative</div>
+        </div>
+        <div class="ethic">
+          <div class="left">Chaos</div>
+          <input type="range" class="slider" id="order" min="0" max="10" disabled>
+          <div class="right">Order</div>
+        </div>
+      </div>
     </div>
-    <div id="dialog">
-      移動先のタイルを選択してください
-    </div>
-    <div class="sliders">
-      <input type="range" class="slider" id="egalitarian" min="0" max="10" disabled>
-      <input type="range" class="slider" id="polygamy" min="0" max="10" disabled>
-      <input type="range" class="slider" id="pacifist" min="0" max="10" disabled>
-      <input type="range" class="slider" id="xenophile" min="0" max="10" disabled>
-      <input type="range" class="slider" id="innovative" min="0" max="10" disabled>
-      <input type="range" class="slider" id="order" min="0" max="10" disabled>
-    </div>
-
   </div>
-
+  <div class="popup" id="js-popup">
+    <div class="popup-inner">
+      <div id="description"></div>
+      <div id="choices"></div>
+    </div>
+    <div class="black-background" id="js-black-bg"></div>
+  </div>
 </body>
 
 </html>
