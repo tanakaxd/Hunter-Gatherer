@@ -10,11 +10,16 @@
 class SceneManager {
     constructor() {
         // どの要素を描画するか
-        this.state;
         this.global_map_scene = true;
+        this.buttons = true;
+        this.sliders = true;
+        this.animals = true;
+        this.habitant = true;
         this.local_map_scene = false;
         this.event_scene = false;
         this.info_scene = true;
+        this.logs = true;
+        this.dialog = true;
         // this.popupEvent();
     }
 
@@ -22,28 +27,36 @@ class SceneManager {
 
     }
 
-    displayInfo() {
+    displayTooltips() {
 
     }
 
 
     run() {
-        global_map.show();
-        population.show();
-        let row = 0;
-        let col = 0;
-        for (let i = 0; i < population.animals.length; i++) {
-            if (i != 0 && i % pops_col == 0) {
-                row++;
-                col = 0;
+        if (this.global_map_scene) {
+            global_map.show();
+            population.show();
+        }
+        if (this.animals) {
+            for (let animal of population.animals) {
+                animal.show();
+                animal.r.show();
             }
-            population.animals[i].display(50 + col * 75, 50 + row * pops_cell);
-            col++;
+        }
+        if (this.habitant) {
+            for (let animal of global_map.getTerrain(population.gps).habitant.animals) {
+                animal.show();
+                animal.r.show();
+            }
         }
 
-        for (let i = 0; i < Object.keys(population.ethics).length; i++) {
 
-        }
+
+        // for (let i = 0; i < Object.keys(population.ethics).length; i++) {
+
+        // }
+
+        // info.display();
     }
 
 }

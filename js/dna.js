@@ -21,15 +21,16 @@ class DNA {
 			} else {
 				child_genes[x] = partner_dna.genes[x];
 			}
-			// this.mutate(child_genes);
+			this.mutate(child_genes[x]);
 		}
-		// console.log(child_genes.length);
-
 		return new DNA(child_genes);
+
 	}
 
-	// mutation(){
-
-	// }
+	mutate(gene) {
+		if (random() <= mutationRate) {
+			gene = random();
+		}
+	}
 
 }

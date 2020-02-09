@@ -15,6 +15,7 @@ class Info {
 
     }
     display() {
+        // this.update();
 
     }
 }

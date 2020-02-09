@@ -109,15 +109,23 @@ class Population {
 	}
 
 	naturalSelection() {
-		for (var i = 0; i < this.animals.length; i++) {
+		for (var i = this.animals.length - 1; i < 0; i--) {
 			this.animals[i].calcHealth(global_map.getTerrain(this.gps));
+			if (this.animals[i].health <= 0) {
+				this.animals.splice(this.animals[i], 1);
+			}
+
+			console.log(i);
+
 		}
+
 	}
 
 	evaluate() {
 		for (var i = 0; i < this.animals.length; i++) {
 			this.animals[i].calcFitness(this.fitness_coefficient);
 		}
+
 	}
 
 	sexualSelection() {
@@ -138,10 +146,12 @@ class Population {
 			let child = parentA.intercourse(parentB);
 			nextGeneration.push(child);
 		}
+
 		this.animals = nextGeneration;
 		this.matingpool = [];
 		this.generation++;
 		this.calcStats();
+		this.setPosition();
 	}
 
 	consolePopulation(full) {
@@ -159,5 +169,29 @@ class Population {
 		console.table(this.ethics);
 
 		// return this.ethics;
+	}
+
+	setPosition(yoffset) {
+		//habitantの時はoffset分下にずらす？
+		//animalのpos、判定用のrectangleのpos、クリックした場所のpos
+		let row = 0;
+		let col = 0;
+		for (let i = 0; i < this.animals.length; i++) {
+			if (i != 0 && i % pops_col == 0) {
+				row++;
+				col = 0;
+			}
+			let map_width = cell_size * map_size;
+			let offset = pops_cell / 2; //顔の中心点が角の上にくるのを補正する値。
+			if (yoffset) {
+				this.animals[i].pos = createVector(map_width + (offset + col * pops_cell) / pops_scale, (offset + row * pops_cell + yoffset) / pops_scale);
+			} else {
+				this.animals[i].pos = createVector(map_width + (offset + col * pops_cell) / pops_scale, (offset + row * pops_cell) / pops_scale);
+			}
+			let pos = this.animals[i].pos;
+			let wh = this.animals[i].wh;
+			this.animals[i].r = new Rectangle(pos.x, pos.y, wh, wh);
+			col++;
+		}
 	}
 }

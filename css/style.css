@@ -8,9 +8,12 @@ body {
 }
 
 .container {
-  margin-top: 40px;
   padding: 20px;
   display: flex;
+}
+
+.info {
+  margin-right: 15px;
 }
 
 .buttons {
@@ -78,16 +81,18 @@ body {
 }
 
 #dialog {
-  position: fixed;
-  display: none;
-  transition: 0.3s;
-  left: 240;
-  top: 0;
-  width: 400px;
-  /* height: 100%; */
+  /* position: fixed; */
+  /* display: none; */
+  /* transition: 1.3s; */
+  /* left: 240; */
+  /* top: 0; */
+  width: auto;
+  max-width: 500px;
+  height: 30px;
   margin: 0 auto;
   padding: 10px;
-  z-index: 9999;
+  text-align: center;
+  /* z-index: 9999; */
   /* opacity: 0; */
   /* visibility: hidden; */
 }
@@ -107,6 +112,38 @@ body {
   /* visibility: hidden; */
 }
 
+.ethics {
+  margin-top: 20px;
+}
+
+.ethics .ethic:nth-child(odd) {
+  background-color: rgb(197, 188, 188);
+}
+
+.ethics .ethic:nth-child(even) {
+  background-color: rgb(253, 237, 237);
+}
+
+.ethic {
+  font-size: 11px;
+  margin-bottom: 7px;
+}
+
 .slider {
   display: block;
+}
+
+.number {
+  margin: 0;
+}
+
+
+.ethic .left {
+  text-align: left;
+}
+
+.ethic .right {
+  text-align: right;
+  display: block;
+  margin-left: auto;
 }

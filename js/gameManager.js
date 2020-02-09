@@ -16,10 +16,10 @@
 class GameManager {
 
     constructor() {
-        this.focus = "global_map"; //0:start 1:global_map 2:event どの要素とinteract可能か。プレイヤーの入力待ち
-        this.states = ["map", "hunt", "event", "night"];
+        this.focus = "global_map"; //0:start 1:global_map 2:event 3:forbidden どの要素とinteract可能か。プレイヤーの入力待ち
+        // this.states = ["map", "hunt", "event", "night"];
         this.state = "map"; //0:hunt 1:event 2:night 3:map　ゲームの進行状況
-        this.score;
+        this.score = 0;
         this.day = 1;
         // this.food = 0;
 
@@ -30,11 +30,16 @@ class GameManager {
     run() {
 
         switch (this.state) {
+            //dialog要素自体は常に表示させておく。都度内容を書きかえて、プレイヤーに確認を求める
+            //その確認次第でstateを変化させる、つまり次のステップへ移動
+            //mapの時は「タイルをクリックしたら」、eventの時は「選択肢を選んだら」state移行
             case "map":
                 console.log("map");
 
                 // noLoop();
-                $("#dialog").addClass("is-show");
+                // $("#dialog").addClass("is-show");
+                $("#dialog").html("移動先のタイルを選択してください");
+
                 this.state = "";
                 break;
             case "hunt":

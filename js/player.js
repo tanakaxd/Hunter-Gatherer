@@ -3,9 +3,9 @@ class Player extends Population {
 
     constructor(gps) {
         super();
-        this.size = 15;
+        this.size = 20;
         for (let x = 0; x < this.size; x++) {
-            this.animals.push(new Animal(createVector(50 + x * 75, 60), null));
+            this.animals.push(new Animal());
         }
 
         //animalに依存する値だから親クラスで呼べない
@@ -16,6 +16,7 @@ class Player extends Population {
         this.gps = gps || createVector(floor(map_size / 2), floor(map_size / 2));
         this.clearFog(this.gps);
         this.adjustSlider();
+        super.setPosition();
     }
 
 

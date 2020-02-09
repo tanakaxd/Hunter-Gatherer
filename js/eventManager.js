@@ -88,7 +88,7 @@ class EventManager {
                         } else if (key == "order") {
                             events_pool.push("chaos" + j);
                         } else {
-                            console.log("invalid ethics name");
+                            console.error("invalid ethics name");
 
                         }
                     }
@@ -98,7 +98,7 @@ class EventManager {
 
             return random(events_pool);
         } else {
-            console.log("invalid state");
+            console.error("invalid state");
 
         }
     }

@@ -8,7 +8,7 @@
 
 class Animal {
 
-	constructor(p, dna) {
+	constructor(dna) {
 		this.dna = dna || new DNA();
 		this.phenotype = this.calcPhenotype(this.dna);
 		// this.weighted_phenotype;
@@ -16,9 +16,10 @@ class Animal {
 		this.fitness = 1;
 		// this.nutriture;
 		this.health = 1;
-		this.pos = p || createVector(0, 0);
-		this.wh = pops_cell;
-		this.scale = 1.7;
+		this.pos; //中心点をあらわす
+		this.wh = pops_cell / pops_scale;
+		this.scale = pops_scale;
+		this.r;
 	}
 
 	//現時点ではdnaが持つ数値の配列をkeyをもつオブジェクト（連想配列）に変換する役割
@@ -90,11 +91,8 @@ class Animal {
 
 		// let d = map(c, -10, 10, )
 		this.health = this.health * (a / 100) + b + c;
-		console.log(this.health);
+		// console.log(this.health);
 
-		if (this.health <= 0) {
-			population.animals.splice(this, 1);
-		}
 		// let d = this.health;
 		// console.table({
 		// 	a,
@@ -105,7 +103,7 @@ class Animal {
 
 	}
 
-	display(offsetX, offsetY) {
+	show() {
 
 
 		// map(, 0, 1, 0, 255)
@@ -114,7 +112,7 @@ class Animal {
 		let scale = this.scale;
 		let r = map(genes[0], 0, 1, 40, 70) / scale;
 		let c = color(map(genes[1], 0, 1, 0, 255), map(genes[3], 0, 1, 0, 255), map(genes[2], 0, 1, 0, 255));
-		let eye_y = map(genes[4], 0, 1, 0, 5) / scale; //目の高さ
+		let eye_y = map(genes[4], 0, 1, 0, 5) / scale; //目の高さ。顔の中心点が基準
 		let eye_x = map(genes[5], 0, 1, 0, 10) / scale; //目の間の幅（そのものではない）
 		let eye_size = map(genes[5], 0, 1, 0, 10) / scale;
 		let eyecolor = color(map(genes[4], 0, 1, 0, 255), map(genes[5], 0, 1, 0, 255), map(genes[6], 0, 1, 0, 255));
@@ -125,7 +123,8 @@ class Animal {
 		let mouthh = map(genes[7], 0, 1, 0, 10) / scale;
 
 		push();
-		translate(cell_size * map_size + offsetX / scale, offsetY / scale);
+		//目や口はthis.posに紐づいていないので、translateでまとめてposの場所へ動かす
+		translate(this.pos.x, this.pos.y);
 		noStroke();
 
 		// Draw the head
@@ -148,13 +147,16 @@ class Animal {
 		stroke(0.25);
 		noFill();
 		rectMode(CENTER);
-		rect(0, 0, this.wh / scale, this.wh / scale);
+		rect(0, 0, this.wh, this.wh);
 		pop();
+
+		// fill(255);
+		// ellipse(map_width + this.pos.x, this.pos.y, 10, 10);
+
 
 		// Display fitness value
 		// textAlign(CENTER);
 		// fill(0.25);
 		// text('' + floor(this.fitness), cell_size * map_size + offsetX / scale, offsetY / scale + 55 / scale);
 	}
-
 }
