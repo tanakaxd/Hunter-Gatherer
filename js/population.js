@@ -9,17 +9,6 @@ class Population {
 		this.generation = 0;
 		this.gps;
 
-		// 以下三つはその都度計算して取得する？　そうすれば必要な時に必ず最新の値が手に入る。
-		//ただ計算量が増える恐れあり
-		// this.avg = this.calcAvg();
-		// this.max = this.calcMax();
-		// this.min = this.calcMin();
-
-		//現在地のlocalmapオブジェクトを取得
-		//localmapをpopulationが持っていて、populationがlocalmapを持っているのは変？
-		//population.gpsはあるので、計算に必要な時にはその都度取得すべきか
-		// this.on_what_terrain = global_map.getTerrain(this.gps);
-
 		this.ethics = {
 			//jsでは連想配列のkeyに""があってもなくても同じ。jsonは必須
 			"egalitarian": random() * 10,
@@ -109,16 +98,19 @@ class Population {
 	}
 
 	naturalSelection() {
+		let casualities = 0;
 		for (let i = this.animals.length - 1; i >= 0; i--) {
 			this.animals[i].calcHealth(global_map.getTerrain(this.gps));
 			if (this.animals[i].health <= 0) {
 				// console.log(this.animals[i]);
 
 				this.animals.splice(i, 1);
+				casualities++;
 			}
 			// console.log(i);
 		}
 		// console.log("naturalselection");
+		if (this instanceof Player && casualities > 0) addlog(`仲間が${casualities}人、命を落としてしまった…`);
 
 	}
 
@@ -184,8 +176,7 @@ class Population {
 	}
 
 	setPosition(yoffset) {
-		//habitantの時はoffset分下にずらす？
-		//animalのpos、判定用のrectangleのpos、クリックした場所のpos
+		//habitantの時はyoffset分下にずらす
 		let row = 0;
 		let col = 0;
 		for (let i = 0; i < this.animals.length; i++) {

@@ -17,7 +17,7 @@ class Rectangle {
         this.y = y;
         this.width = w;
         this.height = h;
-        this.clr = color(255, 170);
+        this.clr = color(255, 0);
     }
 
     contains(px, py) {

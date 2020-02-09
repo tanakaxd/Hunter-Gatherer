@@ -10,6 +10,9 @@
 // 例えばイベントがポップした時、 プレイヤーにデータへのアクセスを与えるため背後で他のクラスを描画はするが、
 // フォーカス自体はイベントに当たっていて、 選択肢を選ばない限りは先へ進めない。
 
+//もしstatesが単にループするだけならフラグを書く場所にはすべてstates[0]と書いて、配列を回転させる関数を作ればよい
+
+
 
 
 
@@ -34,61 +37,65 @@ class GameManager {
             //その確認次第でstateを変化させる、つまり次のステップへ移動
             //mapの時は「タイルをクリックしたら」、eventの時は「選択肢を選んだら」state移行
             case "map":
+                global_map.night = false;
                 console.log("map");
-
-                // noLoop();
-                // $("#dialog").addClass("is-show");
-                $("#dialog").html("移動先のタイルを選択してください");
-
+                $("#dialog").html(`${this.day}日目の朝だよ。移動先のタイルを選択してね`);
                 this.state = "";
                 break;
             case "hunt":
                 console.log("hunt");
-
-                population.naturalSelection();
-                this.state = "event";
+                let dots = "";
+                let func = setInterval(() => {
+                    $("#dialog").html("探索中" + dots);
+                    dots += "・";
+                    setTimeout(() => {
+                        clearInterval(func);
+                    }, 5500 / uber_speed);
+                }, 500 / uber_speed);
+                setTimeout(() => {
+                    population.naturalSelection();
+                }, 3000 / uber_speed);
+                this.state = "";
+                this.changeState("event", 6000 / uber_speed);
                 break;
             case "event":
                 console.log("event");
-
                 this.focus = "event";
-                // console.log(this.focus === game_manager.focus);
                 event_manager.popEvent();
-                // this.state = "night";
-                // noLoop();
                 this.state = "";
                 break;
             case "night":
                 console.log("night");
-
+                global_map.night = true;
+                $("#dialog").html("夜が来た！");
+                let dots_b = "";
+                setTimeout(() => {
+                    let func = setInterval(() => {
+                        $("#dialog").html("Wuv Wuv" + dots_b);
+                        dots_b += "・";
+                        setTimeout(() => {
+                            clearInterval(func);
+                        }, 5500 / uber_speed);
+                    }, 500 / uber_speed);
+                }, 2000 / uber_speed);
                 population.evaluate();
-                population.sexualSelection();
-                this.state = "map";
-                this.focus = "global_map";
+                setTimeout(() => {
+                    population.sexualSelection();
+                    this.state = "map";
+                    this.focus = "global_map";
+                    this.day++;
+                    $("#day").html(`Day: ${this.day}`);
+                }, 8000 / uber_speed);
+                this.state = "";
                 break;
             default:
         }
-        // if (this.state == "hunt") {
-        //     population.naturalSelection();
-        // }
-
-
-        // //イベント発生条件
-        // else if (this.state == "event") {
-        //     game_manager.focus = "event";
-        //     // console.log(this.focus === game_manager.focus);
-        //     event_manager.popEvent();
-        //     game_manager.state = "night";
-        //     // noLoop();
-
-        // } else if (this.state == "night") {
-
-        // }
     }
 
-    //もしstatesが単にループするだけならフラグを書く場所にはすべてstates[0]と書いて、配列を回転させる関数を作ればよい
-    stateChanger() {
-        this.states.slice()
+    changeState(state, miliseconds) {
+        setTimeout(() => {
+            this.state = state;
+        }, miliseconds);
     }
 
 

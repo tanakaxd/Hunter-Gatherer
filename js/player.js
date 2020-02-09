@@ -24,6 +24,7 @@ class Player extends Population {
         this.gps = p;
         this.on_what_terrain = global_map.getTerrain(this.gps);
         this.clearFog(this.gps);
+        addlog(`(${this.gps.x+1},${this.gps.y+1})へ移動しました`);
 
     }
 

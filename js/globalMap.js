@@ -24,6 +24,8 @@ class GlobalMap {
 
         this.local_tiles = [];
         this.potential_tiles = [];
+
+        this.night = false;
     }
 
 
@@ -53,8 +55,8 @@ class GlobalMap {
     show() {
         for (let y = 0; y < this.rows; y++) {
             for (let x = 0; x < this.cols; x++) {
-                if (game_manager.state == "night") {
-                    fill(20);
+                if (this.night) {
+                    fill(10);
                 } else if (this.terrain[x][y].fog == true) {
                     fill(245);
                 } else {

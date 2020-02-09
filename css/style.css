@@ -7,6 +7,21 @@ body {
   border: solid 1px;
 }
 
+/* dialog */
+
+#dialog {
+  width: auto;
+  max-width: 500px;
+  height: 30px;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+}
+
+
+/* container */
+
+
 .container {
   padding: 20px;
   display: flex;
@@ -15,6 +30,116 @@ body {
 .info {
   margin-right: 15px;
 }
+
+
+
+.ethics {
+  margin-top: 20px;
+}
+
+.ethics .ethic:nth-child(odd) {
+  background-color: rgb(197, 188, 188);
+}
+
+.ethics .ethic:nth-child(even) {
+  background-color: rgb(253, 237, 237);
+}
+
+.ethic {
+  font-size: 11px;
+  margin-bottom: 7px;
+}
+
+.slider {
+  display: block;
+}
+
+.number {
+  margin: 0;
+}
+
+.ethic .left {
+  text-align: left;
+}
+
+.ethic .right {
+  text-align: right;
+  display: block;
+  margin-left: auto;
+}
+
+.pops-status {
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+}
+
+tr:nth-child(odd) {
+  background-color: rgb(243, 243, 243);
+}
+
+td {
+  width: 50%;
+  padding: 1px 0;
+}
+
+td.catastrophic {
+  color: darkred;
+}
+
+td.awful {
+  color: red;
+}
+
+td.poor {
+  color: darkorange;
+}
+
+td.average {
+  color: rgb(138, 138, 4);
+}
+
+td.good {
+  color: green;
+}
+
+td.excellent {
+  color: blue;
+}
+
+td.legendary {
+  color: cyan;
+}
+
+
+/* log */
+
+.log {
+  width: 100%;
+  height: 100px;
+  overflow: scroll;
+  /* padding: 0 50px; */
+}
+
+.log p {
+  width: 70%;
+  margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+
+/* hidden-UI */
+
 
 .buttons {
   padding: 20px;
@@ -25,6 +150,9 @@ body {
   width: 100%;
   margin: 5px;
 }
+
+
+/* popup */
 
 .popup {
   position: fixed;
@@ -55,19 +183,10 @@ body {
   z-index: 2;
 }
 
-.popup-inner img {
-  width: 100%;
-}
-
 .btn {
   cursor: pointer;
   border: 1px black solid;
   margin: 2px 0;
-}
-
-.close-btn i {
-  font-size: 20px;
-  color: #333;
 }
 
 .black-background {
@@ -78,72 +197,4 @@ body {
   height: 100%;
   background-color: rgba(0, 0, 0, .8);
   z-index: 1;
-}
-
-#dialog {
-  /* position: fixed; */
-  /* display: none; */
-  /* transition: 1.3s; */
-  /* left: 240; */
-  /* top: 0; */
-  width: auto;
-  max-width: 500px;
-  height: 30px;
-  margin: 0 auto;
-  padding: 10px;
-  text-align: center;
-  /* z-index: 9999; */
-  /* opacity: 0; */
-  /* visibility: hidden; */
-}
-
-#dialog.is-show {
-  position: fixed;
-  display: block;
-  transition: 0.3s;
-  left: 240;
-  top: 0;
-  width: 400px;
-  /* height: 100%; */
-  margin: 0 auto;
-  padding: 10px;
-  z-index: 9999;
-  /* opacity: 0; */
-  /* visibility: hidden; */
-}
-
-.ethics {
-  margin-top: 20px;
-}
-
-.ethics .ethic:nth-child(odd) {
-  background-color: rgb(197, 188, 188);
-}
-
-.ethics .ethic:nth-child(even) {
-  background-color: rgb(253, 237, 237);
-}
-
-.ethic {
-  font-size: 11px;
-  margin-bottom: 7px;
-}
-
-.slider {
-  display: block;
-}
-
-.number {
-  margin: 0;
-}
-
-
-.ethic .left {
-  text-align: left;
-}
-
-.ethic .right {
-  text-align: right;
-  display: block;
-  margin-left: auto;
 }

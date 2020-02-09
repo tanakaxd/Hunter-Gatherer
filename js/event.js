@@ -103,7 +103,10 @@ class Event {
         $(".btn").click(function () {
             $("#js-popup").toggleClass('is-show');
             game_manager.focus = "global_map";
-            game_manager.state = "night";
+            setTimeout(() => {
+                game_manager.state = "night";
+
+            }, 3000 / uber_speed);
 
         });
 

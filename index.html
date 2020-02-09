@@ -31,15 +31,16 @@
 </head>
 
 <body>
+
   <div id="dialog">
     <!-- 移動先のタイルを選択してください -->
   </div>
-  <div class="container">
 
+  <div class="container">
     <div class="info">
       <div class="numbers">
         <p class="number" id="day">Day: 1</p>
-        <p class="number" id="score">Score: 12344</p>
+        <p class="number" id="score">Score: 0</p>
       </div>
       <div class="ethics">
         <div class="ethic">
@@ -74,13 +75,90 @@
         </div>
       </div>
     </div>
+    <div class="canvas-inner">
+
+    </div>
+    <div class="pops-status">
+      <table>
+        <!-- <tr>
+          <th>項目</th>
+          <th>値</th>
+        </tr> -->
+        <tr class="" id="hunting">
+          <td>Hunting</td>
+          <td></td>
+        </tr>
+        <tr class="" id="foraging">
+          <td>Foraging</td>
+          <td></td>
+        </tr>
+        <tr class="" id="swimming">
+          <td>Swimming</td>
+          <td></td>
+        </tr>
+        <tr class="" id="hiding">
+          <td>Hiding</td>
+          <td></td>
+        </tr>
+        <tr class="" id="fighting">
+          <td>Fighting</td>
+          <td></td>
+        </tr>
+        <tr class="" id="fleeing">
+          <td>Fleeing</td>
+          <td></td>
+        </tr>
+        <tr class="" id="negotiation">
+          <td>Negotiation</td>
+          <td></td>
+        </tr>
+        <tr class="" id="deception">
+          <td>Deception</td>
+          <td></td>
+        </tr>
+        <tr class="" id="attraction">
+          <td>Attraction</td>
+          <td></td>
+        </tr>
+        <tr class="" id="">
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="" id="">
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="" id="">
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="" id="">
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="" id="">
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="" id="">
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
   </div>
+
+  <div class="log">
+    <p>ここに起こったことの結果が表示されていくよ</p>
+  </div>
+
   <div class="buttons">
     <button class="button" id="pause">PAUSE</button>
     <button class="button" id="resume">RESUME</button>
     <button class="button" id="restart">RESTART</button>
     <button class="button" id="popup-event">POPUP</button>
   </div>
+
   <div class="popup" id="js-popup">
     <div class="popup-inner">
       <div id="description"></div>

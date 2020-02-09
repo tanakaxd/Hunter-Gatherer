@@ -18,6 +18,8 @@ let events_per_ethic = 3;
 let debug = true;
 let fr;
 let frame_count = 0;
+let uber_mode = false;
+let uber_speed = uber_mode ? 10000 : 1;
 
 
 //データを取り込む。イベント用、マップ用
@@ -94,14 +96,42 @@ function mousePressed() {
 	if (true) {
 		for (let animal of population.animals) {
 			if (animal.r.contains(mouseX, mouseY)) {
-				console.table(animal.phenotype);
+				// console.table(animal.phenotype);
+				for (let anim of global_map.getTerrain(population.gps).habitant.animals) {
+					anim.r.clr = color(255, 0);
+				}
+				for (let anim of population.animals) {
+					anim.r.clr = color(255, 0);
+				}
+				animal.r.clr = color(255, 180);
+
+				for (key in animal.phenotype) {
+					let legend = animal.valueToLegend(animal.phenotype[key]);
+					$("#" + key + " td:nth-child(2)").html(legend).removeClass().addClass(legend);
+
+				}
 			}
 		}
 	}
+
+	//habitantをクリックしたとき。上のと共通部分があるので、もっと簡潔な書き方がある気がする。
 	if (true) {
-		for (let animal of global_map.getTerrain(population.gps).habitant.animals) {
+		let animals = global_map.getTerrain(population.gps).habitant.animals;
+		for (let animal of animals) {
 			if (animal.r.contains(mouseX, mouseY)) {
-				console.table(animal.phenotype);
+				for (let anim of animals) {
+					anim.r.clr = color(255, 0);
+				}
+				for (let anim of population.animals) {
+					anim.r.clr = color(255, 0);
+				}
+				animal.r.clr = color(255, 180);
+
+				for (key in animal.phenotype) {
+					let legend = animal.valueToLegend(animal.phenotype[key]);
+					$("#" + key + " td:nth-child(2)").html(legend).removeClass().addClass(legend);
+
+				}
 			}
 		}
 	}
@@ -141,8 +171,8 @@ function initialize() {
 	// frameRate(1);
 	noiseSeed(new Date().getTime());
 	canvas = createCanvas(cell_size * map_size + pops_width / pops_scale, cell_size * map_size);
-	let container = select(".container");
-	container.child(canvas);
+	let canvas_inner = select(".canvas-inner");
+	canvas_inner.child(canvas);
 	// let p = createP("paragraph");
 	// container.child(p);
 
@@ -159,14 +189,17 @@ function initialize() {
 	// info = new Info();
 	global_map.examineAccessibility(population.gps);
 
-	// 仕様上constructorでは無理
+	// 仕様上constructorでは無理。local_mapを生み出すのとhabitantを生み出すのは共にglobal_mapの生成時、その連鎖内にある。
 	for (let y = 0; y < map_size; y++) {
 		for (let x = 0; x < map_size; x++) {
 			for (let i = 0; i < 1; i++) {
 				// console.log(global_map.terrain[x][y].habitant);
 				global_map.terrain[x][y].habitant.evolve();
-
 			}
 		}
 	}
+}
+
+function addlog(text) {
+	$(".log").prepend(`<P>${text}<p>`);
 }

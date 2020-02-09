@@ -26,24 +26,24 @@ class Animal {
 	calcPhenotype(dna) {
 		let genes = dna.genes;
 		let phenotype = {
-			"hunting": ~~(genes[10] * 10),
-			"foraging": ~~(genes[11] * 10),
-			"swimming": ~~(genes[15] * 10),
+			"hunting": (genes[10] * 10).toFixed(2) - 0, //toFixedは文字列を返す。- 0 で数値に変換
+			"foraging": (genes[11] * 10).toFixed(2) - 0,
+			"swimming": (genes[15] * 10).toFixed(2) - 0,
 
-			"hiding": ~~(genes[13] * 10),
-			"fighting": ~~(genes[14] * 10),
-			"fleeing": ~~(genes[12] * 10),
+			"hiding": (genes[13] * 10).toFixed(2) - 0,
+			"fighting": (genes[14] * 10).toFixed(2) - 0,
+			"fleeing": (genes[12] * 10).toFixed(2) - 0,
 
-			"negotiation": ~~(genes[17] * 10),
-			"deception": ~~(genes[19] * 10),
-			"attraction": ~~(genes[23] * 10),
+			"negotiation": (genes[17] * 10).toFixed(2) - 0,
+			"deception": (genes[19] * 10).toFixed(2) - 0,
+			"attraction": (genes[23] * 10).toFixed(2) - 0,
 
-			"equality": ~~(genes[29] * 10),
-			"lust": ~~(genes[34] * 10),
-			"aggressivity": ~~(genes[31] * 10),
-			"open-minded": ~~(genes[32] * 10),
-			"curiosity": ~~(genes[30] * 10),
-			"independency": ~~(genes[33] * 10)
+			"equality": (genes[29] * 10).toFixed(2) - 0,
+			"lust": (genes[34] * 10).toFixed(2) - 0,
+			"aggressivity": (genes[31] * 10).toFixed(2) - 0,
+			"open-minded": (genes[32] * 10).toFixed(2) - 0,
+			"curiosity": (genes[30] * 10).toFixed(2) - 0,
+			"independency": (genes[33] * 10).toFixed(2) - 0
 		};
 		return phenotype;
 	}
@@ -158,5 +158,30 @@ class Animal {
 		// textAlign(CENTER);
 		// fill(0.25);
 		// text('' + floor(this.fitness), cell_size * map_size + offsetX / scale, offsetY / scale + 55 / scale);
+	}
+
+	valueToLegend(value) {
+		if (value < 0.2) {
+			return "catastrophic";
+		} else if (value < 2) {
+			return "awful";
+		} else if (value < 4) {
+			return "poor";
+
+		} else if (value < 6) {
+			return "average";
+
+		} else if (value < 8) {
+			return "good";
+
+		} else if (value < 9.8) {
+			return "excellent";
+
+		} else {
+			return "LEGENDARY";
+		}
+
+
+
 	}
 }
