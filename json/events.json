@@ -1,13 +1,171 @@
 [{
         "eventID": "001",
         "title": "餌を発見！",
-        "description": "食料になりそうな木の実を大量に発見した。すばらしい！",
-        "choices": 50
+        "description": "食料になりそうな木の実を大量に発見した。どうしよう？",
+        "choices": [{
+                "optionID": "e001o1",
+                "optionTitle": "みんなでありったけ食べる",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "equality",
+                    "operator": "more",
+                    "criterion": 5
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": 1
+                    }
+                ]
+            },
+            {
+                "optionID": "e001o2",
+                "optionTitle": "木の実におびき寄せられる獲物を待つ",
+                "condition": {
+                    "qualifier": "max",
+                    "phenotype": "hunting",
+                    "operator": "more",
+                    "criterion": 7
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": 1
+                    }
+                ]
+            },
+            {
+                "optionID": "e001o3",
+                "optionTitle": "何かの交渉に使えるかもしれない。半分残しておこう",
+                "condition": {
+                    "qualifier": "max",
+                    "phenotype": "negotiation",
+                    "operator": "more",
+                    "criterion": 7
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": 1
+                    }
+                ]
+            },
+            {
+                "optionID": "e001o4",
+                "optionTitle": "力こそ正義。強い奴からありつこう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "equality",
+                    "operator": "less",
+                    "criterion": 3
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": -1
+                    }
+                ]
+            }
+        ]
     },
     {
         "eventID": "002",
         "title": "見知らぬ群れを発見！",
-        "description": "仲間になりたそうなやつを二人発見した。すばらしい！",
+        "description": "仲間になりたそうなやつを二人発見した。どうしよう？",
         "choices": 50
+    },
+    {
+        "eventID": "militarist1",
+        "title": "天敵に奇襲チャンス！",
+        "description": "天敵のトラが一人ぼっちで昼寝をしている。どうしよう？",
+        "choices": [{
+                "optionID": "m1o1",
+                "optionTitle": "このチャンスを利用しない手はない。すぐに攻撃だ！",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "aggressivity",
+                    "operator": "more",
+                    "criterion": 5
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": 1
+                    }
+                ]
+            },
+            {
+                "optionID": "m1o2",
+                "optionTitle": "周囲に仲間がいるかもしれない。慎重に状況を確認しよう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "independency",
+                    "operator": "less",
+                    "criterion": 5
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": 1
+                    }
+                ]
+            },
+            {
+                "optionID": "m1o3",
+                "optionTitle": "相手は強敵だ。陣形を整えて集団で戦おう",
+                "condition": {
+                    "qualifier": "max",
+                    "phenotype": "hunting",
+                    "operator": "more",
+                    "criterion": 8
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": 1
+                    }
+                ]
+            },
+            {
+                "optionID": "m1o4",
+                "optionTitle": "攻撃は危険すぎる。そっとしておこう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "aggressivity",
+                    "operator": "less",
+                    "criterion": 5
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": -1
+                    }
+                ]
+            }
+        ]
     }
 ]

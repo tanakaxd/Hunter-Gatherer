@@ -1,109 +1,160 @@
 // 遺伝子から顔の描写 dot絵に変換するシステム
 
+// genotype→phenotype→abilityという変換が最終目標
+// DNAの複合が視力というphenotypeを決定して、視力、聴覚、顎、瞬発力といったphenotypeを総合したものが最終的なhuntingという能力値を決定する
+// 簡易的にまず実装するなら、genotype→abilityもありだし、
+// そもそもgenotypeをphenotypeと一対一対応の同じものとみなすこともできる
+
 
 class Animal {
 
-	constructor() {
-		this.genotype = new Gene();
-		// this.phenotype = this.calcPhenotype(this.genotype);
-		this.fitness = null;
-		this.hungriness;
-		this.health;
-		// this.pos = createVector(0, 0);
+	constructor(p, dna) {
+		this.dna = dna || new DNA();
+		this.phenotype = this.calcPhenotype(this.dna);
+		// this.weighted_phenotype;
+		this.ability; //phenotypeとabilityは現時点では区別しない
+		this.fitness = 1;
+		// this.nutriture;
+		this.health = 1;
+		this.pos = p || createVector(0, 0);
+		this.wh = pops_cell;
+		this.scale = 1.7;
 	}
 
-	calcPhenotype(genotype) {
+	//現時点ではdnaが持つ数値の配列をkeyをもつオブジェクト（連想配列）に変換する役割
+	calcPhenotype(dna) {
+		let genes = dna.genes;
+		let phenotype = {
+			"hunting": ~~(genes[10] * 10),
+			"foraging": ~~(genes[11] * 10),
+			"swimming": ~~(genes[15] * 10),
+
+			"hiding": ~~(genes[13] * 10),
+			"fighting": ~~(genes[14] * 10),
+			"fleeing": ~~(genes[12] * 10),
+
+			"negotiation": ~~(genes[17] * 10),
+			"deception": ~~(genes[19] * 10),
+			"attraction": ~~(genes[23] * 10),
+
+			"equality": ~~(genes[29] * 10),
+			"lust": ~~(genes[34] * 10),
+			"aggressivity": ~~(genes[31] * 10),
+			"open-minded": ~~(genes[32] * 10),
+			"curiosity": ~~(genes[30] * 10),
+			"independency": ~~(genes[33] * 10)
+		};
 		return phenotype;
 	}
 
-	calcFitness() {
+	weightPhenotype(coefficient) {
+		let weighted_phenotype = this.phenotype;
+		for (let key1 in this.phenotype) {
+			for (let key2 in coefficient) {
+				if (key1 == key2) {
+					weighted_phenotype[key1] *= coefficient[key1];
+				}
+			}
+		}
+		return weighted_phenotype;
+	}
+	//
+	calcFitness(coefficient) {
+		// population.ethics
+		let fitness = 0; //undefinedにすると数を足せない。NaNになる
+		let weighted_phenotype = this.weightPhenotype(coefficient);
+		for (let key in weighted_phenotype) {
+			fitness += weighted_phenotype[key];
 
+		}
+		fitness /= Object.keys(this.phenotype).length;
+		this.fitness = ~~(fitness * this.health);
 	}
 
 	intercourse(partner) {
-		let child = new Animal();
-
-		//もっと簡潔に書きたい。genotypeがただの配列なら簡単かもしれない
-		if (mutationRate < random()) {
-			if (random() < 0.5) {
-				child.gene.sight = this.gene.sight;
-			} else {
-				child.gene.sight = partner.gene.sight;
-			}
-		}
-		if (mutationRate < random()) {
-			if (random() < 0.5) {
-				child.gene.maxForce = this.gene.maxForce;
-			} else {
-				child.gene.maxForce = partner.gene.maxForce;
-			}
-		}
-		if (mutationRate < random()) {
-			if (random() < 0.5) {
-				child.gene.maxSpeed = this.gene.maxSpeed;
-			} else {
-				child.gene.maxSpeed = partner.gene.maxSpeed;
-			}
-		}
-		if (mutationRate < random()) {
-			if (random() < 0.5) {
-				child.gene.aggressivity = this.gene.aggressivity;
-			} else {
-				child.gene.aggressivity = partner.gene.aggressivity;
-			}
-		}
-		if (mutationRate < random()) {
-			if (random() < 0.5) {
-				child.gene.trailWeight = this.gene.trailWeight;
-			} else {
-				child.gene.trailWeight = partner.gene.trailWeight;
-			}
-		}
-		if (mutationRate < random()) {
-			if (random() < 0.5) {
-				child.gene.separateWeight = this.gene.separateWeight;
-			} else {
-				child.gene.separateWeight = partner.gene.separateWeight;
-			}
-		}
-		if (mutationRate < random()) {
-			if (random() < 0.5) {
-				child.gene.mass = this.gene.mass;
-			} else {
-				child.gene.mass = partner.gene.mass;
-			}
-		}
-		return child;
+		let child_DNA = this.dna.crossover(partner.dna);
+		let child = new Animal(null, child_DNA);
+		return child; //Animal object
 	}
 
-	showPersonality() {
-		let personality = {
-			maxForce: this.gene.maxForce.toFixed(3),
-			maxSpeed: this.gene.maxSpeed.toFixed(2),
-			sight: this.gene.sight.toFixed(1),
-			aggressivity: this.gene.aggressivity.toFixed(1),
-			punctuality: this.gene.punctuality.toFixed(3),
-			softhearted: this.gene.softhearted.toFixed(3),
-			mass: this.gene.mass.toFixed(3),
-			fitness: this.fitness
+	calcHealth(terrain) { //localMapオブジェクトを受け取る
+		let phenotype = this.phenotype;
+		//恣意的な計算式
+		let a = max(phenotype.hunting * terrain.meats, phenotype.foraging * terrain.berries, phenotype.swimming * terrain.fishes); //100が基準値。大抵それ以上
+
+		let b = (max(phenotype.hiding, phenotype.fighting, phenotype.fleeing) / 10 - 1) * (terrain.ecological_density ** 2); //負の値
+
+		let avg = terrain.habitant.calcAvg();
+		let c = min(phenotype.negotiation - avg.deception, phenotype.deception - avg.attraction, phenotype.attraction - avg.negotiation) *
+			(terrain.ecological_density ** 2) / 10; //-1~1
+
+		// let d = map(c, -10, 10, )
+		this.health = this.health * (a / 100) + b + c;
+		console.log(this.health);
+
+		if (this.health <= 0) {
+			population.animals.splice(this, 1);
 		}
-		return personality;
+		// let d = this.health;
+		// console.table({
+		// 	a,
+		// 	b,
+		// 	c,
+		// 	d
+		// });
+
 	}
 
+	display(offsetX, offsetY) {
 
-	show() {
-		// fill(255);
-		// ellipse(this.pos.x,this.pos.y,16,16);
-		// imageMode(CENTER);
-		// image(img, this.pos.x, this.pos.y, 18 * sqrt(this.gene.mass), 18 * sqrt(this.gene.mass));
-		if (debug) {
-			push();
-			noFill();
-			ellipse(this.pos.x, this.pos.y, this.gene.sight * 2);
-			rectMode(CENTER);
-			rect(this.pos.x, this.pos.y, this.gene.maxForce * 100, this.gene.maxSpeed * 20);
-			pop();
-		}
+
+		// map(, 0, 1, 0, 255)
+
+		let genes = this.dna.genes;
+		let scale = this.scale;
+		let r = map(genes[0], 0, 1, 40, 70) / scale;
+		let c = color(map(genes[1], 0, 1, 0, 255), map(genes[3], 0, 1, 0, 255), map(genes[2], 0, 1, 0, 255));
+		let eye_y = map(genes[4], 0, 1, 0, 5) / scale; //目の高さ
+		let eye_x = map(genes[5], 0, 1, 0, 10) / scale; //目の間の幅（そのものではない）
+		let eye_size = map(genes[5], 0, 1, 0, 10) / scale;
+		let eyecolor = color(map(genes[4], 0, 1, 0, 255), map(genes[5], 0, 1, 0, 255), map(genes[6], 0, 1, 0, 255));
+		let mouthColor = color(map(genes[7], 0, 1, 0, 255), map(genes[8], 0, 1, 0, 255), map(genes[9], 0, 1, 0, 255));
+		let mouth_y = map(genes[5], 0, 1, 0, 25) / scale;
+		// let mouth_x = map(genes[5], 0, 1, -25, 25);
+		let mouthw = map(genes[6], 0, 1, 0, 50) / scale;
+		let mouthh = map(genes[7], 0, 1, 0, 10) / scale;
+
+		push();
+		translate(cell_size * map_size + offsetX / scale, offsetY / scale);
+		noStroke();
+
+		// Draw the head
+		fill(c);
+		ellipseMode(CENTER);
+		ellipse(0, 0, r, r);
+
+		// Draw the eyes
+		fill(eyecolor);
+		rectMode(CENTER);
+		rect(-eye_x, -eye_y, eye_size, eye_size);
+		rect(eye_x, -eye_y, eye_size, eye_size);
+
+		// Draw the mouth
+		fill(mouthColor);
+		rectMode(CENTER);
+		rect(0, mouth_y, mouthw, mouthh);
+
+		// Draw the bounding box
+		stroke(0.25);
+		noFill();
+		rectMode(CENTER);
+		rect(0, 0, this.wh / scale, this.wh / scale);
+		pop();
+
+		// Display fitness value
+		// textAlign(CENTER);
+		// fill(0.25);
+		// text('' + floor(this.fitness), cell_size * map_size + offsetX / scale, offsetY / scale + 55 / scale);
 	}
 
 }

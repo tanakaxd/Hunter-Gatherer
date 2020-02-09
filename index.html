@@ -18,8 +18,10 @@
 
 
   <script src="js/population.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/habitant.js"></script>
   <script src="js/animal.js"></script>
-  <script src="js/gene.js"></script>
+  <script src="js/dna.js"></script>
 
   <script src="js/event.js"></script>
   <script src="js/info.js"></script>
@@ -28,19 +30,34 @@
 </head>
 
 <body>
-  <button id="pause">STOP THIS SHIT!</button>
-  <button id="resume">RESUME THIS SHIT!</button>
-  <button id="restart">RESTART THIS SHIT!</button>
-  <div class="popup" id="js-popup">
-    <div class="popup-inner">
-      <div class="close-btn" id="js-close-btn"><i class="fas fa-times"></i></div>
-      <!-- <a href="#"><img src="./img/kaeru.png" alt="ポップアップ画像"></a> -->
-      <div id="description"></div>
-      <div id="choices"></div>
+  <div class="container">
+    <div class="buttons">
+      <button class="button" id="pause">PAUSE</button>
+      <button class="button" id="resume">RESUME</button>
+      <button class="button" id="restart">RESTART</button>
+      <button class="button" id="popup-event">POPUP</button>
+
     </div>
-    <div class="black-background" id="js-black-bg"></div>
+    <div class="popup" id="js-popup">
+      <div class="popup-inner">
+        <div id="description"></div>
+        <div id="choices"></div>
+      </div>
+      <div class="black-background" id="js-black-bg"></div>
+    </div>
+    <div id="dialog">
+      移動先のタイルを選択してください
+    </div>
+    <div class="sliders">
+      <input type="range" class="slider" id="egalitarian" min="0" max="10" disabled>
+      <input type="range" class="slider" id="polygamy" min="0" max="10" disabled>
+      <input type="range" class="slider" id="pacifist" min="0" max="10" disabled>
+      <input type="range" class="slider" id="xenophile" min="0" max="10" disabled>
+      <input type="range" class="slider" id="innovative" min="0" max="10" disabled>
+      <input type="range" class="slider" id="order" min="0" max="10" disabled>
+    </div>
+
   </div>
-  <button id="js-show-popup">Show Popup</button>
 
 </body>
 
