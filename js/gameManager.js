@@ -75,8 +75,10 @@ class GameManager {
                 }, 2000 / uber_speed);
 
                 population.evaluate();
+                population.rest();
 
                 setTimeout(() => {
+                    //もしrestが一定に達していたら
                     population.sexualSelection();
                     global_map.getTerrain(population.gps).habitant.evolve();
                     this.state = "map";

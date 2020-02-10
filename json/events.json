@@ -3,8 +3,8 @@
         "title": "餌を発見！",
         "description": "食料になりそうな木の実を大量に発見した。どうしよう？",
         "choices": [{
-                "optionID": "e001o1",
-                "optionTitle": "みんなでありったけ食べる",
+                "choiceID": "e001o1",
+                "choiceTitle": "みんなでありったけ食べる",
                 "condition": {
                     "qualifier": "avg",
                     "phenotype": "equality",
@@ -22,8 +22,8 @@
                 ]
             },
             {
-                "optionID": "e001o2",
-                "optionTitle": "木の実におびき寄せられる獲物を待つ",
+                "choiceID": "e001o2",
+                "choiceTitle": "木の実におびき寄せられる獲物を待つ",
                 "condition": {
                     "qualifier": "max",
                     "phenotype": "hunting",
@@ -41,8 +41,8 @@
                 ]
             },
             {
-                "optionID": "e001o3",
-                "optionTitle": "何かの交渉に使えるかもしれない。半分残しておこう",
+                "choiceID": "e001o3",
+                "choiceTitle": "何かの交渉に使えるかもしれない。半分残しておこう",
                 "condition": {
                     "qualifier": "max",
                     "phenotype": "negotiation",
@@ -60,8 +60,8 @@
                 ]
             },
             {
-                "optionID": "e001o4",
-                "optionTitle": "力こそ正義。強い奴からありつこう",
+                "choiceID": "e001o4",
+                "choiceTitle": "力こそ正義。強い奴からありつこう",
                 "condition": {
                     "qualifier": "avg",
                     "phenotype": "equality",
@@ -89,84 +89,191 @@
     {
         "eventID": "militarist1",
         "title": "天敵に奇襲チャンス！",
-        "description": "天敵のトラが一人ぼっちで昼寝をしている。どうしよう？",
+        "description": "狂暴そうなクマが一人ぼっちで昼寝をしている。どうしよう？",
         "choices": [{
-                "optionID": "m1o1",
-                "optionTitle": "このチャンスを利用しない手はない。すぐに攻撃だ！",
+                "choiceID": "m1o1",
+                "choiceTitle": "このチャンスを利用しない手はない。すぐさま奇襲だ！",
+                "condition": {
+                    "qualifier": "max",
+                    "phenotype": "aggressivity",
+                    "operator": "more",
+                    "criterion": 5.8
+                },
+                "outcome": [{
+                        "modifier": "pacifist",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "aggressivity",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "fighting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "health",
+                        "scale": 1.5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 50
+                    }
+                ]
+            },
+            {
+                "choiceID": "m1o2",
+                "choiceTitle": "相手は強敵だ。陣形を整えて集団で狩りたい",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "hunting",
+                    "operator": "more",
+                    "criterion": 7
+                },
+                "outcome": [{
+                        "modifier": "order",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "health",
+                        "scale": 1.2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 25
+                    }
+                ]
+            },
+            {
+                "choiceID": "m1o3",
+                "choiceTitle": "周囲に敵の仲間がいるかもしれない。隠れて慎重に状況を確認しよう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "hiding",
+                    "operator": "mode",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "order",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "hiding",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "pacifist",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "m1o4",
+                "choiceTitle": "君子危うきに近寄らず。そっとしておこう",
                 "condition": {
                     "qualifier": "avg",
                     "phenotype": "aggressivity",
-                    "operator": "more",
-                    "criterion": 5
-                },
-                "outcome": [{
-                        "modifier": "egalitarian",
-                        "scale": 1
-                    },
-                    {
-                        "modifier": "polygamy",
-                        "scale": 1
-                    }
-                ]
-            },
-            {
-                "optionID": "m1o2",
-                "optionTitle": "周囲に仲間がいるかもしれない。慎重に状況を確認しよう",
-                "condition": {
-                    "qualifier": "avg",
-                    "phenotype": "independency",
                     "operator": "less",
-                    "criterion": 5
+                    "criterion": 4
                 },
                 "outcome": [{
-                        "modifier": "egalitarian",
+                        "modifier": "pacifist",
                         "scale": 1
                     },
                     {
-                        "modifier": "polygamy",
+                        "modifier": "fleeing",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "aggressivity",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "xenophile",
                         "scale": 1
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
                     }
                 ]
             },
             {
-                "optionID": "m1o3",
-                "optionTitle": "相手は強敵だ。陣形を整えて集団で戦おう",
+                "choiceID": "m1o5",
+                "choiceTitle": "今のうちに逃げよう。念のため罠を設置しておく",
                 "condition": {
                     "qualifier": "max",
-                    "phenotype": "hunting",
+                    "phenotype": "deception",
                     "operator": "more",
                     "criterion": 8
                 },
                 "outcome": [{
-                        "modifier": "egalitarian",
+                        "modifier": "pacifist",
                         "scale": 1
                     },
                     {
-                        "modifier": "polygamy",
-                        "scale": 1
+                        "modifier": "fleeing",
+                        "scale": 2
                     },
                     {
-                        "modifier": "acquire",
-                        "scale": 3
+                        "modifier": "deception",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
                     }
                 ]
             },
             {
-                "optionID": "m1o4",
-                "optionTitle": "攻撃は危険すぎる。そっとしておこう",
+                "choiceID": "m1o6",
+                "choiceTitle": "物音を立ててしまった！　クマに襲われた",
                 "condition": {
                     "qualifier": "avg",
-                    "phenotype": "aggressivity",
-                    "operator": "less",
-                    "criterion": 5
+                    "phenotype": "hunting",
+                    "operator": "more",
+                    "criterion": 0
                 },
                 "outcome": [{
-                        "modifier": "egalitarian",
-                        "scale": -1
+                        "modifier": "pacifist",
+                        "scale": 1
                     },
                     {
-                        "modifier": "polygamy",
-                        "scale": -1
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "fleeing",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "release",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "local",
+                        "option": "berries",
+                        "scale": -5
                     }
                 ]
             }

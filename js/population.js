@@ -36,7 +36,7 @@ class Population {
 			"equality": 1,
 			"lust": 1,
 			"aggressivity": 1,
-			"open-minded": 1,
+			"openminded": 1,
 			"curiosity": 1,
 			"independency": 1
 		};
@@ -102,6 +102,13 @@ class Population {
 				casualities++;
 			}
 		}
+		if (debug && this instanceof Player) {
+			let temp = [];
+			for (let animal of this.animals) {
+				temp.push(animal.health);
+			}
+			console.log(temp);
+		}
 		if (this instanceof Player && casualities > 0) addlog(`仲間が${casualities}人、命を落としてしまった…`);
 	}
 
@@ -127,6 +134,7 @@ class Population {
 
 		//サイズは可変。fertilityというphenotypeを作って一定以上なければ出生時に死亡させる？
 		let next_generation_size = this instanceof Player ? randomGaussian(this.animals.length, 1) : this.size;
+		let actual_size = next_generation_size;
 		for (let i = 0; i < next_generation_size; i++) {
 			let parentA = random(this.matingpool);
 			let parentB = random(this.matingpool);
@@ -140,6 +148,15 @@ class Population {
 
 			let child = parentA.intercourse(parentB);
 			nextGeneration.push(child);
+
+			//healthはすでにselectionに使われている値なので、重複して計算することになる。その結果選択が激しくなりすぎて種が特化してしまう。
+			// if (this instanceof Habitant) {
+			// 	nextGeneration.push(child);
+			// } else if (parentA.health + parentB.health > 1.5) {
+			// 	nextGeneration.push(child);
+			// } else {
+			// 	actual_size--;
+			// }
 		}
 
 		this.animals = nextGeneration;
@@ -147,7 +164,7 @@ class Population {
 		this.generation++;
 		this.calcStats();
 		this instanceof Habitant ? this.setPosition(555) : this.setPosition();
-		if (this instanceof Player) addlog(`${floor(next_generation_size+1)}人の新世代が誕生しました`);
+		if (this instanceof Player) addlog(`${floor(actual_size+1)}人の新世代が誕生しました`);
 	}
 
 	consolePopulation(full) {

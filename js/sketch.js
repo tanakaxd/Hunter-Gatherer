@@ -20,7 +20,7 @@ let debug = true;
 let fr;
 let frame_count = 0;
 let uber_mode = true;
-let uber_speed = uber_mode ? 3 : 1;
+let uber_speed = uber_mode ? 1000 : 1;
 
 
 //データを取り込む。イベント用、マップ用

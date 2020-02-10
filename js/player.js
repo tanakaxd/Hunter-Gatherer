@@ -14,6 +14,7 @@ class Player extends Population {
 
         this.gps = gps || createVector(floor(map_size / 2), floor(map_size / 2));
         this.rested = 0;
+        this.buffed = false;
         this.clearFog(this.gps);
         this.adjustSlider();
         super.setPosition();
@@ -52,7 +53,7 @@ class Player extends Population {
         }
     }
 
-    // rest() {
-    //     this.rested++;
-    // }
+    rest() {
+        this.rested++;
+    }
 }

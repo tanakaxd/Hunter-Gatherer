@@ -106,6 +106,24 @@ class Event {
             "attraction": (scale) => {
                 population.fitness_coefficient.attraction += scale;
             },
+            "equality": (scale) => {
+                population.fitness_coefficient.equality += scale;
+            },
+            "lust": (scale) => {
+                population.fitness_coefficient.lust += scale;
+            },
+            "aggressivity": (scale) => {
+                population.fitness_coefficient.aggressivity += scale;
+            },
+            "openminded": (scale) => {
+                population.fitness_coefficient.openminded += scale;
+            },
+            "curiosity": (scale) => {
+                population.fitness_coefficient.curiosity += scale;
+            },
+            "independency": (scale) => {
+                population.fitness_coefficient.independency += scale;
+            },
 
             //pops modifier
             "acquire": (scale) => {
@@ -153,11 +171,57 @@ class Event {
                     habitants.push(released[0]);
                 }
                 global_map.getTerrain(population.gps).habitant.setPosition(555);
+            },
+
+            //score modifier
+            "score": (scale) => {
+                game_manager.score += scale;
+            },
+
+            //fog modifier
+            "fog": (scale) => {
+                for (let i = 0; i < scale; i++) {
+                    let p = createVector(random(0, map_size), random(0, map_size));
+                    population.clearFog(p);
+                }
+            },
+
+            //health modifier 怪我をする　息絶える
+            "health": (scale, option) => {
+                if (option == "death") {
+                    population.animals.splice(random(population.animals), scale);
+                } else if (option == "injury") {
+                    let injured = random(population.animals);
+                    injured.health -= 1;
+                    if (injured.health <= 0) {
+                        population.animals.splice(population.animals.indexOf(injured), 1);
+                    }
+                } else {
+                    population.animals.forEach((animal, index) => {
+                        animal.health += scale;
+                        if (animal.health <= 0) {
+                            population.animals.splice(index, 1);
+                        }
+                    })
+                }
+            },
+
+            // local map modifier
+            "local": (scale, option) => {
+                let local_map = global_map.getTerrain(population.gps);
+                local_map[option] += scale;
             }
+
+            //buff modifier
+            //rest modifier
+            //nest modifier 巣を発見　
+            //genes modifier
+            //phenotype modifier
+            //inventory modifier
         };
 
 
-        //条件を満たした選択肢のみの配列を作る
+        //条件を満たした選択肢のみの配列を作る。条件を複数にすることも可能
         for (let choice of this.choices) {
             let condition = choice.condition;
             let bool = qualifiers[condition.qualifier](condition.phenotype, condition.criterion, condition.operator);
@@ -169,7 +233,7 @@ class Event {
         //作った配列をDOMに反映。該当する選択肢がない場合の処理
         if (this.certified_choices.length != 0) {
             for (let choice of this.certified_choices) {
-                buttons += `<div class="btn" id="${choice.optionID}">${choice.optionTitle}</div>`;
+                buttons += `<div class="btn" id="${choice.choiceID}">${choice.choiceTitle}</div>`;
             }
         } else {
             buttons += '<div class="btn">できることが何もない…</div>';
@@ -189,9 +253,9 @@ class Event {
         // それぞれのボタンに対してイベントハンドラーを設定。
         // 変数はoutcomeから受け取ってくる。
         for (let choice of this.certified_choices) {
-            $("#" + choice.optionID).click(() => {
+            $("#" + choice.choiceID).click(() => {
                 for (let func of choice.outcome) {
-                    modifiers[func.modifier](func.scale);
+                    modifiers[func.modifier](func.scale, func.option);
                 }
                 population.adjustSlider();
             })

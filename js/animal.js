@@ -40,7 +40,7 @@ class Animal {
 			"equality": (genes[29] * 10).toFixed(2) - 0,
 			"lust": (genes[34] * 10).toFixed(2) - 0,
 			"aggressivity": (genes[31] * 10).toFixed(2) - 0,
-			"open-minded": (genes[32] * 10).toFixed(2) - 0,
+			"openminded": (genes[32] * 10).toFixed(2) - 0,
 			"curiosity": (genes[30] * 10).toFixed(2) - 0,
 			"independency": (genes[33] * 10).toFixed(2) - 0
 		};
