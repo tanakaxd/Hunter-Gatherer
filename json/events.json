@@ -144,6 +144,10 @@
                     {
                         "modifier": "polygamy",
                         "scale": 1
+                    },
+                    {
+                        "modifier": "acquire",
+                        "scale": 3
                     }
                 ]
             },

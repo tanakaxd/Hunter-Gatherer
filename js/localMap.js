@@ -11,7 +11,7 @@ class LocalMap {
         this.berries = 10;
         this.meats = 10;
         this.fishes = 10;
-        this.ecological_density = 1;
+        this.ecological_density = 1; //habitantの人口によって動的に変化させる？
         // this.enemy = 1;
         this.habitant = new Habitant(this.xy);
 

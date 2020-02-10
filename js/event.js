@@ -58,13 +58,104 @@ class Event {
 
         //選択肢の結果を反映させるためのfunctions
         let modifiers = {
+            //ethics modifier
             "egalitarian": (scale) => {
                 population.ethics.egalitarian += scale;
             },
             "polygamy": (scale) => {
                 population.ethics.polygamy += scale;
+            },
+            "pacifist": (scale) => {
+                population.ethics.pacifist += scale;
+            },
+            "xenophile": (scale) => {
+                population.ethics.xenophile += scale;
+            },
+            "innovative": (scale) => {
+                population.ethics.innovative += scale;
+            },
+            "order": (scale) => {
+                population.ethics.order += scale;
+            },
+
+            //coefficient modifier
+            "hunting": (scale) => {
+                population.fitness_coefficient.hunting += scale;
+            },
+            "foraging": (scale) => {
+                population.fitness_coefficient.foraging += scale;
+            },
+            "swimming": (scale) => {
+                population.fitness_coefficient.swimming += scale;
+            },
+            "hiding": (scale) => {
+                population.fitness_coefficient.hiding += scale;
+            },
+            "fighting": (scale) => {
+                population.fitness_coefficient.fighting += scale;
+            },
+            "fleeing": (scale) => {
+                population.fitness_coefficient.fleeing += scale;
+            },
+            "negotiation": (scale) => {
+                population.fitness_coefficient.negotiation += scale;
+            },
+            "deception": (scale) => {
+                population.fitness_coefficient.deception += scale;
+            },
+            "attraction": (scale) => {
+                population.fitness_coefficient.attraction += scale;
+            },
+
+            //pops modifier
+            "acquire": (scale) => {
+                let habitants = global_map.getTerrain(population.gps).habitant.animals;
+                let animals = population.animals;
+
+                for (let i = 0; i < scale; i++) {
+                    let acquired = habitants.splice(random(0, habitants.length), 1); //spliceの返り値は配列
+                    // console.log(acquired);
+                    animals.push(acquired[0]);
+
+                    // animals = animals.concat(habitants.splice(random(0, habitants.length), 1));
+                    //concatは新しい配列をreturnする。pushは既存の配列を改変する
+                    //この書き方自体は可能だが、新しくなったanimalsは別のオブジェクトになって、アドレスも書き換えられているっぽい
+
+                }
+                population.setPosition();
+                // console.log(population.animals);
+                // console.log(animals);
+
+
+                // let indexes = [];
+                // let magical_box = [];
+
+                // //0-14の整数の入った箱
+                // for (let i = 0; i < habitants.length; i++) {
+                //     magical_box.push(i);
+                // }
+                // // 一回選んだ数値は削除。これにより重複回避
+                // for (let i = 0; i < scale; i++) {
+                //     let j = random(magical_box);
+                //     indexes.push(j);
+                //     magical_box.splice(j, 1);
+                // }
+                // for (let i = 0; i < indexes.length; i++) {
+                //     population.animals.push(habitants[indexes[i]]);
+                //     habitants.splice(indexes[i], 1);
+                // }
+            },
+            "release": (scale) => {
+                let habitants = global_map.getTerrain(population.gps).habitant.animals;
+                let animals = population.animals;
+                for (let i = 0; i < scale; i++) {
+                    let released = animals.splice(random(0, animals.length), 1); //spliceの返り値は配列
+                    habitants.push(released[0]);
+                }
+                global_map.getTerrain(population.gps).habitant.setPosition(555);
             }
         };
+
 
         //条件を満たした選択肢のみの配列を作る
         for (let choice of this.choices) {

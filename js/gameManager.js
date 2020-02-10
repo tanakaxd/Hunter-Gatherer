@@ -78,6 +78,7 @@ class GameManager {
 
                 setTimeout(() => {
                     population.sexualSelection();
+                    global_map.getTerrain(population.gps).habitant.evolve();
                     this.state = "map";
                     this.focus = "global_map";
                     this.day++;

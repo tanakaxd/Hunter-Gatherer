@@ -17,7 +17,7 @@ class Habitant extends Population {
     }
 
     evolve() {
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 1; i++) {
             super.naturalSelection();
             super.evaluate();
             super.sexualSelection();

@@ -20,7 +20,7 @@ let debug = true;
 let fr;
 let frame_count = 0;
 let uber_mode = true;
-let uber_speed = uber_mode ? 10000 : 1;
+let uber_speed = uber_mode ? 3 : 1;
 
 
 //データを取り込む。イベント用、マップ用
@@ -171,7 +171,7 @@ function initialize() {
 	// 仕様上constructorでは無理。local_mapを生み出すのとhabitantを生み出すのは共にglobal_mapの生成時、その連鎖内にある。
 	for (let y = 0; y < map_size; y++) {
 		for (let x = 0; x < map_size; x++) {
-			for (let i = 0; i < 1; i++) {
+			for (let i = 0; i < 3; i++) {
 				global_map.terrain[x][y].habitant.evolve();
 			}
 		}
