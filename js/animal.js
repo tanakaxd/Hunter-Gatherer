@@ -5,16 +5,15 @@
 // 簡易的にまず実装するなら、genotype→abilityもありだし、
 // そもそもgenotypeをphenotypeと一対一対応の同じものとみなすこともできる
 
+//phenotypeとabilityは現時点では区別しない
 
 class Animal {
 
 	constructor(dna) {
 		this.dna = dna || new DNA();
 		this.phenotype = this.calcPhenotype(this.dna);
-		// this.weighted_phenotype;
-		this.ability; //phenotypeとabilityは現時点では区別しない
+		// this.ability; 
 		this.fitness = 1;
-		// this.nutriture;
 		this.health = 1;
 		this.pos; //画面上の位置。中心点をあらわす
 		this.wh = pops_cell / pops_scale;
@@ -22,7 +21,7 @@ class Animal {
 		this.r;
 	}
 
-	//現時点ではdnaが持つ数値の配列をkeyをもつオブジェクト（連想配列）に変換する役割
+	//現時点ではdnaオブジェクトが持つ数値の配列をkeyをもつオブジェクト（連想配列）に変換する役割
 	calcPhenotype(dna) {
 		let genes = dna.genes;
 		let phenotype = {
@@ -59,14 +58,13 @@ class Animal {
 		}
 		return weighted_phenotype;
 	}
-	//
+
 	calcFitness(coefficient) {
 		// population.ethics
 		let fitness = 0; //undefinedにすると数を足せない。NaNになる
 		let weighted_phenotype = this.weightPhenotype(coefficient);
 		for (let key in weighted_phenotype) {
 			fitness += weighted_phenotype[key];
-
 		}
 		fitness /= Object.keys(this.phenotype).length;
 		this.fitness = ~~(fitness * this.health);
@@ -86,27 +84,13 @@ class Animal {
 		let b = (max(phenotype.hiding, phenotype.fighting, phenotype.fleeing) / 10 - 1) * (terrain.ecological_density ** 2); //負の値
 
 		let avg = terrain.habitant.calcAvg();
-		let c = min(phenotype.negotiation - avg.deception, phenotype.deception - avg.attraction, phenotype.attraction - avg.negotiation) *
+		let c = random([phenotype.negotiation - avg.deception, phenotype.deception - avg.attraction, phenotype.attraction - avg.negotiation]) *
 			(terrain.ecological_density ** 2) / 10; //-1~1
 
-		// let d = map(c, -10, 10, )
 		this.health = this.health * (a / 100) + b + c;
-		// console.log(this.health);
-
-		// let d = this.health;
-		// console.table({
-		// 	a,
-		// 	b,
-		// 	c,
-		// 	d
-		// });
-
 	}
 
 	show() {
-
-
-		// map(, 0, 1, 0, 255)
 
 		let genes = this.dna.genes;
 		let scale = this.scale;
@@ -167,21 +151,14 @@ class Animal {
 			return "awful";
 		} else if (value < 4) {
 			return "poor";
-
 		} else if (value < 6) {
 			return "average";
-
 		} else if (value < 8) {
 			return "good";
-
 		} else if (value < 9.8) {
 			return "excellent";
-
 		} else {
 			return "LEGENDARY";
 		}
-
-
-
 	}
 }

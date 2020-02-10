@@ -1,7 +1,7 @@
 class DNA {
+
 	constructor(genes) {
 		this.size = 40;
-		// this.genes = genes || 
 		if (genes) {
 			this.genes = genes;
 		} else {
@@ -9,7 +9,6 @@ class DNA {
 			for (let i = 0; i < this.size; i++) {
 				this.genes.push(random(0, 1));
 			}
-
 		}
 	}
 
@@ -24,15 +23,11 @@ class DNA {
 			this.mutate(child_genes[x]);
 		}
 		return new DNA(child_genes);
-
 	}
 
 	mutate(gene) {
 		if (random() <= mutationRate) {
 			gene = random();
-			// console.log("mutaetd");
-
 		}
 	}
-
 }

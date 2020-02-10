@@ -5,12 +5,11 @@
 // Re-implementing java.awt.Rectangle
 // so JS mode works
 
-// 内部的な値はtranslateする前のanimalの場所にあればよい。つまりtranslateしなくてよい
-// しかし、画面上に出力するときは必要
 //posそのものを絶対的なものに変更
 
 
 class Rectangle {
+
     constructor(x, y, w, h) {
         //中心点が(x,y)
         this.x = x;
@@ -31,5 +30,4 @@ class Rectangle {
         rect(this.x, this.y, this.width, this.height);
         pop();
     }
-
 }

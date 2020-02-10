@@ -5,10 +5,11 @@
 // どのイベントを発生させるかはevent_managerが決める
 // このクラスは可能な選択肢とその結果をjsonから生成して、 DOMに反映。
 
-// その都度ajax通信しているけど、実際には一度でいい
+// その都度ajax通信しているけど、実際には最初に一回でいい
 
 
 class Event {
+
     constructor(event_data) {
         this.eventID = event_data.eventID;
         this.title = event_data.title;
@@ -19,37 +20,27 @@ class Event {
         this.outcome = event_data.outcome;
     }
 
-    occur() {
-        this.fetch();
-    }
-
-
-    fetch() {
-
-    }
-
     display() {
-        // choices DIV要素を取得して、その中にhtmlを加えていく。
 
         let buttons = ""; //空文字列として宣言
 
         //条件合致判断用のfunctions
         let qualifiers = {
-            "avg": function (phenotype, criterion, operator) {
+            "avg": (phenotype, criterion, operator) => {
                 if (operator == "more") {
                     return population.avg[phenotype] >= criterion;
                 } else {
                     return population.avg[phenotype] <= criterion;
                 }
             },
-            "max": function (phenotype, criterion, operator) {
+            "max": (phenotype, criterion, operator) => {
                 if (operator == "more") {
                     return population.max[phenotype] >= criterion;
                 } else {
                     return population.max[phenotype] <= criterion;
                 }
             },
-            "min": function (phenotype, criterion, operator) {
+            "min": (phenotype, criterion, operator) => {
                 if (operator == "more") {
                     return population.min[phenotype] >= criterion;
                 } else {
@@ -65,14 +56,12 @@ class Event {
         // let operators = {};
 
 
-
-
         //選択肢の結果を反映させるためのfunctions
         let modifiers = {
-            "egalitarian": function (scale) {
+            "egalitarian": (scale) => {
                 population.ethics.egalitarian += scale;
             },
-            "polygamy": function (scale) {
+            "polygamy": (scale) => {
                 population.ethics.polygamy += scale;
             }
         };
@@ -83,13 +72,11 @@ class Event {
             let bool = qualifiers[condition.qualifier](condition.phenotype, condition.criterion, condition.operator);
             if (bool) {
                 this.certified_choices.push(choice);
-                // console.log(this.certified_choices);
-
             }
         }
+
         //作った配列をDOMに反映。該当する選択肢がない場合の処理
         if (this.certified_choices.length != 0) {
-            // console.log(this.certified_choices);
             for (let choice of this.certified_choices) {
                 buttons += `<div class="btn" id="${choice.optionID}">${choice.optionTitle}</div>`;
             }
@@ -100,58 +87,31 @@ class Event {
 
 
         //全ての選択肢ボタンに共通する処理を登録
-        $(".btn").click(function () {
+        $(".btn").click(() => {
             $("#js-popup").toggleClass('is-show');
             game_manager.focus = "global_map";
             setTimeout(() => {
                 game_manager.state = "night";
-
             }, 3000 / uber_speed);
-
         });
 
         // それぞれのボタンに対してイベントハンドラーを設定。
         // 変数はoutcomeから受け取ってくる。
         for (let choice of this.certified_choices) {
-            $("#" + choice.optionID).click(function () {
+            $("#" + choice.optionID).click(() => {
                 for (let func of choice.outcome) {
                     modifiers[func.modifier](func.scale);
                 }
                 population.adjustSlider();
             })
         }
+
         //イベント要素全体をpopup
         $("#js-popup").toggleClass('is-show');
-
-
+        addlog("イベントが発生しました");
     }
 
-    certifyCondition() {
+    // certifyCondition() {
 
-    }
-
-
-    // popupEvent() {
-
-
-    //     var blackBg = document.getElementById('js-black-bg');
-    //     var closeBtn = document.getElementById('js-close-btn');
-    //     var showBtn = document.getElementById('js-show-popup');
-
-
-
-    //     function closeEvent(elem) {
-    //         if (!elem) return;
-    //         // elem.addEventListener('click', function () {
-    //         //     popup.classList.toggle('is-show');
-    //         //     console.log(elem);
-    //         //     //initializeしたとき、イベントが二重に登録されてしまう
-    //         // });
-    //         // console.log(elem.onclick);
-
-    //         elem.onclick = function () {
-    //             popup.classList.toggle('is-show');
-    //         }
-    //     }
     // }
 }

@@ -4,6 +4,7 @@
 // 現在地のタイルとethicsによって、どのイベントを発生させるかを決める
 
 class EventManager {
+
     constructor() {
         this.current_event;
         this.loaded_events;
@@ -11,13 +12,11 @@ class EventManager {
 
     popEvent() {
         let specific_event;
+
         //どのイベントを発生させるかを決める
         //例えばxmlファイルを読み込んで、タイル種別のイベント比率に基づいてランダムに発生させる
         // let eventID = this.chooseEvent(global_map.getTerrain(population.gps), population.ethics);
         let eventID = "militarist1";
-
-
-
 
         //そのイベントのjsonを取得
 
@@ -29,50 +28,45 @@ class EventManager {
         $.ajax({
                 url: "./json/events.json",
                 data: {
-                    eventID: "001"
+                    // eventID: "001"
                     // jsonデータの一部のみを注文する方法があるのか？多分サーバー側でphpとか動かせれば可能だが、
                     // この場合はファイルそのものを注文するしかないっぽい
                 },
                 dataType: "json"
             })
-            .done(function (events_data) {
-                events_data.forEach(function (event, index) {
+            .done((events_data) => {
+                events_data.forEach((event, index) => {
                     if (event.eventID == eventID) {
                         specific_event = event;
                     }
                 });
                 //Eventに渡す。データに基づいてイベントを発生させる
-                event_manager.current_event = new Event(specific_event); //this.にすると通信オブジェクトになる？
-                // console.log(this.current_event);
-
-                event_manager.current_event.display();
+                this.current_event = new Event(specific_event); //this.にすると通信オブジェクトになる？ arrow functionでevent_managerに固定できる
+                this.current_event.display();
             })
             .fail(function () {
-                console.log('$.ajax failed!');
+                console.error('$.ajax failed!');
             })
-
-
     }
 
     //idを返す
     chooseEvent(tile, ethics) {
-        if (game_manager.state == "hunt") { //狩りイベント
+
+        if (game_manager.state == "hunt") { //狩りイベント。現在未実装
             let events_pool = [];
-
-
-
-            let eventID = "001";
-
+            let eventID = "militarist1";
             return eventID;
 
         } else if (game_manager.state == "event") { //ethicsイベント
             let events_pool = []; //idが発生確率に比例して大量に入れられた配列
             for (let key in population.ethics) {
+
                 for (let i = 0; i < population.ethics[key]; i++) {
-                    for (let j = 0; j < 3; j++) {
+                    for (let j = 0; j < events_per_ethic; j++) {
                         events_pool.push(key + j);
                     }
                 }
+                // 対立項
                 for (let i = 0; i < 10 - population.ethics[key]; i++) {
                     for (let j = 0; j < events_per_ethic; j++) {
                         if (key == "egalitarian") {
@@ -89,17 +83,13 @@ class EventManager {
                             events_pool.push("chaos" + j);
                         } else {
                             console.error("invalid ethics name");
-
                         }
                     }
                 }
             }
-            console.log(events_pool);
-
             return random(events_pool);
         } else {
             console.error("invalid state");
-
         }
     }
 }

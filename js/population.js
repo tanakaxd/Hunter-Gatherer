@@ -1,12 +1,13 @@
-class Population {
+//親となる個体の非同一性を保障すべきかどうか
 
+class Population {
 
 	constructor() {
 		this.animals = [];
 		this.size;
-		this.leaders = [];
+		// this.leaders = [];
 		this.matingpool = [];
-		this.generation = 0;
+		this.generation = 1;
 		this.gps;
 
 		this.ethics = {
@@ -92,38 +93,28 @@ class Population {
 		this.min = this.calcMin();
 	}
 
-
-	rest() {
-		this.rested++;
-	}
-
 	naturalSelection() {
 		let casualities = 0;
 		for (let i = this.animals.length - 1; i >= 0; i--) {
 			this.animals[i].calcHealth(global_map.getTerrain(this.gps));
 			if (this.animals[i].health <= 0) {
-				// console.log(this.animals[i]);
-
 				this.animals.splice(i, 1);
 				casualities++;
 			}
-			// console.log(i);
 		}
-		// console.log("naturalselection");
 		if (this instanceof Player && casualities > 0) addlog(`仲間が${casualities}人、命を落としてしまった…`);
-
 	}
 
 	evaluate() {
 		for (let i = 0; i < this.animals.length; i++) {
 			this.animals[i].calcFitness(this.fitness_coefficient);
 		}
-		// console.log("evaluate");
-
-
 	}
 
 	sexualSelection() {
+		//呼び出した継承先クラスがどっちなのかで処理を変えている部分がある。
+		//オーバーライドでクラスごとに実装すべきなのか？
+
 		for (let animal of this.animals) {
 			for (let x = 0; x < (10 - this.ethics.polygamy) + 1; x++) {
 				this.matingpool.push(animal);
@@ -133,29 +124,30 @@ class Population {
 			}
 		}
 		let nextGeneration = [];
-		// console.log(this.matingpool);
-		for (let i = 0; i < this.size; i++) {
 
+		//サイズは可変。fertilityというphenotypeを作って一定以上なければ出生時に死亡させる？
+		let next_generation_size = this instanceof Player ? randomGaussian(this.animals.length, 1) : this.size;
+		for (let i = 0; i < next_generation_size; i++) {
 			let parentA = random(this.matingpool);
-			//親となる個体の非同一性を保障すべきか
-			//例えばpolygamy-authoritarianの時
 			let parentB = random(this.matingpool);
+
+			//同一個体防止ブロック
+			let preventer = 0;
+			while (parentA === parentB && preventer < 1000) {
+				parentB = random(this.matingpool);
+				preventer++;
+			}
+
 			let child = parentA.intercourse(parentB);
 			nextGeneration.push(child);
 		}
-		// console.log(nextGeneration);
 
 		this.animals = nextGeneration;
 		this.matingpool = [];
 		this.generation++;
 		this.calcStats();
-		if (this instanceof Habitant) {
-			this.setPosition(555);
-		} else if (this instanceof Player) {
-			this.setPosition();
-		}
-		// console.log("sexualselection");
-
+		this instanceof Habitant ? this.setPosition(555) : this.setPosition();
+		if (this instanceof Player) addlog(`${floor(next_generation_size+1)}人の新世代が誕生しました`);
 	}
 
 	consolePopulation(full) {
@@ -171,12 +163,11 @@ class Population {
 
 	consoleEthics() {
 		console.table(this.ethics);
-
-		// return this.ethics;
 	}
 
 	setPosition(yoffset) {
-		//habitantの時はyoffset分下にずらす
+		//habitantの時はyoffset分下にずらす。
+		// このメソッドもsexualSelectionのように変数を取らずに、呼び出したクラスによって条件分岐させる方法もある
 		let row = 0;
 		let col = 0;
 		for (let i = 0; i < this.animals.length; i++) {
@@ -184,7 +175,6 @@ class Population {
 				row++;
 				col = 0;
 			}
-			let map_width = cell_size * map_size;
 			let offset = pops_cell / 2; //顔の中心点が角の上にくるのを補正する値。
 			if (yoffset) {
 				this.animals[i].pos = createVector(map_width + (offset + col * pops_cell) / pops_scale, (offset + row * pops_cell + yoffset) / pops_scale);

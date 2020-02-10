@@ -1,6 +1,5 @@
 class Player extends Population {
 
-
     constructor(gps) {
         super();
         this.size = 15;
@@ -14,18 +13,16 @@ class Player extends Population {
         this.min = super.calcMin();
 
         this.gps = gps || createVector(floor(map_size / 2), floor(map_size / 2));
+        this.rested = 0;
         this.clearFog(this.gps);
         this.adjustSlider();
         super.setPosition();
     }
 
-
     move(p) {
         this.gps = p;
-        this.on_what_terrain = global_map.getTerrain(this.gps);
         this.clearFog(this.gps);
         addlog(`(${this.gps.x+1},${this.gps.y+1})へ移動しました`);
-
     }
 
     clearFog(p) {
@@ -40,12 +37,11 @@ class Player extends Population {
         }
     }
 
-
     show() {
-        //translateを使った方がいいかもしれない
         push();
+        translate(cell_size / 2, cell_size / 2);
         fill(100, 255, 100);
-        ellipseMode(CORNER)
+        ellipseMode(CENTER)
         ellipse(this.gps.x * cell_size, this.gps.y * cell_size, cell_size, cell_size);
         pop();
     }
@@ -56,5 +52,7 @@ class Player extends Population {
         }
     }
 
-
+    // rest() {
+    //     this.rested++;
+    // }
 }

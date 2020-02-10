@@ -1,4 +1,4 @@
-// 10×10のタイル。
+// 例えば10×10のタイル。
 // タイルごとに気候条件を決める
 // 雪原、 ツンドラ、 砂漠、 ジャングル、 草原
 // perlinnoiseを利用してなだらかにしたい
@@ -20,12 +20,10 @@ class GlobalMap {
         this.increment = 0.15;
         //localmapの2d配列
         this.terrain = this.generateTerrain(this.cols, this.rows);
-
-
-        this.local_tiles = [];
-        this.potential_tiles = [];
-
         this.night = false;
+
+        // this.local_tiles = [];
+        // this.potential_tiles = [];
     }
 
 
@@ -70,8 +68,6 @@ class GlobalMap {
     // クリックされた座標をマップ上のセル座標に変換
     convertToCellCordinate(p) {
         let cell_cordinate = createVector(floor(p.x / cell_size), floor(p.y / cell_size));
-        console.log(cell_cordinate);
-
         return cell_cordinate;
     }
 
@@ -81,8 +77,6 @@ class GlobalMap {
         let b = (0 <= p.y && p.y < map_size);
         return a && b;
     }
-
-
 
     //現在地から移動可能なタイルであるか確認しフラグを処理
     examineAccessibility(p) {
@@ -112,6 +106,4 @@ class GlobalMap {
     // getTerrain(x, y) {
     //     return this.terrain[x][y];
     // }
-
-
 }

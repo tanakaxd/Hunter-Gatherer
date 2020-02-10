@@ -6,7 +6,8 @@ let sliders = [];
 
 //settings
 let cell_size = 30;
-let map_size = 15;
+let map_size = 15; //横縦方向へのcellの数
+let map_width = cell_size * map_size;
 let mutationRate = 0.03;
 let pops_cell = 70; //セルのサイズ
 let pops_col = 5;
@@ -18,7 +19,7 @@ let events_per_ethic = 3;
 let debug = true;
 let fr;
 let frame_count = 0;
-let uber_mode = false;
+let uber_mode = true;
 let uber_speed = uber_mode ? 10000 : 1;
 
 
@@ -53,18 +54,10 @@ function setup() {
 }
 
 function draw() {
-	// scene_manager.stateの値によって、描写する内容をスイッチ
 	// アイドル状態の場合、描写自体をストップ(draw内部が空白)してもよい。入力があった場合フラグを立てる？
 	background(global_map.getTerrain(population.gps).color); //local_mapに合わせた色にする
 	game_manager.run();
 	scene_manager.run();
-	// event_manager.run();
-	// global_map.show();
-	// population.show();
-	// for (i = 0; i < population.animals.length; i++) {
-
-	// 	population.animals[i].display(50 + i * 75, 50);
-	// }
 
 	fr.html(frame_count);
 	frame_count++;
@@ -108,7 +101,6 @@ function mousePressed() {
 				for (key in animal.phenotype) {
 					let legend = animal.valueToLegend(animal.phenotype[key]);
 					$("#" + key + " td:nth-child(2)").html(legend).removeClass().addClass(legend);
-
 				}
 			}
 		}
@@ -130,21 +122,19 @@ function mousePressed() {
 				for (key in animal.phenotype) {
 					let legend = animal.valueToLegend(animal.phenotype[key]);
 					$("#" + key + " td:nth-child(2)").html(legend).removeClass().addClass(legend);
-
 				}
 			}
 		}
 	}
 }
 
-function mouseHovered() {
-	for (let animal of population.animals) {
-		if (animal.r.contains(mouseX, mouseY)) {
-			animal.r.clr = color(10);
-		}
-
-	}
-}
+// function mouseHovered() {
+// 	for (let animal of population.animals) {
+// 		if (animal.r.contains(mouseX, mouseY)) {
+// 			animal.r.clr = color(10);
+// 		}
+// 	}
+// }
 
 function pause() {
 	noLoop();
@@ -160,40 +150,28 @@ function restart() {
 
 function popEvent() {
 	game_manager.state = "event";
-	game_manager.run();
-
 }
 
 function initialize() {
 
 	// p5, jquery, javascriptで取得できるDOM要素はそれぞれ別物
 
-	// frameRate(1);
 	noiseSeed(new Date().getTime());
-	canvas = createCanvas(cell_size * map_size + pops_width / pops_scale, cell_size * map_size);
+	canvas = createCanvas(map_width + pops_width / pops_scale, map_width);
 	let canvas_inner = select(".canvas-inner");
 	canvas_inner.child(canvas);
-	// let p = createP("paragraph");
-	// container.child(p);
-
-
-
-	// $(".container").append(canvas);
 
 	game_manager = new GameManager();
 	scene_manager = new SceneManager();
 	event_manager = new EventManager();
 	global_map = new GlobalMap();
 	population = new Player();
-	// event = new Event();
-	// info = new Info();
 	global_map.examineAccessibility(population.gps);
 
 	// 仕様上constructorでは無理。local_mapを生み出すのとhabitantを生み出すのは共にglobal_mapの生成時、その連鎖内にある。
 	for (let y = 0; y < map_size; y++) {
 		for (let x = 0; x < map_size; x++) {
 			for (let i = 0; i < 1; i++) {
-				// console.log(global_map.terrain[x][y].habitant);
 				global_map.terrain[x][y].habitant.evolve();
 			}
 		}
