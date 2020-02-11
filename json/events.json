@@ -97,7 +97,7 @@
                     "qualifier": "max",
                     "phenotype": "aggressivity",
                     "operator": "more",
-                    "criterion": 5.8
+                    "criterion": 9.8
                 },
                 "outcome": [{
                         "modifier": "pacifist",
@@ -158,7 +158,7 @@
                 "condition": {
                     "qualifier": "avg",
                     "phenotype": "hiding",
-                    "operator": "mode",
+                    "operator": "more",
                     "criterion": 6
                 },
                 "outcome": [{
@@ -267,13 +267,879 @@
                         "scale": 2
                     },
                     {
-                        "modifier": "release",
+                        "modifier": "health",
+                        "option": "death",
                         "scale": 1
                     },
                     {
-                        "modifier": "local",
-                        "option": "berries",
-                        "scale": -5
+                        "modifier": "score",
+                        "scale": -10
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "eventID": "pacifist1",
+        "title": "襲撃される！",
+        "description": "見知らぬやつらが襲い掛かってきた。相手は3人とみられる。どうしよう？",
+        "choices": [{
+                "choiceID": "p1o1",
+                "choiceTitle": "おーおー威勢のいい連中じゃ。やつらをわしらの群れに迎え入れろ",
+                "condition": {
+                    "qualifier": "max",
+                    "phenotype": "negotiation",
+                    "operator": "more",
+                    "criterion": 9.8
+                },
+                "outcome": [{
+                        "modifier": "pacifist",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "egalitarian",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "negotiation",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "attraction",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "acquire",
+                        "scale": 3
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 50
+                    }
+                ]
+            },
+            {
+                "choiceID": "p1o2",
+                "choiceTitle": "話術により三人に攻撃をやめさせた。うち一人を誘惑して仲間に",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "attraction",
+                    "operator": "more",
+                    "criterion": 7
+                },
+                "outcome": [{
+                        "modifier": "pacifist",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "attraction",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "negotiation",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "acquire",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 25
+                    }
+                ]
+            },
+            {
+                "choiceID": "p1o3",
+                "choiceTitle": "戦略的撤退！　三十六計逃げるに如かず",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "fleeing",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "pacifist",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "fleeing",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "aggressivity",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "hiding",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "p1o4",
+                "choiceTitle": "数はこっちが上回っている。少し威嚇すれば相手は逃げていくだろう。",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "aggressivity",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "pacifist",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "negotiation",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "aggressivity",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "p1o5",
+                "choiceTitle": "隠れる、罠を設置、カウンター！",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "deception",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "pacifist",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "hiding",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "deception",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "p1o6",
+                "choiceTitle": "完全に不意を突かれてしまった。仲間二人が行方不明",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "hunting",
+                    "operator": "more",
+                    "criterion": 0
+                },
+                "outcome": [{
+                        "modifier": "pacifist",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "fighting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "fleeing",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "health",
+                        "option": "death",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": -10
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "eventID": "egalitarian1",
+        "title": "大量の木の実を発見",
+        "description": "ちょうど群れ全員にいきわたるほどの量だ。どうしよう？",
+        "choices": [{
+                "choiceID": "e1o1",
+                "choiceTitle": "必要な量は十分にある。群れ全員でこの祝福を分かち合おう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "equality",
+                    "operator": "more",
+                    "criterion": 8
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "equality",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "foraging",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "health",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 50
+                    }
+                ]
+            },
+            {
+                "choiceID": "e1o2",
+                "choiceTitle": "群れだけと言わず、ここの住人にもおすそ分けだ。一人群れに参加した",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "openminded",
+                    "operator": "more",
+                    "criterion": 7
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "openminded",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "foraging",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "acquire",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 25
+                    }
+                ]
+            },
+            {
+                "choiceID": "e1o3",
+                "choiceTitle": "見つけたものは見つけた人のもの。見つけたやつらで食べまくる",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "fleeing",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "pacifist",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "fleeing",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "aggressivity",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "hiding",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "e1o4",
+                "choiceTitle": "これだけ大量にあれば、罠として使う分もある。獲物をおびき寄せて狩ろう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "aggressivity",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "pacifist",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "negotiation",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "aggressivity",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "e1o5",
+                "choiceTitle": "なぜこんなところに大量の実があるのだろう。何か裏があるに違いない",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "deception",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "pacifist",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "hiding",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "deception",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "e1o6",
+                "choiceTitle": "この土地の住人が罠のために蓄えた毒木の実だった。食べた三人が体調不良",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "hunting",
+                    "operator": "more",
+                    "criterion": 0
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "foraging",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "health",
+                        "option": "injury",
+                        "scale": 3
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": -10
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "eventID": "authoritarian1",
+        "title": "群れを導くリーダー",
+        "description": "自然と群れにリーダー的存在が現れた。群れの決定はその者を通してなされることが多くなった。",
+        "choices": [{
+                "choiceID": "a1o1",
+                "choiceTitle": "リーダーの名は群れを超えて轟いた。三人の群れ参加志願者！　栄光あれ！",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "equality",
+                    "operator": "less",
+                    "criterion": 2
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "equality",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "acquire",
+                        "scale": 3
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 50
+                    }
+                ]
+            },
+            {
+                "choiceID": "a1o2",
+                "choiceTitle": "狩りの方法を巡って群れが二分した。しかし、リーダーの導きによってさらなる良案が生み出された",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "equality",
+                    "operator": "less",
+                    "criterion": 3
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "innovative",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 25
+                    }
+                ]
+            },
+            {
+                "choiceID": "a1o3",
+                "choiceTitle": "権力を集中させすぎると、意思決定が独善的になり得る。一人一人が自分で決めよう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "independency",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "order",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "equality",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "negotiation",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "a1o4",
+                "choiceTitle": "リーダーだけでなく、補助役の幹部も必要だ。ヒエラルキーを強化せよ",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "equality",
+                    "operator": "less",
+                    "criterion": 4
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "negotiation",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "equality",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "a1o5",
+                "choiceTitle": "皆がリーダーを愛している。しかし、戦う時はみな平等に命を懸けよう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "equality",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "fighting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "equality",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "a1o6",
+                "choiceTitle": "リーダーは権力を濫用し始めた！　リーダーに楯突いた二人が群れから追放された",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "hunting",
+                    "operator": "more",
+                    "criterion": 0
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "equality",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "release",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": -10
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "eventID": "polygamy1",
+        "title": "毛づくろいと絆",
+        "description": "スキンシップは群れの結びつきを強める。老若男女の境はない？",
+        "choices": [{
+                "choiceID": "p1o1",
+                "choiceTitle": "愛に制限を設ける必要などどこにもない。愛は永遠、そして無限",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "equality",
+                    "operator": "less",
+                    "criterion": 2
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "equality",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "acquire",
+                        "scale": 3
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 50
+                    }
+                ]
+            },
+            {
+                "choiceID": "p1o2",
+                "choiceTitle": "狩りの方法を巡って群れが二分した。しかし、リーダーの導きによってさらなる良案が生み出された",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "equality",
+                    "operator": "less",
+                    "criterion": 3
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "innovative",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 25
+                    }
+                ]
+            },
+            {
+                "choiceID": "p1o3",
+                "choiceTitle": "権力を集中させすぎると、意思決定が独善的になり得る。一人一人が自分で決めよう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "independency",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "order",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "equality",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "negotiation",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "p1o4",
+                "choiceTitle": "リーダーだけでなく、補助役の幹部も必要だ。ヒエラルキーを強化せよ",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "equality",
+                    "operator": "less",
+                    "criterion": 4
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "negotiation",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "equality",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "p1o5",
+                "choiceTitle": "皆がリーダーを愛している。しかし、戦う時はみな平等に命を懸けよう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "equality",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "fighting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "equality",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "p1o6",
+                "choiceTitle": "リーダーは権力を濫用し始めた！　リーダーに楯突いた二人が群れから追放された",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "hunting",
+                    "operator": "more",
+                    "criterion": 0
+                },
+                "outcome": [{
+                        "modifier": "egalitarian",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "equality",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "release",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": -10
                     }
                 ]
             }

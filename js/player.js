@@ -2,7 +2,7 @@ class Player extends Population {
 
     constructor(gps) {
         super();
-        this.size = 15;
+        this.size = player_size;
         for (let x = 0; x < this.size; x++) {
             this.animals.push(new Animal());
         }
@@ -53,7 +53,10 @@ class Player extends Population {
         }
     }
 
-    rest() {
-        this.rested++;
+    rest(scale) {
+        this.rested += scale | 1;
+        console.log("rested");
+        $("#rest").html(`Rest: ${this.rested}`)
+
     }
 }

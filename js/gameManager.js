@@ -62,25 +62,34 @@ class GameManager {
                 console.log("night");
                 global_map.night = true;
                 $("#dialog").html("夜が来た！");
+                population.rest();
 
                 let dots_b = "";
                 setTimeout(() => {
                     let func = setInterval(() => {
-                        $("#dialog").html("Wuv Wuv" + dots_b);
+                        if (population.rested >= rest_to_reproduce) {
+                            $("#dialog").html("Wuv Wuv" + dots_b);
+                        } else {
+                            $("#dialog").html("Zzz" + dots_b);
+                        }
                         dots_b += "・";
                         setTimeout(() => {
                             clearInterval(func);
                         }, 5500 / uber_speed);
-                    }, 500 / uber_speed);
+                    }, 700 / uber_speed);
                 }, 2000 / uber_speed);
 
-                population.evaluate();
-                population.rest();
+                console.log(population.rested);
 
                 setTimeout(() => {
                     //もしrestが一定に達していたら
-                    population.sexualSelection();
-                    global_map.getTerrain(population.gps).habitant.evolve();
+                    if (population.animals.length <= 1) {
+                        game_manager.gameOver();
+                    } else if (population.rested >= rest_to_reproduce) {
+                        population.evaluate();
+                        population.sexualSelection();
+                    }
+                    if (habitant_evolve) global_map.getTerrain(population.gps).habitant.evolve();
                     this.state = "map";
                     this.focus = "global_map";
                     this.day++;
@@ -97,5 +106,10 @@ class GameManager {
         setTimeout(() => {
             this.state = state;
         }, miliseconds);
+    }
+
+    gameOver() {
+        alert("THIS GAME IS OVER");
+        initialize();
     }
 }

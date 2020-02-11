@@ -164,7 +164,10 @@ class Population {
 		this.generation++;
 		this.calcStats();
 		this instanceof Habitant ? this.setPosition(555) : this.setPosition();
-		if (this instanceof Player) addlog(`${floor(actual_size+1)}人の新世代が誕生しました`);
+		if (this instanceof Player) {
+			addlog(`${floor(actual_size + 1)}人の新世代が誕生しました`);
+			this.rest(-this.rested); // this.rested = 0;
+		}
 	}
 
 	consolePopulation(full) {

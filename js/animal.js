@@ -48,7 +48,18 @@ class Animal {
 	}
 
 	weightPhenotype(coefficient) {
-		let weighted_phenotype = this.phenotype;
+		//weighted_phenotypeの計算のためにthis.phenotypeをコピーしたい。単純な=での代入はshallow copy
+		//オブジェクトの浅いコピーは問題を起こすことを再確認。
+		//二通りの方法ABで解決
+
+		//A
+		let weighted_phenotype = Object.assign({}, this.phenotype);
+
+		//B
+		// for (let key in this.phenotype) {
+		// 	weighted_phenotype[key] = this.phenotype[key];
+		// }
+
 		for (let key1 in this.phenotype) {
 			for (let key2 in coefficient) {
 				if (key1 == key2) {

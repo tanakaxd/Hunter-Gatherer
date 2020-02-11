@@ -2,7 +2,7 @@ class Habitant extends Population {
 
     constructor(gps) {
         super();
-        this.size = 15;
+        this.size = habitant_size;
         for (let x = 0; x < this.size; x++) {
             this.animals.push(new Animal());
         }
@@ -17,10 +17,8 @@ class Habitant extends Population {
     }
 
     evolve() {
-        for (let i = 0; i < 1; i++) {
-            super.naturalSelection();
-            super.evaluate();
-            super.sexualSelection();
-        }
+        super.naturalSelection();
+        super.evaluate();
+        super.sexualSelection();
     }
 }

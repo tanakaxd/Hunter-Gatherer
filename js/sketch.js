@@ -8,19 +8,25 @@ let sliders = [];
 let cell_size = 30;
 let map_size = 15; //横縦方向へのcellの数
 let map_width = cell_size * map_size;
+let player_size = 15;
+let habitant_size = 15;
 let mutationRate = 0.03;
+let rest_to_reproduce = 3;
 let pops_cell = 70; //セルのサイズ
 let pops_col = 5;
 let pops_scale = 1.7; //顔のパーツが絶対的な値で定義されているので縮尺によって調節する
 let pops_width = pops_cell * pops_col;
-let events_per_ethic = 3;
+let events_per_ethic = 1;
 
 //utility
 let debug = true;
 let fr;
 let frame_count = 0;
 let uber_mode = true;
-let uber_speed = uber_mode ? 1000 : 1;
+let uber_speed = uber_mode ? 10 : 1;
+let easy_envi = false;
+let habitant_evolve = true;
+let how_many_evolves = 3;
 
 
 //データを取り込む。イベント用、マップ用
@@ -169,10 +175,12 @@ function initialize() {
 	global_map.examineAccessibility(population.gps);
 
 	// 仕様上constructorでは無理。local_mapを生み出すのとhabitantを生み出すのは共にglobal_mapの生成時、その連鎖内にある。
-	for (let y = 0; y < map_size; y++) {
-		for (let x = 0; x < map_size; x++) {
-			for (let i = 0; i < 3; i++) {
-				global_map.terrain[x][y].habitant.evolve();
+	if (habitant_evolve) {
+		for (let y = 0; y < map_size; y++) {
+			for (let x = 0; x < map_size; x++) {
+				for (let i = 0; i < how_many_evolves; i++) {
+					global_map.terrain[x][y].habitant.evolve();
+				}
 			}
 		}
 	}

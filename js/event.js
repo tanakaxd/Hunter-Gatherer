@@ -176,6 +176,7 @@ class Event {
             //score modifier
             "score": (scale) => {
                 game_manager.score += scale;
+                $("#score").html(`Score: ${game_manager.score}`);
             },
 
             //fog modifier
@@ -191,10 +192,12 @@ class Event {
                 if (option == "death") {
                     population.animals.splice(random(population.animals), scale);
                 } else if (option == "injury") {
-                    let injured = random(population.animals);
-                    injured.health -= 1;
-                    if (injured.health <= 0) {
-                        population.animals.splice(population.animals.indexOf(injured), 1);
+                    for (let i = 0; i < scale; i++) {
+                        let injured = random(population.animals);
+                        injured.health -= 1;
+                        if (injured.health <= 0) {
+                            population.animals.splice(population.animals.indexOf(injured), 1);
+                        }
                     }
                 } else {
                     population.animals.forEach((animal, index) => {
@@ -210,11 +213,20 @@ class Event {
             "local": (scale, option) => {
                 let local_map = global_map.getTerrain(population.gps);
                 local_map[option] += scale;
-            }
+            },
+
+            //rest modifier
+            "rest": (scale) => {
+                population.rest(scale);
+            },
+
+            //nest modifier 巣を発見　
+            "rest": () => {
+                let local_map = global_map.getTerrain(population.gps);
+                local_map.nest = true;
+            },
 
             //buff modifier
-            //rest modifier
-            //nest modifier 巣を発見　
             //genes modifier
             //phenotype modifier
             //inventory modifier
@@ -255,9 +267,13 @@ class Event {
         for (let choice of this.certified_choices) {
             $("#" + choice.choiceID).click(() => {
                 for (let func of choice.outcome) {
+                    if (modifiers[func.modifier] === undefined) {
+                        console.error("invalid modifier name");
+                    }
                     modifiers[func.modifier](func.scale, func.option);
                 }
                 population.adjustSlider();
+                population.calcStats();
             })
         }
 
