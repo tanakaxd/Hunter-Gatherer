@@ -182,7 +182,7 @@ class Event {
             //fog modifier
             "fog": (scale) => {
                 for (let i = 0; i < scale; i++) {
-                    let p = createVector(random(0, map_size), random(0, map_size));
+                    let p = createVector(floor(random(0, map_size)), floor(random(0, map_size)));
                     population.clearFog(p);
                 }
             },
@@ -238,8 +238,16 @@ class Event {
             },
 
             //gps modifier
-            "gps": (scale, option) => {
-                population.gps = createVector(scale, option).copy(); //邪道？
+            "gps": () => {
+                let loop_count = 0;
+                while (loop_count < map_size ** 2) {
+                    let new_gps = createVector(floor(random(0, map_size)), floor(random(0, map_size)));
+                    if (!(global_map.getTerrain(new_gps).visited)) {
+                        population.move(new_gps);
+                        break;
+                    }
+                    loop_count++;
+                }
             },
             //genes modifier
             //phenotype modifier
@@ -259,7 +267,21 @@ class Event {
         //作った配列をDOMに反映。該当する選択肢がない場合の処理
         if (this.certified_choices.length != 0) {
             for (let choice of this.certified_choices) {
-                buttons += `<div class="btn" id="${choice.choiceID}">${choice.choiceTitle}</div>`;
+                let choice_color = "";
+                let score = 0;
+                for (let func of choice.outcome) {
+                    if (func.modifier == "score") score = func.scale;
+                }
+                if (score >= 50) {
+                    choice_color = "legendary";
+                } else if (score >= 25) {
+                    choice_color = "good";
+                } else if (score < 0) {
+                    choice_color = "awful";
+                }
+
+
+                buttons += `<div class="btn ${choice_color}" id="${choice.choiceID}">${choice.choiceTitle}</div>`;
             }
         } else {
             buttons += '<div class="btn">できることが何もない…</div>';
@@ -290,6 +312,13 @@ class Event {
                 population.calcStats();
             })
         }
+
+        //title img descriptionをhtml要素に登録
+        $("#event-title").html(this.title);
+        // $("#event-img").html(this.img);
+        $("#description").html(this.description);
+
+
 
         //イベント要素全体をpopup
         $("#js-popup").toggleClass('is-show');

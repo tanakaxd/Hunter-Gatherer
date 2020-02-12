@@ -39,40 +39,55 @@
   <div class="container">
     <div class="info">
       <div class="numbers">
-        <p class="number" id="day">Day: 1</p>
-        <p class="number" id="score">Score: 0</p>
-        <p class="number" id="rest">Rest: 0</p>
+        <div class="tooltip">
+          <p class="number" id="day">Day: 1</p>
+          <div class="tips">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, inventore.</div>
+        </div>
+        <div class="tooltip">
+          <p class="number" id="score">Score: 0</p>
+          <div class="tips">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, inventore.</div>
+        </div>
+        <div class="tooltip">
+          <p class="number" id="rest">Rest: 0</p>
+          <div class="tips">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, inventore.</div>
+        </div>
       </div>
       <div class="ethics">
-        <div class="ethic">
+        <div class="ethic tooltip">
           <div class="left">Authoritarian</div>
-          <input type="range" class="slider" id="egalitarian" min="0" max="10" disabled>
+          <input type="range" class="slider" id="egalitarian" min="0" max="10" step="0.2" disabled>
           <div class="right">Egalitarian</div>
+          <div class="tips">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, inventore.</div>
         </div>
-        <div class="ethic">
+        <div class="ethic tooltip">
           <div class="left">Monogamy</div>
-          <input type="range" class="slider" id="polygamy" min="0" max="10" disabled>
+          <input type="range" class="slider" id="polygamy" min="0" max="10" step="0.2" disabled>
           <div class="right">Polygamy</div>
+          <div class="tips">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, inventore.</div>
         </div>
-        <div class="ethic">
+        <div class="ethic tooltip">
           <div class="left">Militarist</div>
-          <input type="range" class="slider" id="pacifist" min="0" max="10" disabled>
+          <input type="range" class="slider" id="pacifist" min="0" max="10" step="0.2" disabled>
           <div class="right">Pacifist</div>
+          <div class="tips">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, inventore.</div>
         </div>
-        <div class="ethic">
+        <div class="ethic tooltip">
           <div class="left">Xenophobe</div>
-          <input type="range" class="slider" id="xenophile" min="0" max="10" disabled>
+          <input type="range" class="slider" id="xenophile" min="0" max="10" step="0.2" disabled>
           <div class="right">Xenophile</div>
+          <div class="tips">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, inventore.</div>
         </div>
-        <div class="ethic">
+        <div class="ethic tooltip">
           <div class="left">Traditional</div>
-          <input type="range" class="slider" id="innovative" min="0" max="10" disabled>
+          <input type="range" class="slider" id="innovative" min="0" max="10" step="0.2" disabled>
           <div class="right">Innovative</div>
+          <div class="tips">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, inventore.</div>
         </div>
-        <div class="ethic">
+        <div class="ethic tooltip">
           <div class="left">Chaos</div>
-          <input type="range" class="slider" id="order" min="0" max="10" disabled>
+          <input type="range" class="slider" id="order" min="0" max="10" step="0.2" disabled>
           <div class="right">Order</div>
+          <div class="tips">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, inventore.</div>
         </div>
       </div>
     </div>
@@ -97,6 +112,8 @@
           <td>Swimming</td>
           <td></td>
         </tr>
+        <tr class="spacing">
+        </tr>
         <tr class="" id="hiding">
           <td>Hiding</td>
           <td></td>
@@ -108,6 +125,8 @@
         <tr class="" id="fleeing">
           <td>Fleeing</td>
           <td></td>
+        </tr>
+        <tr class="spacing">
         </tr>
         <tr class="" id="negotiation">
           <td>Negotiation</td>
@@ -121,7 +140,7 @@
           <td>Attraction</td>
           <td></td>
         </tr>
-        <tr class="" id="">
+        <!-- <tr class="" id="">
           <td></td>
           <td></td>
         </tr>
@@ -144,7 +163,7 @@
         <tr class="" id="">
           <td></td>
           <td></td>
-        </tr>
+        </tr> -->
       </table>
     </div>
   </div>
@@ -162,6 +181,8 @@
 
   <div class="popup" id="js-popup">
     <div class="popup-inner">
+      <h4 id="event-title"></h4>
+      <div id="event-img"></div>
       <div id="description"></div>
       <div id="choices"></div>
     </div>

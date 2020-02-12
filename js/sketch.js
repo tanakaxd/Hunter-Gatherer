@@ -10,7 +10,7 @@ let map_size = 15; //横縦方向へのcellの数
 let map_width = cell_size * map_size;
 let player_size = 15;
 let habitant_size = 15;
-let mutationRate = 0.03;
+let base_mutation_rate = 0.03;
 let infant_mortality = 0.1;
 let rest_to_reproduce = 3;
 let pops_cell = 70; //セルのサイズ
@@ -83,7 +83,7 @@ function mousePressed() {
 		if (global_map.verifyCell(cell_cordinate)) {
 			if (global_map.terrain[cell_cordinate.x][cell_cordinate.y].accessible) {
 				population.move(cell_cordinate);
-				global_map.examineAccessibility(cell_cordinate);
+				// global_map.examineAccessibility(cell_cordinate);
 				$("#dialog").html("");
 				game_manager.state = "hunt";
 				game_manager.focus = "forbidden";
@@ -185,6 +185,10 @@ function initialize() {
 			}
 		}
 	}
+
+	$("#day").html(`Day: ${game_manager.day}`); //this.dayにすると古い方のgame_managerオブジェクトが呼ばれる
+	$("#score").html(`Score: ${game_manager.score}`);
+	$("#rest").html(`Rest: ${population.rested}`)
 }
 
 function addlog(text) {

@@ -93,7 +93,7 @@ class GameManager {
                     this.state = "map";
                     this.focus = "global_map";
                     this.day++;
-                    $("#day").html(`Day: ${this.day}`);
+                    $("#day").html(`Day: ${game_manager.day}`); //re-initializeしたときにこっちのイベントが残っていて、新しい方を上書きしてしまう。
                 }, 8000 / uber_speed);
 
                 this.state = "";
@@ -111,5 +111,6 @@ class GameManager {
     gameOver() {
         alert("THIS GAME IS OVER");
         initialize();
+
     }
 }

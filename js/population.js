@@ -9,6 +9,7 @@ class Population {
 		this.matingpool = [];
 		this.generation = 1;
 		this.gps;
+		this.mutation_rate = base_mutation_rate;
 
 		this.ethics = {
 			//jsでは連想配列のkeyに""があってもなくても同じ。jsonは必須
@@ -133,9 +134,10 @@ class Population {
 		let nextGeneration = [];
 
 		//サイズは可変。fertilityというphenotypeを作って一定以上なければ出生時に死亡させる？
-		let next_generation_size = this instanceof Player ? randomGaussian(this.animals.length + this.next_children, 1) : this.size;
+		let next_generation_size = this instanceof Player ? this.animals.length + this.next_children : this.size;
 		let have_nest = this instanceof Player ? global_map.getTerrain(this.gps).nest : true;
 		let actual_size = next_generation_size;
+		let mutation_rate_modifier = map(this.ethics.xenophile, 0, 10, 0.5, 2);
 
 		for (let i = 0; i < next_generation_size; i++) {
 			let parentA = random(this.matingpool);
@@ -148,7 +150,7 @@ class Population {
 				preventer++;
 			}
 
-			let child = parentA.intercourse(parentB);
+			let child = parentA.intercourse(parentB, this.mutation_rate * mutation_rate_modifier);
 			//nestがあればinfant_moratalityを無視して出産できる
 			if (!have_nest) {
 				if (random() > infant_mortality) nextGeneration.push(child);

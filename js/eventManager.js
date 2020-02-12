@@ -15,8 +15,8 @@ class EventManager {
 
         //どのイベントを発生させるかを決める
         //例えばxmlファイルを読み込んで、タイル種別のイベント比率に基づいてランダムに発生させる
-        // let eventID = this.chooseEvent(global_map.getTerrain(population.gps), population.ethics);
-        let eventID = random(["militarist1", "pacifist1", "egalitarian1", "authoritarian1"]);
+        let eventID = this.chooseEvent();
+        // let eventID = "innovative1";
 
         //そのイベントのjsonを取得
 
@@ -50,25 +50,27 @@ class EventManager {
     }
 
     //idを返す
-    chooseEvent(tile, ethics) {
+    chooseEvent() {
 
-        if (game_manager.state == "hunt") { //狩りイベント。現在未実装
+        //探索イベント。現在未実装。選択肢なしで成果だけを表示するタイプ。ローカルマップの情報の一部、他タイルの情報等を取得。
+        if (game_manager.state == "exploration") { //tile event?
             let events_pool = [];
             let eventID = "militarist1";
             return eventID;
 
         } else if (game_manager.state == "event") { //ethicsイベント
             let events_pool = []; //idが発生確率に比例して大量に入れられた配列
+            // 一つの対立軸に対して11個。小数点切り上げで割り振る。(1.5,8.5)→(2,9)
             for (let key in population.ethics) {
 
                 for (let i = 0; i < population.ethics[key]; i++) {
-                    for (let j = 0; j < events_per_ethic; j++) {
+                    for (let j = 1; j <= events_per_ethic; j++) {
                         events_pool.push(key + j);
                     }
                 }
                 // 対立項
                 for (let i = 0; i < 10 - population.ethics[key]; i++) {
-                    for (let j = 0; j < events_per_ethic; j++) {
+                    for (let j = 1; j <= events_per_ethic; j++) {
                         if (key == "egalitarian") {
                             events_pool.push("authoritarian" + j);
                         } else if (key == "polygamy") {
@@ -87,6 +89,8 @@ class EventManager {
                     }
                 }
             }
+            console.log(events_pool);
+
             return random(events_pool);
         } else {
             console.error("invalid state");

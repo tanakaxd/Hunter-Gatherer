@@ -13,10 +13,11 @@ class Player extends Population {
         this.min = super.calcMin();
 
         this.gps = gps || createVector(floor(map_size / 2), floor(map_size / 2));
-        this.rested = 0;
+        this.rested = 2;
         this.buffed = false; //次のイベントで全ての選択肢をとれる
         this.next_children = 0;
         this.clearFog(this.gps);
+        this.visit();
         this.adjustSlider();
         super.setPosition();
     }
@@ -24,6 +25,8 @@ class Player extends Population {
     move(p) {
         this.gps = p;
         this.clearFog(this.gps);
+        this.visit();
+        global_map.examineAccessibility(this.gps);
         addlog(`(${this.gps.x+1},${this.gps.y+1})へ移動しました`);
     }
 
@@ -59,5 +62,9 @@ class Player extends Population {
         console.log("rested");
         $("#rest").html(`Rest: ${this.rested}`)
 
+    }
+
+    visit() {
+        global_map.getTerrain(this.gps).visited = true;
     }
 }

@@ -27,11 +27,50 @@ body {
   display: flex;
 }
 
+/* info */
+
 .info {
   margin-right: 15px;
 }
 
+.tooltip {
+  position: relative;
+}
 
+.number {
+  cursor: help;
+  display: inline-block;
+}
+
+.tips {
+  display: none;
+  position: absolute;
+  padding: 10px;
+  font-size: 12px;
+  line-height: 1.6em;
+  color: #fff;
+  border-radius: 5px;
+  background: #000;
+  width: 150px;
+  z-index: 2;
+}
+
+.tips:before {
+  content: "";
+  position: absolute;
+  top: -24px;
+  right: 60%;
+  border: 15px solid transparent;
+  border-top: 15px solid #000;
+  margin-left: -15px;
+  transform: rotateZ(180deg);
+}
+
+.number:hover+.tips {
+  display: inline-block;
+  top: 30px;
+  left: 0px;
+}
 
 .ethics {
   margin-top: 20px;
@@ -48,6 +87,13 @@ body {
 .ethic {
   font-size: 11px;
   margin-bottom: 7px;
+  cursor: help;
+}
+
+.ethic:hover .tips {
+  display: inline-block;
+  top: 120%;
+  left: 0px;
 }
 
 .slider {
@@ -68,6 +114,8 @@ body {
   margin-left: auto;
 }
 
+/* pops-statu */
+
 .pops-status {
   width: 100%;
 }
@@ -82,36 +130,40 @@ tr:nth-child(odd) {
   background-color: rgb(243, 243, 243);
 }
 
+tr.spacing {
+  height: 8px;
+}
+
 td {
   width: 50%;
   padding: 1px 0;
 }
 
-td.catastrophic {
+.catastrophic {
   color: darkred;
 }
 
-td.awful {
+.awful {
   color: red;
 }
 
-td.poor {
+.poor {
   color: darkorange;
 }
 
-td.average {
+.average {
   color: rgb(138, 138, 4);
 }
 
-td.good {
+.good {
   color: green;
 }
 
-td.excellent {
+.excellent {
   color: blue;
 }
 
-td.legendary {
+.legendary {
   color: cyan;
 }
 
@@ -183,10 +235,20 @@ td.legendary {
   z-index: 2;
 }
 
+#event-title {
+  text-align: center;
+}
+
+#description {
+  margin-bottom: 20px;
+}
+
+#choices {}
+
 .btn {
   cursor: pointer;
   border: 1px black solid;
-  margin: 2px 0;
+  margin: 5px 0;
 }
 
 .black-background {

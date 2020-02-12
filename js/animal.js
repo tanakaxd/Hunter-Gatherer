@@ -81,8 +81,8 @@ class Animal {
 		this.fitness = ~~(fitness * this.health);
 	}
 
-	intercourse(partner) {
-		let child_DNA = this.dna.crossover(partner.dna);
+	intercourse(partner, mutation_rate) {
+		let child_DNA = this.dna.crossover(partner.dna, mutation_rate);
 		let child = new Animal(child_DNA);
 		return child; //Animal object
 	}
