@@ -11,6 +11,7 @@ let map_width = cell_size * map_size;
 let player_size = 15;
 let habitant_size = 15;
 let mutationRate = 0.03;
+let infant_mortality = 0.1;
 let rest_to_reproduce = 3;
 let pops_cell = 70; //セルのサイズ
 let pops_col = 5;

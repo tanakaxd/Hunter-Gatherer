@@ -213,6 +213,7 @@ class Event {
             "local": (scale, option) => {
                 let local_map = global_map.getTerrain(population.gps);
                 local_map[option] += scale;
+                if (local_map[option] < 0) local_map[option] = 0;
             },
 
             //rest modifier
@@ -220,13 +221,26 @@ class Event {
                 population.rest(scale);
             },
 
-            //nest modifier 巣を発見　
-            "rest": () => {
+            //nest modifier
+            "nest": () => {
                 let local_map = global_map.getTerrain(population.gps);
                 local_map.nest = true;
             },
 
             //buff modifier
+            "buff": () => {
+                population.buffed = true;
+            },
+
+            //child modifier
+            "child": (scale) => {
+                population.next_children += scale;
+            },
+
+            //gps modifier
+            "gps": (scale, option) => {
+                population.gps = createVector(scale, option).copy(); //邪道？
+            },
             //genes modifier
             //phenotype modifier
             //inventory modifier

@@ -133,8 +133,10 @@ class Population {
 		let nextGeneration = [];
 
 		//サイズは可変。fertilityというphenotypeを作って一定以上なければ出生時に死亡させる？
-		let next_generation_size = this instanceof Player ? randomGaussian(this.animals.length, 1) : this.size;
+		let next_generation_size = this instanceof Player ? randomGaussian(this.animals.length + this.next_children, 1) : this.size;
+		let have_nest = this instanceof Player ? global_map.getTerrain(this.gps).nest : true;
 		let actual_size = next_generation_size;
+
 		for (let i = 0; i < next_generation_size; i++) {
 			let parentA = random(this.matingpool);
 			let parentB = random(this.matingpool);
@@ -147,7 +149,13 @@ class Population {
 			}
 
 			let child = parentA.intercourse(parentB);
-			nextGeneration.push(child);
+			//nestがあればinfant_moratalityを無視して出産できる
+			if (!have_nest) {
+				if (random() > infant_mortality) nextGeneration.push(child);
+			} else {
+				nextGeneration.push(child);
+			}
+
 
 			//healthはすでにselectionに使われている値なので、重複して計算することになる。その結果選択が激しくなりすぎて種が特化してしまう。
 			// if (this instanceof Habitant) {

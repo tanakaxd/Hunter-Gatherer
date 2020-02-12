@@ -1,92 +1,4 @@
 [{
-        "eventID": "001",
-        "title": "餌を発見！",
-        "description": "食料になりそうな木の実を大量に発見した。どうしよう？",
-        "choices": [{
-                "choiceID": "e001o1",
-                "choiceTitle": "みんなでありったけ食べる",
-                "condition": {
-                    "qualifier": "avg",
-                    "phenotype": "equality",
-                    "operator": "more",
-                    "criterion": 5
-                },
-                "outcome": [{
-                        "modifier": "egalitarian",
-                        "scale": 1
-                    },
-                    {
-                        "modifier": "polygamy",
-                        "scale": 1
-                    }
-                ]
-            },
-            {
-                "choiceID": "e001o2",
-                "choiceTitle": "木の実におびき寄せられる獲物を待つ",
-                "condition": {
-                    "qualifier": "max",
-                    "phenotype": "hunting",
-                    "operator": "more",
-                    "criterion": 7
-                },
-                "outcome": [{
-                        "modifier": "egalitarian",
-                        "scale": 1
-                    },
-                    {
-                        "modifier": "polygamy",
-                        "scale": 1
-                    }
-                ]
-            },
-            {
-                "choiceID": "e001o3",
-                "choiceTitle": "何かの交渉に使えるかもしれない。半分残しておこう",
-                "condition": {
-                    "qualifier": "max",
-                    "phenotype": "negotiation",
-                    "operator": "more",
-                    "criterion": 7
-                },
-                "outcome": [{
-                        "modifier": "egalitarian",
-                        "scale": 1
-                    },
-                    {
-                        "modifier": "polygamy",
-                        "scale": 1
-                    }
-                ]
-            },
-            {
-                "choiceID": "e001o4",
-                "choiceTitle": "力こそ正義。強い奴からありつこう",
-                "condition": {
-                    "qualifier": "avg",
-                    "phenotype": "equality",
-                    "operator": "less",
-                    "criterion": 3
-                },
-                "outcome": [{
-                        "modifier": "egalitarian",
-                        "scale": -1
-                    },
-                    {
-                        "modifier": "polygamy",
-                        "scale": -1
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "eventID": "002",
-        "title": "見知らぬ群れを発見！",
-        "description": "仲間になりたそうなやつを二人発見した。どうしよう？",
-        "choices": 50
-    },
-    {
         "eventID": "militarist1",
         "title": "天敵に奇襲チャンス！",
         "description": "狂暴そうなクマが一人ぼっちで昼寝をしている。どうしよう？",
@@ -1136,6 +1048,1082 @@
                     {
                         "modifier": "release",
                         "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": -10
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "eventID": "monogamy1",
+        "title": "誠実な愛",
+        "description": "誓い合った相手を亡くした女がいた。夜な夜な一人で泣いている",
+        "choices": [{
+                "choiceID": "m1o1",
+                "choiceTitle": "誓い合った二人の愛。誰にも邪魔されない愛",
+                "condition": {
+                    "qualifier": "min",
+                    "phenotype": "lust",
+                    "operator": "less",
+                    "criterion": 0.2
+                },
+                "outcome": [{
+                        "modifier": "polygamy",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "innovative",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "lust",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "attraction",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "health",
+                        "option": "death",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 50
+                    }
+                ]
+            },
+            {
+                "choiceID": "m1o2",
+                "choiceTitle": "子供を身ごもっていた。この子は私たちの愛の結晶",
+                "condition": {
+                    "qualifier": "min",
+                    "phenotype": "lust",
+                    "operator": "less",
+                    "criterion": 1
+                },
+                "outcome": [{
+                        "modifier": "polygamy",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "innovative",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "child",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 25
+                    }
+                ]
+            },
+            {
+                "choiceID": "m1o3",
+                "choiceTitle": "私はもうここにはいられない。愛の巣を残して旅立つ",
+                "condition": {
+                    "qualifier": "min",
+                    "phenotype": "independency",
+                    "operator": "less",
+                    "criterion": 2
+                },
+                "outcome": [{
+                        "modifier": "order",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "innovative",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "lust",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "release",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "nest"
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "m1o4",
+                "choiceTitle": "彼女がそれを愛と呼ぶなら、私たちはこれを愛と呼ぶ",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "polygamy",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "polygamy",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "innovative",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "attraction",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "equality",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "health",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "m1o5",
+                "choiceTitle": "悲しみは癒えない。私はそれを力に変えよう",
+                "condition": {
+                    "qualifier": "max",
+                    "phenotype": "fighting",
+                    "operator": "more",
+                    "criterion": 8
+                },
+                "outcome": [{
+                        "modifier": "pacifist",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "fighting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "lust",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "m1o6",
+                "choiceTitle": "夜が明けると、彼女の姿はどこにもなかった",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "hunting",
+                    "operator": "more",
+                    "criterion": 0
+                },
+                "outcome": [{
+                        "modifier": "polygamy",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "innovative",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "lust",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "release",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": -10
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "eventID": "xenophile1",
+        "title": "見知らぬ群れを発見",
+        "description": "見知らぬ群れがこちらに向かってくる。攻撃を準備しているそぶりは全く見られない",
+        "choices": [{
+                "choiceID": "xl1o1",
+                "choiceTitle": "新しい出会いに祝福を。最高の歓迎を贈ろう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "openminded",
+                    "operator": "more",
+                    "criterion": 8
+                },
+                "outcome": [{
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "innovative",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "openminded",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "attraction",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "acquire",
+                        "scale": 5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 50
+                    }
+                ]
+            },
+            {
+                "choiceID": "xl1o2",
+                "choiceTitle": "来る者は拒まず、去る者は追わず",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "openminded",
+                    "operator": "more",
+                    "criterion": 7
+                },
+                "outcome": [{
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "egalitarian",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "openminded",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "release",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "acquire",
+                        "scale": 4
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 25
+                    }
+                ]
+            },
+            {
+                "choiceID": "xl1o3",
+                "choiceTitle": "情報交換の機会だ。彼らが訪れた場所の情報をもらおう",
+                "condition": {
+                    "qualifier": "max",
+                    "phenotype": "negotiation",
+                    "operator": "more",
+                    "criterion": 8
+                },
+                "outcome": [{
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "pacifist",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "negotiation",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "open-minded",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "fog",
+                        "scale": 5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "xl1o4",
+                "choiceTitle": "我々の素晴らしさを語ろう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "attraction",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "pacifist",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "attraction",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "lust",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "acquire",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "xl1o5",
+                "choiceTitle": "相手が無防備なら、こちらから仕掛けるまたとない機会。彼らの巣をいただこう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "aggressivity",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "pacifist",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "fighting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "deception",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "nest"
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "xl1o6",
+                "choiceTitle": "彼らはただのおとり。気づいたときには敵に包囲されていた",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "hunting",
+                    "operator": "more",
+                    "criterion": 0
+                },
+                "outcome": [{
+                        "modifier": "xenophile",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "pacifist",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "fleeing",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "health",
+                        "option": "injury",
+                        "scale": 5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": -10
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "eventID": "xenophobe1",
+        "title": "選ばれしもの",
+        "description": "我々は選ばれしもの。それでも生きるため他の群れと手を取り合うべきだろうか。",
+        "choices": [{
+                "choiceID": "xb1o1",
+                "choiceTitle": "真実とは我々のうちにあるもの。他のどこを捜し歩いても見つかりはしない",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "openminded",
+                    "operator": "less",
+                    "criterion": 2
+                },
+                "outcome": [{
+                        "modifier": "xenophile",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "egalitarian",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "openminded",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "buff"
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 50
+                    }
+                ]
+            },
+            {
+                "choiceID": "xb1o2",
+                "choiceTitle": "群れの外とは極力かかわってはいけない。我らの牙のみで生きよう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "openminded",
+                    "operator": "less",
+                    "criterion": 7
+                },
+                "outcome": [{
+                        "modifier": "xenophile",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "pacifist",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "openminded",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "fighting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 25
+                    }
+                ]
+            },
+            {
+                "choiceID": "xb1o3",
+                "choiceTitle": "窮地に備えて仲間の結束を高めよう。頼れるのは我々のみだ。",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "independency",
+                    "operator": "less",
+                    "criterion": 4
+                },
+                "outcome": [{
+                        "modifier": "xenophile",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "equality",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "open-minded",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "xb1o4",
+                "choiceTitle": "たまには騒がしい風を感じたい。新しい仲間を探してみよう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "openminded",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "attraction",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "lust",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "acquire",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "xb1o5",
+                "choiceTitle": "互いに有益な情報を交換できるなら、特に拒否する理由もないだろう。",
+                "condition": {
+                    "qualifier": "max",
+                    "phenotype": "negotiation",
+                    "operator": "more",
+                    "criterion": 8
+                },
+                "outcome": [{
+                        "modifier": "pacifist",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "negotiation",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "fog",
+                        "scale": 3
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "xb1o6",
+                "choiceTitle": "孤立しすぎた群れは、窮地に陥れども誰にも助けてはもらえない",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "hunting",
+                    "operator": "more",
+                    "criterion": 0
+                },
+                "outcome": [{
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "innovative",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "openminded",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "fleeing",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "health",
+                        "option": "injury",
+                        "scale": 5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": -10
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "eventID": "traditional1",
+        "title": "磨かれた手法",
+        "description": "狩りの手法を巡って議論が起こった。既存の方法ではなく新しい方法を試してみるべきだろうか。",
+        "choices": [{
+                "choiceID": "t1o1",
+                "choiceTitle": "これまで幾重にも積み重なってきた仲間たちの屍によって築き上げられた手法。そこに我々の血を注ごう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "curiosity",
+                    "operator": "less",
+                    "criterion": 2
+                },
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 50
+                    }
+                ]
+            },
+            {
+                "choiceID": "t1o2",
+                "choiceTitle": "長きにわたり用いられてきたことには理由がある。変えないことも一つの決断だ",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "curiosity",
+                    "operator": "less",
+                    "criterion": 3
+                },
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "egalitarian",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 25
+                    }
+                ]
+            },
+            {
+                "choiceID": "t1o3",
+                "choiceTitle": "今までそうされてきたという理由で、これからもまたそうする必要はない。各自で新しい方法を試そう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "independency",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "open-minded",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "t1o4",
+                "choiceTitle": "受け継がれた狩りの手法を水中での狩りに応用できないだろうか。試してみよう",
+                "condition": {
+                    "qualifier": "max",
+                    "phenotype": "curiosity",
+                    "operator": "more",
+                    "criterion": 8
+                },
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "swimming",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "local",
+                        "option": "fishes",
+                        "scale": 5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "t1o5",
+                "choiceTitle": "獲物を狩るということと異性を狩るということには共通点がある。",
+                "condition": {
+                    "qualifier": "max",
+                    "phenotype": "lust",
+                    "operator": "more",
+                    "criterion": 8
+                },
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "attraction",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "deception",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "acquire",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "t1o6",
+                "choiceTitle": "受け継がれたものの中には往々にして誤ったものが混じっている。",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "hunting",
+                    "operator": "more",
+                    "criterion": 0
+                },
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "openminded",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "health",
+                        "option": "injury",
+                        "scale": 5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": -10
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "eventID": "innovative1",
+        "title": "未知の洞窟",
+        "description": "群れの一人が洞窟を発見した。敵がいるか、食料があるか、住処にできるか。冒険してみる？",
+        "choices": [{
+                "choiceID": "i1o1",
+                "choiceTitle": "入口からは想像もつかないほど広い空間に、かすかに光が差し込んでいる。とても心地がよい",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "curiosity",
+                    "operator": "less",
+                    "criterion": 2
+                },
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 50
+                    }
+                ]
+            },
+            {
+                "choiceID": "i1o2",
+                "choiceTitle": "",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "curiosity",
+                    "operator": "less",
+                    "criterion": 3
+                },
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "egalitarian",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 25
+                    }
+                ]
+            },
+            {
+                "choiceID": "i1o3",
+                "choiceTitle": "何者かが住処にしていた痕跡がある。残留孤児を見つけた。群れに迎え入れよう",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "independency",
+                    "operator": "more",
+                    "criterion": 6
+                },
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "open-minded",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "independency",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "i1o4",
+                "choiceTitle": "先駆者がいたようだ",
+                "condition": {
+                    "qualifier": "max",
+                    "phenotype": "curiosity",
+                    "operator": "more",
+                    "criterion": 8
+                },
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "swimming",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "local",
+                        "option": "fishes",
+                        "scale": 5
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "i1o5",
+                "choiceTitle": "獲物を狩るということと異性を狩るということには共通点がある。",
+                "condition": {
+                    "qualifier": "max",
+                    "phenotype": "lust",
+                    "operator": "more",
+                    "criterion": 8
+                },
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "polygamy",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "attraction",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "deception",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "acquire",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "score",
+                        "scale": 10
+                    }
+                ]
+            },
+            {
+                "choiceID": "i1o6",
+                "choiceTitle": "受け継がれたものの中には往々にして誤ったものが混じっている。",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "hunting",
+                    "operator": "more",
+                    "criterion": 0
+                },
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "openminded",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "curiosity",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "health",
+                        "option": "injury",
+                        "scale": 5
                     },
                     {
                         "modifier": "score",

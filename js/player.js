@@ -14,7 +14,8 @@ class Player extends Population {
 
         this.gps = gps || createVector(floor(map_size / 2), floor(map_size / 2));
         this.rested = 0;
-        this.buffed = false;
+        this.buffed = false; //次のイベントで全ての選択肢をとれる
+        this.next_children = 0;
         this.clearFog(this.gps);
         this.adjustSlider();
         super.setPosition();
