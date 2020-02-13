@@ -136,8 +136,9 @@ class Population {
 		//サイズは可変。fertilityというphenotypeを作って一定以上なければ出生時に死亡させる？
 		let next_generation_size = this instanceof Player ? this.animals.length + this.next_children : this.size;
 		let have_nest = this instanceof Player ? global_map.getTerrain(this.gps).nest : true;
-		let actual_size = next_generation_size;
+		// let actual_size = next_generation_size;
 		let mutation_rate_modifier = map(this.ethics.xenophile, 0, 10, 0.5, 2);
+		let infant_casualities = 0;
 
 		for (let i = 0; i < next_generation_size; i++) {
 			let parentA = random(this.matingpool);
@@ -151,11 +152,16 @@ class Population {
 			}
 
 			let child = parentA.intercourse(parentB, this.mutation_rate * mutation_rate_modifier);
-			//nestがあればinfant_moratalityを無視して出産できる
-			if (!have_nest) {
-				if (random() > infant_mortality) nextGeneration.push(child);
-			} else {
+			//nestがあればinfant_mortalityを無視して出産できる
+			if (have_nest) {
 				nextGeneration.push(child);
+			} else {
+				if (random() > infant_mortality) {
+					nextGeneration.push(child);
+				} else {
+					// actual_size--;
+					infant_casualities++;
+				}
 			}
 
 
@@ -175,7 +181,13 @@ class Population {
 		this.calcStats();
 		this instanceof Habitant ? this.setPosition(555) : this.setPosition();
 		if (this instanceof Player) {
-			addlog(`${floor(actual_size + 1)}人の新世代が誕生しました`);
+			if (infant_casualities > 0) {
+				addlog(`出生時に${infant_casualities}人の赤子が命を落としてしまった…`);
+			} else if (infant_casualities == 0) {
+				addlog(`全員が無事に生まれました！`);
+			}
+			// addlog(`${actual_size}人の新世代が誕生しました!`);
+			addlog(`${next_generation_size-infant_casualities}人の新世代が誕生しました`);
 			this.rest(-this.rested); // this.rested = 0;
 		}
 	}

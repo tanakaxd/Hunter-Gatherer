@@ -43,7 +43,6 @@ body {
 }
 
 .tips {
-  display: none;
   position: absolute;
   padding: 10px;
   font-size: 12px;
@@ -53,6 +52,7 @@ body {
   background: #000;
   width: 150px;
   z-index: 2;
+  visibility: hidden;
 }
 
 .tips:before {
@@ -67,9 +67,10 @@ body {
 }
 
 .number:hover+.tips {
-  display: inline-block;
   top: 30px;
   left: 0px;
+  transition-delay: .5s;
+  visibility: visible;
 }
 
 .ethics {
@@ -91,9 +92,10 @@ body {
 }
 
 .ethic:hover .tips {
-  display: inline-block;
   top: 120%;
   left: 0px;
+  transition-delay: .5s;
+  visibility: visible;
 }
 
 .slider {
@@ -172,7 +174,7 @@ td {
 
 .log {
   width: 100%;
-  height: 100px;
+  height: 200px;
   overflow: scroll;
   /* padding: 0 50px; */
 }

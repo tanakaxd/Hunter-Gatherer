@@ -177,6 +177,7 @@ class Event {
             "score": (scale) => {
                 game_manager.score += scale;
                 $("#score").html(`Score: ${game_manager.score}`);
+                addlog(`Scoreを${scale}ポイント獲得`)
             },
 
             //fog modifier
@@ -305,11 +306,27 @@ class Event {
                 for (let func of choice.outcome) {
                     if (modifiers[func.modifier] === undefined) {
                         console.error("invalid modifier name");
+                    } else {
+                        modifiers[func.modifier](func.scale, func.option);
                     }
-                    modifiers[func.modifier](func.scale, func.option);
                 }
                 population.adjustSlider();
                 population.calcStats();
+            })
+            $("#" + choice.choiceID).hover(() => {
+                //一つ一つのmodifierに対応する、別のfunctionセットを用意する必要がある。仮にoutlinersとする
+                //choiceから要素を読み込んで、hover時のイベントを生成する
+                for (let func of choice.outcome) {
+                    if (outliners[func.modifier] === undefined) {
+                        console.error("invalid outliner name");
+                    } else {
+                        modifiers[func.modifier](func.scale, func.option);
+                    }
+                }
+                console.log("hover!");
+
+            }, () => {
+
             })
         }
 

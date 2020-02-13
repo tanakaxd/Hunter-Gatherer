@@ -8,7 +8,7 @@ let sliders = [];
 let cell_size = 30;
 let map_size = 15; //横縦方向へのcellの数
 let map_width = cell_size * map_size;
-let player_size = 15;
+let player_size = 10;
 let habitant_size = 15;
 let base_mutation_rate = 0.03;
 let infant_mortality = 0.1;
@@ -192,5 +192,5 @@ function initialize() {
 }
 
 function addlog(text) {
-	$(".log").prepend(`<P>${text}<p>`);
+	$(".log").prepend(`<P>Day ${game_manager.day}: ${text}<p>`);
 }

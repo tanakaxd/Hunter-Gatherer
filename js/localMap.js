@@ -8,9 +8,9 @@ class LocalMap {
         this.xy = createVector(x, y); //セル座標
 
         //
-        this.berries = easy_envi ? 30 : 10;
-        this.meats = easy_envi ? 30 : 10;
-        this.fishes = easy_envi ? 30 : 10;
+        this.berries = easy_envi ? 50 : 15;
+        this.meats = easy_envi ? 50 : 15;
+        this.fishes = easy_envi ? 50 : 15;
         this.ecological_density = 1; //habitantの人口によって動的に変化させる？
         // this.enemy = 1;
         this.habitant = new Habitant(this.xy);
