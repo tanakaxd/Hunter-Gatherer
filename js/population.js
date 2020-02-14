@@ -110,7 +110,11 @@ class Population {
 			}
 			console.log(temp);
 		}
-		if (this instanceof Player && casualities > 0) addlog(`仲間が${casualities}人、命を落としてしまった…`);
+		if (this instanceof Player && casualities > 0) {
+			addlog(`仲間が${casualities}人、命を落としてしまった…`);
+			mp3_natural_selection.play();
+		}
+
 	}
 
 	evaluate() {

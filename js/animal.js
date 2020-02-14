@@ -108,8 +108,8 @@ class Animal {
 		let r = map(genes[0], 0, 1, 40, 70) / scale;
 		let c = color(map(genes[1], 0, 1, 0, 255), map(genes[3], 0, 1, 0, 255), map(genes[2], 0, 1, 0, 255));
 		let eye_y = map(genes[4], 0, 1, 0, 5) / scale; //目の高さ。顔の中心点が基準
-		let eye_x = map(genes[5], 0, 1, 0, 10) / scale; //目の間の幅（そのものではない）
-		let eye_size = map(genes[5], 0, 1, 0, 10) / scale;
+		let eye_x = map(genes[5], 0, 1, 2, 16) / scale; //目の間の幅（そのものではない）
+		let eye_size = map(genes[5], 0, 1, 4, 12) / scale;
 		let eyecolor = color(map(genes[4], 0, 1, 0, 255), map(genes[5], 0, 1, 0, 255), map(genes[6], 0, 1, 0, 255));
 		let mouthColor = color(map(genes[7], 0, 1, 0, 255), map(genes[8], 0, 1, 0, 255), map(genes[9], 0, 1, 0, 255));
 		let mouth_y = map(genes[5], 0, 1, 0, 25) / scale;

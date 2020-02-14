@@ -16,7 +16,8 @@ class EventManager {
         //どのイベントを発生させるかを決める
         //例えばxmlファイルを読み込んで、タイル種別のイベント比率に基づいてランダムに発生させる
         let eventID = this.chooseEvent();
-        // let eventID = "innovative1";
+        // let eventID = "test1";
+        // let eventID = "order1";
 
         //そのイベントのjsonを取得
 
@@ -43,10 +44,16 @@ class EventManager {
                 //Eventに渡す。データに基づいてイベントを発生させる
                 this.current_event = new Event(specific_event); //this.にすると通信オブジェクトになる？ arrow functionでevent_managerに固定できる
                 this.current_event.display();
+                // console.log("inside happening");
+
             })
             .fail(function () {
                 console.error('$.ajax failed!');
             })
+        // console.log("outside happening");
+
+
+
     }
 
     //idを返す
@@ -89,7 +96,6 @@ class EventManager {
                     }
                 }
             }
-            console.log(events_pool);
 
             return random(events_pool);
         } else {

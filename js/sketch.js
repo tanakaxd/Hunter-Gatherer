@@ -19,6 +19,9 @@ let pops_scale = 1.7; //顔のパーツが絶対的な値で定義されてい�
 let pops_width = pops_cell * pops_col;
 let events_per_ethic = 1;
 
+//sound
+let mp3_btn, mp3_move, mp3_natural_selection;
+
 //utility
 let debug = true;
 let fr;
@@ -55,6 +58,11 @@ function setup() {
 	sliders[4] = select("#innovativeness");
 	sliders[5] = select("#chaos");
 
+	mp3_btn = loadSound("sound\\zapsplat_multimedia_alert_notification_message_or_pop_up_001_45047.mp3");
+	mp3_move = loadSound("sound\\zapsplat_multimedia_game_tone_short_fast_positive_plucked_003_44890.mp3");
+	mp3_natural_selection = loadSound("sound\\zapsplat_multimedia_game_sound_menu_toggle_slide_select_001_45064.mp3");
+
+
 	if (debug) fr = createP();
 
 
@@ -74,7 +82,7 @@ function draw() {
 }
 
 function mousePressed() {
-	if (debug) console.log(mouseX, mouseY);
+	// if (debug) console.log(mouseX, mouseY);
 
 	//global_map上の移動
 	let p = createVector(mouseX, mouseY);
@@ -188,7 +196,8 @@ function initialize() {
 
 	$("#day").html(`Day: ${game_manager.day}`); //this.dayにすると古い方のgame_managerオブジェクトが呼ばれる
 	$("#score").html(`Score: ${game_manager.score}`);
-	$("#rest").html(`Rest: ${population.rested}`)
+	$("#rest").html(`Rest: ${population.rested}`);
+	$(".log").html("<p> -- -- -- --ここに起こったことが表示されていくよ-- -- -- -- </p>");
 }
 
 function addlog(text) {

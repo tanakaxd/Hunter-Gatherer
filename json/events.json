@@ -2452,8 +2452,8 @@
                     "criterion": 8
                 },
                 "outcome": [{
-                        "modifier": "militarist",
-                        "scale": 1
+                        "modifier": "pacifist",
+                        "scale": -1
                     },
                     {
                         "modifier": "egalitarian",
@@ -2585,5 +2585,55 @@
                 ]
             }
         ]
+    },
+    {
+        "eventID": "test1",
+        "title": "test",
+        "description": "test",
+        "choices": [{
+            "choiceID": "t1o1",
+            "choiceTitle": "test",
+            "condition": {
+                "qualifier": "avg",
+                "phenotype": "independency",
+                "operator": "less",
+                "criterion": 10
+            },
+            "outcome": [{
+                    "modifier": "innovative",
+                    "scale": 1
+                },
+                {
+                    "modifier": "xenophile",
+                    "scale": -1
+                },
+                {
+                    "modifier": "hunting",
+                    "scale": 2
+                }
+            ]
+        }, {
+            "choiceID": "t1o2",
+            "choiceTitle": "test2",
+            "condition": {
+                "qualifier": "avg",
+                "phenotype": "independency",
+                "operator": "less",
+                "criterion": 10
+            },
+            "outcome": [{
+                    "modifier": "innovative",
+                    "scale": -1
+                },
+                {
+                    "modifier": "xenophile",
+                    "scale": 1
+                },
+                {
+                    "modifier": "foraging",
+                    "scale": 0.5
+                }
+            ]
+        }]
     }
 ]

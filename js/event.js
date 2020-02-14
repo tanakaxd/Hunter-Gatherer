@@ -177,7 +177,7 @@ class Event {
             "score": (scale) => {
                 game_manager.score += scale;
                 $("#score").html(`Score: ${game_manager.score}`);
-                addlog(`Scoreを${scale}ポイント獲得`)
+                // addlog(`Scoreを${scale}ポイント獲得`);
             },
 
             //fog modifier
@@ -256,6 +256,141 @@ class Event {
         };
 
 
+        let outliners = {
+            //ethics modifier
+            "egalitarian": (scale, score) => {
+                return scale > 0 ? `egalitarianが${scale}上昇` : `authoritarianが${-scale}上昇`;
+
+            },
+            "polygamy": (scale) => {
+                return scale > 0 ? `polygamyが${scale}上昇` : `monogamyが${-scale}上昇`;
+
+            },
+            "pacifist": (scale) => {
+                return scale > 0 ? `pacifistが${scale}上昇` : `militaristが${-scale}上昇`;
+
+            },
+            "xenophile": (scale) => {
+                // let p = `xenophileが${scale}増減 `;
+                return scale > 0 ? `xenophileが${scale}上昇` : `xenophobeが${-scale}上昇`;
+            },
+            "innovative": (scale) => {
+                return scale > 0 ? `innovativeが${scale}上昇` : `traditionalが${-scale}上昇`;
+
+            },
+            "order": (scale) => {
+                return scale > 0 ? `orderが${scale}上昇` : `chaosが${-scale}上昇`;
+
+            },
+
+            //coefficient modifier
+            "hunting": (scale) => {
+                return this.coefficientTip(scale, "hunting"); //arrow function内だからajax連鎖内でもthisがeventオブジェクトになる？
+            },
+            "foraging": (scale) => {
+                return this.coefficientTip(scale, "foraging");
+            },
+            "swimming": (scale) => {
+                return this.coefficientTip(scale, "swimming");
+            },
+            "hiding": (scale) => {
+                return this.coefficientTip(scale, "hiding");
+            },
+            "fighting": (scale) => {
+                return this.coefficientTip(scale, "fighting");
+            },
+            "fleeing": (scale) => {
+                return this.coefficientTip(scale, "fleeing");
+            },
+            "negotiation": (scale) => {
+                return this.coefficientTip(scale, "negotiation");
+            },
+            "deception": (scale) => {
+                return this.coefficientTip(scale, "deception");
+            },
+            "attraction": (scale) => {
+                return this.coefficientTip(scale, "attraction");
+            },
+            "equality": (scale) => {
+                return this.coefficientTip(scale, "equality");
+            },
+            "lust": (scale) => {
+                return this.coefficientTip(scale, "lust");
+            },
+            "aggressivity": (scale) => {
+                return this.coefficientTip(scale, "aggressivity");
+            },
+            "openminded": (scale) => {
+                return this.coefficientTip(scale, "openminded");
+            },
+            "curiosity": (scale) => {
+                return this.coefficientTip(scale, "curiosity");
+            },
+            "independency": (scale) => {
+                return this.coefficientTip(scale, "independency");
+            },
+
+            //pops modifier
+            "acquire": (scale) => {
+                return `${scale}人が群れに加入`;
+
+            },
+            "release": (scale) => {
+                return `${scale}人が群れから去る`;
+            },
+
+            //score modifier
+            "score": (scale) => {
+                return `Scoreを${scale}ポイント獲得`;
+            },
+
+            //fog modifier
+            "fog": (scale) => {
+                return `${scale}タイルの霧を晴らす`;
+            },
+
+            //health modifier 怪我をする　息絶える
+            "health": (scale, option) => {
+                if (option == "death") {
+                    return `${scale}人が死亡`;
+                } else if (option == "injury") {
+                    return `${scale}人が負傷`;
+                } else {
+                    return scale > 0 ? `皆のhealthが${scale}回復` : `皆のhealthが${-scale}減少`;
+                }
+            },
+
+            // local map modifier
+            "local": (scale, option) => {
+                return scale > 0 ? `タイルの${option}が${scale}上昇` : `タイルの${option}が${-scale}減少`;
+            },
+
+            //rest modifier
+            "rest": (scale) => {
+                return `群れのrest値が${scale}上昇`;
+            },
+
+            //nest modifier
+            "nest": () => {
+                return `現在地/移動後のタイルで巣を獲得`;
+            },
+
+            //buff modifier
+            "buff": () => {
+                return `群れがbuffを獲得`;
+            },
+
+            //child modifier
+            "child": (scale) => {
+                return `次回の交配時、次世代が通常より${scale}人増加`
+            },
+
+            //gps modifier
+            "gps": () => {
+                return `マップ上のランダムなタイルにワープ`;
+            },
+        };
+
         //条件を満たした選択肢のみの配列を作る。条件を複数にすることも可能
         for (let choice of this.choices) {
             let condition = choice.condition;
@@ -265,7 +400,7 @@ class Event {
             }
         }
 
-        //作った配列をDOMに反映。該当する選択肢がない場合の処理
+        //作った配列をDOMに反映。該当する選択肢がない場合の処理。スコアに応じてクラスをつけて文字の色を変える
         if (this.certified_choices.length != 0) {
             for (let choice of this.certified_choices) {
                 let choice_color = "";
@@ -281,8 +416,7 @@ class Event {
                     choice_color = "awful";
                 }
 
-
-                buttons += `<div class="btn ${choice_color}" id="${choice.choiceID}">${choice.choiceTitle}</div>`;
+                buttons += `<div class="btn tooltip ${choice_color}" id="${choice.choiceID}"><p>${choice.choiceTitle}</p></div>`;
             }
         } else {
             buttons += '<div class="btn">できることが何もない…</div>';
@@ -294,6 +428,7 @@ class Event {
         $(".btn").click(() => {
             $("#js-popup").toggleClass('is-show');
             game_manager.focus = "global_map";
+            mp3_btn.play();
             setTimeout(() => {
                 game_manager.state = "night";
             }, 3000 / uber_speed);
@@ -302,32 +437,46 @@ class Event {
         // それぞれのボタンに対してイベントハンドラーを設定。
         // 変数はoutcomeから受け取ってくる。
         for (let choice of this.certified_choices) {
+
+            let tips = '<ul class="tips">';
+
+            //クリックしたときの処理
             $("#" + choice.choiceID).click(() => {
                 for (let func of choice.outcome) {
                     if (modifiers[func.modifier] === undefined) {
                         console.error("invalid modifier name");
                     } else {
                         modifiers[func.modifier](func.scale, func.option);
+                        addlog(outliners[func.modifier](func.scale, func.option));
                     }
                 }
                 population.adjustSlider();
                 population.calcStats();
             })
-            $("#" + choice.choiceID).hover(() => {
-                //一つ一つのmodifierに対応する、別のfunctionセットを用意する必要がある。仮にoutlinersとする
-                //choiceから要素を読み込んで、hover時のイベントを生成する
-                for (let func of choice.outcome) {
-                    if (outliners[func.modifier] === undefined) {
-                        console.error("invalid outliner name");
-                    } else {
-                        modifiers[func.modifier](func.scale, func.option);
-                    }
+
+            //hoverしたときの処理
+            //一つ一つのmodifierに対応する、別のfunctionセットを用意する必要がある。仮にoutlinersとする
+            for (let func of choice.outcome) {
+                if (outliners[func.modifier] === undefined) {
+                    console.error("invalid outliner name");
+                } else {
+                    tips += "<li>" + outliners[func.modifier](func.scale, func.option) + "</li>";
                 }
-                console.log("hover!");
+            }
+            tips += "</ul>";
+            $("#" + choice.choiceID).append(tips);
 
-            }, () => {
+            // $("#" + choice.choiceID).hover(() => {
+            //     //choiceから要素を読み込んで、hover時のイベントを生成する
 
-            })
+            //     $("#" + choice.choiceID + " .tips").css("visibility", "visible");
+            //     // $("#t1o1 .tips").css("visibility", "visible");
+            //     console.log("hover!");
+
+            // }, () => {
+            //     $("#t1o1 .tips").css("visibility", "hidden");
+
+            // })
         }
 
         //title img descriptionをhtml要素に登録
@@ -345,4 +494,8 @@ class Event {
     // certifyCondition() {
 
     // }
+
+    coefficientTip(scale, phenotype) {
+        return scale > 1 ? `${phenotype}への憧れが増加` : `${phenotype}への憧れが減少`;
+    }
 }

@@ -12,6 +12,15 @@ class Player extends Population {
         this.max = super.calcMax();
         this.min = super.calcMin();
 
+        this.ethics = {
+            egalitarian: 5,
+            polygamy: 5,
+            pacifist: 5,
+            xenophile: 5,
+            innovative: 5,
+            order: 5
+        };
+
         this.gps = gps || createVector(floor(map_size / 2), floor(map_size / 2));
         this.rested = 2;
         this.buffed = false; //次のイベントで全ての選択肢をとれる
@@ -27,7 +36,8 @@ class Player extends Population {
         this.clearFog(this.gps);
         this.visit();
         global_map.examineAccessibility(this.gps);
-        addlog(`(${this.gps.x+1},${this.gps.y+1})へ移動しました`);
+        addlog(`(${this.gps.x + 1},${this.gps.y + 1})へ移動しました`);
+        mp3_move.play();
     }
 
     clearFog(p) {
@@ -60,7 +70,7 @@ class Player extends Population {
     rest(scale) {
         this.rested += scale | 1;
         console.log("rested");
-        $("#rest").html(`Rest: ${this.rested}`)
+        $("#rest").html(`Rest: ${this.rested}`);
 
     }
 
