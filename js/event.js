@@ -205,6 +205,8 @@ class Event {
                         animal.health += scale;
                         if (animal.health <= 0) {
                             population.animals.splice(index, 1);
+                        } else if (animal.health > 1) {
+                            animal.health = 1;
                         }
                     })
                 }
@@ -427,7 +429,7 @@ class Event {
         //全ての選択肢ボタンに共通する処理を登録
         $(".btn").click(() => {
             $("#js-popup").toggleClass('is-show');
-            game_manager.focus = "global_map";
+            game_manager.focus = "forbidden";
             mp3_btn.play();
             setTimeout(() => {
                 game_manager.state = "hunt";

@@ -31,7 +31,7 @@ class GameManager {
             case "map":
                 global_map.night = false;
                 console.log("map");
-                $("#dialog").html(`${this.day}日目の朝だよ。移動先のタイルを選択してね`);
+                $("#dialog").html(`<div><p>${this.day}日目の朝だよ。移動先のタイルを選択してね</p></div>`);
                 this.state = "";
                 break;
 

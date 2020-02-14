@@ -114,7 +114,6 @@ class Population {
 			addlog(`仲間が${casualities}人、命を落としてしまった…`);
 			mp3_natural_selection.play();
 		}
-
 	}
 
 	evaluate() {

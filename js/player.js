@@ -69,6 +69,10 @@ class Player extends Population {
 
     rest(scale) {
         this.rested += scale | 1;
+        for (let animal of this.animals) {
+            animal.health += global_map.getTerrain(this.gps).nest ? 1 : 0.5;
+            if (animal.health > 1) animal.health = 1;
+        }
         console.log("rested");
         $("#rest").html(`Rest: ${this.rested}`);
 

@@ -18,13 +18,21 @@ class LocalMap {
         this.accessible = false;
         this.fog = true;
         this.nest = false;
+        this.visited = false;
 
-        // this.visited = false;
         // this.traversable = true;
         // this.selectable = true;
     }
 
     convertToGeography(noise) {
+
+    }
+
+    renew() {
+
+    }
+
+    display() {
 
     }
 }

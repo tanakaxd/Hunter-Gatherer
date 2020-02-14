@@ -71,14 +71,15 @@ class Animal {
 	}
 
 	calcFitness(coefficient) {
-		// population.ethics
+		// population.ethicsを計算に用いるかどうか
 		let fitness = 0; //undefinedにすると数を足せない。NaNになる
 		let weighted_phenotype = this.weightPhenotype(coefficient);
 		for (let key in weighted_phenotype) {
 			fitness += weighted_phenotype[key];
 		}
 		fitness /= Object.keys(this.phenotype).length;
-		this.fitness = ~~(fitness * this.health);
+		// this.fitness = ~~(fitness * this.health);
+		this.fitness = fitness;
 	}
 
 	intercourse(partner, mutation_rate) {
@@ -99,6 +100,7 @@ class Animal {
 			(terrain.ecological_density ** 2) / 10; //-1~1
 
 		this.health = this.health * (a / 100) + b + c;
+		if (this.health > 1) this.health = 1;
 	}
 
 	show() {
@@ -181,7 +183,7 @@ class Animal {
 		translate((pops_cell / 2 / pops_scale) - (pops_cell / 10 / 2 / pops_scale), 0);
 		rect(this.pos.x, this.pos.y, pops_cell / 10 / pops_scale, pops_cell / pops_scale);
 
-		noStroke();
+		// noStroke();
 		fill(0, 255, 0);
 		let offset = (pops_cell * ((1 - health) / 2)) / pops_scale;
 		translate(0, offset);
