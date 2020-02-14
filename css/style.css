@@ -18,6 +18,10 @@ body {
   text-align: center;
 }
 
+#dialog div {
+  display: flex;
+}
+
 
 /* container */
 

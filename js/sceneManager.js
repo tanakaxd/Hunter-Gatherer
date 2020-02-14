@@ -37,6 +37,7 @@ class SceneManager {
             for (let animal of population.animals) {
                 animal.show();
                 animal.r.show();
+                animal.showHealth();
             }
         }
         if (this.habitant) {

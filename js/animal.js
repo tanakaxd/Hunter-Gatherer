@@ -172,4 +172,20 @@ class Animal {
 			return "LEGENDARY";
 		}
 	}
+
+	showHealth() {
+		let health = this.health > 1 ? 1 : this.health;
+		push();
+		rectMode(CENTER);
+		fill(255, 0, 0);
+		translate((pops_cell / 2 / pops_scale) - (pops_cell / 10 / 2 / pops_scale), 0);
+		rect(this.pos.x, this.pos.y, pops_cell / 10 / pops_scale, pops_cell / pops_scale);
+
+		noStroke();
+		fill(0, 255, 0);
+		let offset = (pops_cell * ((1 - health) / 2)) / pops_scale;
+		translate(0, offset);
+		rect(this.pos.x, this.pos.y, pops_cell / 10 / pops_scale, pops_cell * health / pops_scale);
+		pop();
+	}
 }

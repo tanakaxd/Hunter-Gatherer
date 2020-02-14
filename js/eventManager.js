@@ -60,7 +60,7 @@ class EventManager {
     chooseEvent() {
 
         //探索イベント。現在未実装。選択肢なしで成果だけを表示するタイプ。ローカルマップの情報の一部、他タイルの情報等を取得。
-        if (game_manager.state == "exploration") { //tile event?
+        if (game_manager.state == "explore") { //tile event?
             let events_pool = [];
             let eventID = "militarist1";
             return eventID;

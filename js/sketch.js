@@ -92,10 +92,11 @@ function mousePressed() {
 			if (global_map.terrain[cell_cordinate.x][cell_cordinate.y].accessible) {
 				population.move(cell_cordinate);
 				// global_map.examineAccessibility(cell_cordinate);
-				$("#dialog").html("");
-				game_manager.state = "hunt";
+				$("#dialog").html("<div><p>探索を開始します</p><button>ok</button></div>");
+				$("#dialog button").click(() => {
+					game_manager.state = "explore";
+				});
 				game_manager.focus = "forbidden";
-				// noLoop();
 			}
 		}
 	}

@@ -430,8 +430,8 @@ class Event {
             game_manager.focus = "global_map";
             mp3_btn.play();
             setTimeout(() => {
-                game_manager.state = "night";
-            }, 3000 / uber_speed);
+                game_manager.state = "hunt";
+            }, 1000 / uber_speed);
         });
 
         // それぞれのボタンに対してイベントハンドラーを設定。
@@ -496,6 +496,6 @@ class Event {
     // }
 
     coefficientTip(scale, phenotype) {
-        return scale > 1 ? `${phenotype}への憧れが増加` : `${phenotype}への憧れが減少`;
+        return scale > 1 ? `${phenotype}への憧れが ↑` : `${phenotype}への憧れが ↓`;
     }
 }

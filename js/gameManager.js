@@ -34,14 +34,36 @@ class GameManager {
                 $("#dialog").html(`${this.day}日目の朝だよ。移動先のタイルを選択してね`);
                 this.state = "";
                 break;
-            case "hunt":
-                console.log("hunt");
-                let dots = "";
+
+            case "explore":
+                console.log("explore");
+                let dots_a = "";
                 let func = setInterval(() => {
-                    $("#dialog").html("探索中" + dots);
-                    dots += "・";
+                    $("#dialog").html("探索中" + dots_a);
+                    dots_a += "・";
                     setTimeout(() => {
                         clearInterval(func);
+                    }, 5500 / uber_speed);
+                }, 500 / uber_speed);
+                this.state = "";
+                this.changeState("event", 6000 / uber_speed);
+                break;
+
+            case "event":
+                console.log("event");
+                this.focus = "event";
+                event_manager.popEvent();
+                this.state = "";
+                break;
+
+            case "hunt":
+                console.log("hunt");
+                let dots_b = "";
+                let func_b = setInterval(() => {
+                    $("#dialog").html("サバイバル中" + dots_b);
+                    dots_b += "・";
+                    setTimeout(() => {
+                        clearInterval(func_b);
                     }, 5500 / uber_speed);
                 }, 500 / uber_speed);
 
@@ -49,35 +71,36 @@ class GameManager {
                     population.naturalSelection();
                 }, 3000 / uber_speed);
 
+                // this.changeState("night", 6000 / uber_speed);
+                setTimeout(() => {
+                    $("#dialog").html("<div><p>夜の時間を開始します</p><button>ok</button></div>");
+                    $("#dialog button").click(() => {
+                        game_manager.state = "night";
+                    });
+                }, 6000 / uber_speed);
                 this.state = "";
-                this.changeState("event", 6000 / uber_speed);
                 break;
-            case "event":
-                console.log("event");
-                this.focus = "event";
-                event_manager.popEvent();
-                this.state = "";
-                break;
+
             case "night":
                 console.log("night");
                 global_map.night = true;
                 $("#dialog").html("夜が来た！");
                 population.rest();
 
-                let dots_b = "";
+                let dots_c = "";
                 setTimeout(() => {
                     let func = setInterval(() => {
                         if (population.rested >= rest_to_reproduce) {
-                            $("#dialog").html("Wuv Wuv" + dots_b);
+                            $("#dialog").html("Wuv Wuv" + dots_c);
                         } else {
-                            $("#dialog").html("Zzz" + dots_b);
+                            $("#dialog").html("Zzz" + dots_c);
                         }
-                        dots_b += "・";
+                        dots_c += "・";
                         setTimeout(() => {
                             clearInterval(func);
                         }, 5500 / uber_speed);
-                    }, 700 / uber_speed);
-                }, 2000 / uber_speed);
+                    }, 500 / uber_speed);
+                }, 1000 / uber_speed);
 
                 console.log(population.rested);
 
@@ -94,7 +117,7 @@ class GameManager {
                     this.focus = "global_map";
                     this.day++;
                     $("#day").html(`Day: ${game_manager.day}`); //re-initializeしたときにこっちのイベントが残っていて、新しい方を上書きしてしまう。
-                }, 8000 / uber_speed);
+                }, 7000 / uber_speed);
 
                 this.state = "";
                 break;
