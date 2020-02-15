@@ -374,7 +374,7 @@ class Event {
 
             //nest modifier
             "nest": () => {
-                return `現在地/移動後のタイルで巣を獲得`;
+                return `タイルに巣が出現`;
             },
 
             //buff modifier

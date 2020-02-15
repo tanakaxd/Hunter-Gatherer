@@ -190,7 +190,7 @@ class Population {
 				addlog(`全員が無事に生まれました！`);
 			}
 			// addlog(`${actual_size}人の新世代が誕生しました!`);
-			addlog(`${next_generation_size-infant_casualities}人の新世代が誕生しました`);
+			addlog(`${next_generation_size - infant_casualities}人の新世代が誕生しました`);
 			this.rest(-this.rested); // this.rested = 0;
 		}
 	}

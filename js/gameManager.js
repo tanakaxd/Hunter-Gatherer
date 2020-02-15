@@ -102,10 +102,7 @@ class GameManager {
                     }, 500 / uber_speed);
                 }, 1000 / uber_speed);
 
-                console.log(population.rested);
-
                 setTimeout(() => {
-                    //もしrestが一定に達していたら
                     if (population.animals.length <= 1) {
                         game_manager.gameOver();
                     } else if (population.rested >= rest_to_reproduce) {

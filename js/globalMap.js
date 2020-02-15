@@ -13,8 +13,7 @@
 class GlobalMap {
 
     constructor() {
-        this.cellHeight = cell_size;
-        this.cellWidth = cell_size;
+
         this.cols = map_size;
         this.rows = map_size;
         this.increment = 0.15;
@@ -41,7 +40,7 @@ class GlobalMap {
         for (let y = 0; y < rows; y++) {
             let xoff = 0;
             for (let x = 0; x < cols; x++) {
-                terrain[x][y] = new LocalMap(noise(xoff, yoff), x, y);
+                terrain[x][y] = new LocalMap(noise(xoff, yoff), noise(xoff + 1000000, yoff + 1000000), x, y);
                 // terrain[x][y] = noise(xoff, yoff) * 255;
                 xoff += this.increment;
             }
@@ -53,14 +52,7 @@ class GlobalMap {
     show() {
         for (let y = 0; y < this.rows; y++) {
             for (let x = 0; x < this.cols; x++) {
-                if (this.night) {
-                    fill(10);
-                } else if (this.terrain[x][y].fog == true) {
-                    fill(245);
-                } else {
-                    fill(this.terrain[x][y].color);
-                }
-                rect(x * this.cellWidth, y * this.cellWidth, this.cellHeight, this.cellWidth);
+                this.terrain[x][y].display();
             }
         }
     }

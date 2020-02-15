@@ -7,7 +7,9 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-  <script src="js/sketch.js"></script>
+  <!-- defer? -->
+
+  <script src="js/sketch.js" defer></script>
   <script src="js/gameManager.js"></script>
   <script src="js/sceneManager.js"></script>
   <script src="js/eventManager.js"></script>
@@ -28,6 +30,8 @@
   <script src="js/rectangle.js"></script>
 
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="preload" href="./js/preload.js" as="script">
+  <script src="./js/preload.js" defer></script>
 </head>
 
 <body>
@@ -87,12 +91,13 @@
           <div class="left">Chaos</div>
           <input type="range" class="slider" id="order" min="0" max="10" step="0.2" disabled>
           <div class="right">Order</div>
-          <div class="tips">集団内のネットワークの強さを表しているよ。左へ行くとより分散的、右へ行くとより密集的になるよ。</div>
+          <div class="tips">集団内のネットワークの密度を表しているよ。左へ行くとより分散的、右へ行くとより集中的になるよ。</div>
         </div>
       </div>
     </div>
-    <div class="canvas-inner">
-
+    <div id="canvas-inner">
+      <div class="hovering" id="tile-info">
+      </div>
     </div>
     <div class="pops-status">
       <table>
@@ -177,6 +182,7 @@
     <button class="button" id="resume">RESUME</button>
     <button class="button" id="restart">RESTART</button>
     <button class="button" id="popup-event">POPUP</button>
+    <button class="button" id="unfog">UNFOG</button>
   </div>
 
   <div class="popup" id="js-popup">
@@ -188,10 +194,8 @@
     </div>
     <div class="black-background" id="js-black-bg"></div>
   </div>
+
+
 </body>
 
 </html>
-
-<div>
-  <p>探索を開始します</p><button>ok</button>
-</div>

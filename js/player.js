@@ -25,10 +25,17 @@ class Player extends Population {
         this.rested = 2;
         this.buffed = false; //次のイベントで全ての選択肢をとれる
         this.next_children = 0;
+        for (let y = -1; y <= 1; y++) {
+            for (let x = -1; x <= 1; x++) {
+                let offset = p5.Vector.add(this.gps, createVector(x, y));
+                this.clearFog(offset);
+            }
+        }
         this.clearFog(this.gps);
         this.visit();
         this.adjustSlider();
         super.setPosition();
+        global_map.getTerrain(this.gps).nest = true;
     }
 
     move(p) {
@@ -55,9 +62,9 @@ class Player extends Population {
     show() {
         push();
         translate(cell_size / 2, cell_size / 2);
-        fill(100, 255, 100);
+        fill(201, 87, 115);
         ellipseMode(CENTER)
-        ellipse(this.gps.x * cell_size, this.gps.y * cell_size, cell_size, cell_size);
+        ellipse(this.gps.x * cell_size, this.gps.y * cell_size, cell_size * 0.8, cell_size * 0.8);
         pop();
     }
 
@@ -68,12 +75,11 @@ class Player extends Population {
     }
 
     rest(scale) {
-        this.rested += scale | 1;
+        this.rested += scale || 1;
         for (let animal of this.animals) {
-            animal.health += global_map.getTerrain(this.gps).nest ? 1 : 0.5;
+            animal.health += global_map.getTerrain(this.gps).nest ? 0.5 : 0.25;
             if (animal.health > 1) animal.health = 1;
         }
-        console.log("rested");
         $("#rest").html(`Rest: ${this.rested}`);
 
     }
