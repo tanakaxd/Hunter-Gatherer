@@ -237,7 +237,7 @@ class Event {
 
             //child modifier
             "child": (scale) => {
-                population.next_children += scale;
+                population.setNextChildren(scale);
             },
 
             //gps modifier

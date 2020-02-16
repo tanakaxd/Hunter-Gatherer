@@ -26,7 +26,6 @@
   <script src="js/dna.js"></script>
 
   <script src="js/event.js"></script>
-  <script src="js/info.js"></script>
   <script src="js/rectangle.js"></script>
 
   <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -53,6 +52,10 @@
         </div>
         <div class="tooltip">
           <p class="number" id="rest">Rest: 0</p>
+          <div class="tips">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, inventore.</div>
+        </div>
+        <div class="tooltip">
+          <p class="number" id="next-children">Children: +0</p>
           <div class="tips">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, inventore.</div>
         </div>
       </div>
@@ -85,7 +88,7 @@
           <div class="left">Traditional</div>
           <input type="range" class="slider" id="innovative" min="0" max="10" step="0.2" disabled>
           <div class="right">Innovative</div>
-          <div class="tips">問題解決に用いる手段の方向性を表しているよ。左へ行くとより伝統的、右へ行くとより革新的な方法を好むようになるよ。</div>
+          <div class="tips">行動の方向性を表しているよ。左へ行くとより伝統的/安定的、右へ行くとより革新的/冒険的な行動を好むようになるよ。</div>
         </div>
         <div class="ethic tooltip">
           <div class="left">Chaos</div>
@@ -145,30 +148,32 @@
           <td>Attraction</td>
           <td></td>
         </tr>
-        <!-- <tr class="" id="">
-          <td></td>
+        <tr class="spacing">
+        </tr>
+        <tr class="" id="personality-equality">
+          <td>Equality</td>
           <td></td>
         </tr>
-        <tr class="" id="">
-          <td></td>
-          <td></td>
-        </tr>
-        <tr class="" id="">
-          <td></td>
+        <tr class="" id="personality-lust">
+          <td>Lust</td>
           <td></td>
         </tr>
-        <tr class="" id="">
-          <td></td>
-          <td></td>
-        </tr>
-        <tr class="" id="">
-          <td></td>
+        <tr class="" id="personality-aggressivity">
+          <td>Aggressivity</td>
           <td></td>
         </tr>
-        <tr class="" id="">
+        <tr class="" id="personality-openminded">
+          <td>Open-minded</td>
           <td></td>
+        </tr>
+        <tr class="" id="personality-curiosity">
+          <td>Curiosity</td>
           <td></td>
-        </tr> -->
+        </tr>
+        <tr class="" id="personality-independency">
+          <td>Independency</td>
+          <td></td>
+        </tr>
       </table>
     </div>
   </div>
@@ -183,6 +188,11 @@
     <button class="button" id="restart">RESTART</button>
     <button class="button" id="popup-event">POPUP</button>
     <button class="button" id="unfog">UNFOG</button>
+  </div>
+
+  <div class="sliders">
+    <label for="uber_speed">über_speed: </label>
+    <input type="range" id="uber_speed" min="1" max="6" step="1" value="2">
   </div>
 
   <div class="popup" id="js-popup">

@@ -114,6 +114,9 @@ class Population {
 			addlog(`仲間が${casualities}人、命を落としてしまった…`);
 			mp3_natural_selection.play();
 		}
+		if (this instanceof Player) {
+			global_map.getTerrain(this.gps).hunted();
+		}
 	}
 
 	evaluate() {
@@ -193,6 +196,7 @@ class Population {
 			addlog(`${next_generation_size - infant_casualities}人の新世代が誕生しました`);
 			mp3_birth.play();
 			this.rest(-this.rested); // this.rested = 0;
+			this.setNextChildren();
 		}
 	}
 

@@ -98,4 +98,12 @@ class GlobalMap {
     // getTerrain(x, y) {
     //     return this.terrain[x][y];
     // }
+
+    update() {
+        for (let y = 0; y < this.rows; y++) {
+            for (let x = 0; x < this.cols; x++) {
+                this.terrain[x][y].regrowth();
+            }
+        }
+    }
 }

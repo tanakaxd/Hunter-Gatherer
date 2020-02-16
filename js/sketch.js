@@ -6,21 +6,28 @@ let geography_data;
 let sliders = [];
 let fr;
 
-//settings
+//canvas settings
 let frame_rate = 60;
-let cell_size = 30;
-let map_size = 15; //横縦方向へのcellの数
-let map_width = cell_size * map_size;
-let player_size = 10;
-let habitant_size = 15;
-let base_mutation_rate = 0.03;
-let infant_mortality = 0.1;
-let rest_to_reproduce = 4;
 let pops_cell = 70; //セルのサイズ
 let pops_col = 5;
 let pops_scale = 1.7; //顔のパーツが絶対的な値で定義されているので縮尺によって調節する
 let pops_width = pops_cell * pops_col;
+
+//map setting
+let cell_size = 30;
+let map_size = 15; //横縦方向へのcellの数
+let map_width = cell_size * map_size;
+
+//game setting
+let player_size = 15;
+let habitant_size = 15;
+let base_mutation_rate = 0.03;
+let infant_mortality = 0.1;
+let rest_to_reproduce = 4;
 let events_per_ethic = 1;
+let hunt_scale = 5; //一回のサバイバルで環境資源をどれだけ使用するか
+let habitant_evolve = true;
+let how_many_evolves = 5;
 
 //sound
 let mp3_btn, mp3_move, mp3_natural_selection, mp3_dialog, mp3_birth;
@@ -32,10 +39,8 @@ let footprint;
 let debug = true;
 let frame_count = 0;
 let uber_mode = true;
-let uber_speed = uber_mode ? 2 : 1;
+let uber_speed = uber_mode ? 6 : 1;
 let easy_envi = false;
-let habitant_evolve = true;
-let how_many_evolves = 3;
 
 
 // データを取り込む。マップ用。ajaxだとsetup drawが先行してしまいうまくいかない。
@@ -132,17 +137,22 @@ function mousePressed() {
 		for (let animal of population.animals) {
 			if (animal.r.contains(mouseX, mouseY)) {
 				// console.table(animal.phenotype);
+
+				//解除プロセス
 				for (let anim of global_map.getTerrain(population.gps).habitant.animals) {
 					anim.r.clr = color(255, 0);
 				}
 				for (let anim of population.animals) {
 					anim.r.clr = color(255, 0);
 				}
-				animal.r.clr = color(255, 180);
 
+				animal.r.clr = color(255, 180);
 				for (key in animal.phenotype) {
 					let legend = animal.valueToLegend(animal.phenotype[key]);
 					$("#" + key + " td:nth-child(2)").html(legend).removeClass().addClass(legend);
+				}
+				for (key in animal.phenotype) {
+					$("#personality-" + key + " td:nth-child(2)").html(animal.valueToPlus(animal.phenotype[key]));
 				}
 			}
 		}
@@ -153,14 +163,16 @@ function mousePressed() {
 		let animals = global_map.getTerrain(population.gps).habitant.animals;
 		for (let animal of animals) {
 			if (animal.r.contains(mouseX, mouseY)) {
+
+				//解除プロセス
 				for (let anim of animals) {
 					anim.r.clr = color(255, 0);
 				}
 				for (let anim of population.animals) {
 					anim.r.clr = color(255, 0);
 				}
-				animal.r.clr = color(255, 180);
 
+				animal.r.clr = color(255, 180);
 				for (key in animal.phenotype) {
 					let legend = animal.valueToLegend(animal.phenotype[key]);
 					$("#" + key + " td:nth-child(2)").html(legend).removeClass().addClass(legend);
@@ -180,7 +192,7 @@ function mouseHovered() {
 
 		tile_info.html(`<ul><li>${tile.geography}</li><li>${tile.temperature.toFixed()}℃</li>
 		<li>${tile.humidity.toFixed()}%</li><li>meats: ${tile.meats.toFixed()}</li><li>berries: ${tile.berries.toFixed()}</li>
-		<li>fishes: ${tile.fishes.toFixed()}</li><li>nest: ${tile.nest?"あり":"なし"}</li></ul>`)
+		<li>fishes: ${tile.fishes.toFixed()}</li><li>eco_density: ${tile.ecological_density.toFixed(2)}</li><li>nest: ${tile.nest?"あり":"なし"}</li></ul>`)
 			.css("left", mouseX.toFixed()).css("top", mouseY.toFixed()).css("visibility", "visible");
 
 	} else {
@@ -235,9 +247,31 @@ function initialize() {
 	$("#day").html(`Day: ${game_manager.day}`); //this.dayにすると古い方のgame_managerオブジェクトが呼ばれる
 	$("#score").html(`Score: ${game_manager.score}`);
 	$("#rest").html(`Rest: ${population.rested}`);
+	$("#next-children").html(`Children: +${population.next_children}`);
 	$(".log").html("<p> -- -- -- --ここに起こったことが表示されていくよ-- -- -- -- </p>");
 }
 
 function addlog(text) {
-	$(".log").prepend(`<P>Day ${game_manager.day}: ${text}<p>`);
+	$(".log").prepend(`<P>Day ${game_manager.day}: [${game_manager.log_state}] ${text}<p>`);
 }
+
+let star_offset = 70;
+
+function star(x, y, radius1, radius2, npoints) {
+	let angle = TWO_PI / npoints;
+	let halfAngle = angle / 2.0;
+	beginShape();
+	for (let a = star_offset; a < TWO_PI + star_offset; a += angle) {
+		let sx = x + cos(a) * radius2;
+		let sy = y + sin(a) * radius2;
+		vertex(sx, sy);
+		sx = x + cos(a + halfAngle) * radius1;
+		sy = y + sin(a + halfAngle) * radius1;
+		vertex(sx, sy);
+	}
+	endShape(CLOSE);
+}
+
+$("#uber_speed").change(() => {
+	uber_speed = $("#uber_speed").val() - 0;
+})

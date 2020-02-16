@@ -97,7 +97,7 @@ class Animal {
 
 		let avg = terrain.habitant.calcAvg();
 		//xenophile傾向によって関わりの度合いが変化する？
-		let c = random([phenotype.negotiation - avg.deception, phenotype.deception - avg.attraction, phenotype.attraction - avg.negotiation]) *
+		let c = max([phenotype.negotiation - avg.deception, phenotype.deception - avg.attraction, phenotype.attraction - avg.negotiation]) *
 			(terrain.ecological_density ** 2) / 10; //-1~1
 
 		this.health = this.health * (a / 100) + b + c;
@@ -174,6 +174,15 @@ class Animal {
 		} else {
 			return "LEGENDARY";
 		}
+	}
+
+	valueToPlus(value) {
+		let plus = "";
+		for (let i = 0; i < value / 2; i++) {
+			plus += "+";
+
+		}
+		return plus;
 	}
 
 	showHealth() {

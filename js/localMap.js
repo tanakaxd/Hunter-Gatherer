@@ -24,7 +24,7 @@ class LocalMap {
         this.fog = true;
         this.nest = false;
         this.visited = false;
-        this.hunted = 0;
+        this.hunted_counter = 0;
 
         // this.traversable = true;
         // this.selectable = true;
@@ -97,8 +97,22 @@ class LocalMap {
         return density;
     }
 
-    renew() {
+    hunted() {
+        this.hunted_counter += hunt_scale;
+        this.meats -= hunt_scale;
+        this.berries -= hunt_scale;
+        this.fishes -= hunt_scale;
+        // this.ecological_density = this.calcEcoDensity();
+    }
 
+    regrowth() {
+        if (this.hunted_counter > 0) {
+            this.hunted_counter--;
+            this.meats++;
+            this.berries++;
+            this.fishes++;
+            // this.ecological_density = this.calcEcoDensity();
+        }
     }
 
     display() {

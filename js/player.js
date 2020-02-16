@@ -62,9 +62,14 @@ class Player extends Population {
     show() {
         push();
         translate(cell_size / 2, cell_size / 2);
-        fill(201, 87, 115);
         ellipseMode(CENTER)
+        fill(201, 87, 115);
         ellipse(this.gps.x * cell_size, this.gps.y * cell_size, cell_size * 0.8, cell_size * 0.8);
+        if (this.buffed) {
+            fill(255, 255, 66);
+            star(this.gps.x * cell_size, this.gps.y * cell_size, 30 / 6, 70 / 6, 5);
+            // star(0, 0, 30, 70, 5);
+        }
         pop();
     }
 
@@ -86,5 +91,10 @@ class Player extends Population {
 
     visit() {
         global_map.getTerrain(this.gps).visited = true;
+    }
+
+    setNextChildren(scale) {
+        this.next_children = scale ? this.next_children + scale : 0;
+        $("#next-children").html(`Children: +${this.next_children}`);
     }
 }

@@ -16,6 +16,7 @@ class GameManager {
     constructor() {
         this.focus = "global_map"; //0:start 1:global_map 2:event 3:forbidden どの要素とinteract可能か。プレイヤーの入力待ち
         this.state = "map"; //0:hunt 1:event 2:night 3:map　ゲームの進行状況
+        this.log_state = ""; //空文字にならないlog用state
         this.score = 0;
         this.day = 1;
     }
@@ -29,6 +30,7 @@ class GameManager {
             //mapの時は「タイルをクリックしたら」、eventの時は「選択肢を選んだら」state移行
             //現時点では、確認ではなく時間で推移
             case "map":
+                this.log_state = "map";
                 global_map.night = false;
                 console.log("map");
                 $("#dialog").html(`<div><p>${this.day}日目の朝だよ。移動先のタイルを選択してね</p></div>`);
@@ -36,6 +38,8 @@ class GameManager {
                 break;
 
             case "explore":
+                this.log_state = "explore";
+
                 console.log("explore");
                 let dots_a = "";
                 let func = setInterval(() => {
@@ -50,6 +54,8 @@ class GameManager {
                 break;
 
             case "event":
+                this.log_state = "event";
+
                 console.log("event");
                 this.focus = "event";
                 event_manager.popEvent();
@@ -57,6 +63,8 @@ class GameManager {
                 break;
 
             case "hunt":
+                this.log_state = "survival";
+
                 console.log("hunt");
                 let dots_b = "";
                 let func_b = setInterval(() => {
@@ -83,10 +91,13 @@ class GameManager {
                 break;
 
             case "night":
+                this.log_state = "night";
+
                 console.log("night");
                 global_map.night = true;
                 $("#dialog").html("夜が来た！");
                 population.rest();
+                global_map.update();
 
                 let dots_c = "";
                 setTimeout(() => {

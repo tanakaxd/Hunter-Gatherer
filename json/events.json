@@ -900,7 +900,7 @@
                     },
                     {
                         "modifier": "child",
-                        "scale": 2
+                        "scale": 4
                     },
                     {
                         "modifier": "score",
@@ -938,6 +938,10 @@
                         "scale": 2
                     },
                     {
+                        "modifier": "child",
+                        "scale": 2
+                    },
+                    {
                         "modifier": "score",
                         "scale": 25
                     }
@@ -970,7 +974,7 @@
                     },
                     {
                         "modifier": "child",
-                        "scale": 1
+                        "scale": 2
                     },
                     {
                         "modifier": "score",
@@ -1121,6 +1125,9 @@
                         "scale": 1
                     },
                     {
+                        "modifier": "buff"
+                    },
+                    {
                         "modifier": "score",
                         "scale": 50
                     }
@@ -1128,7 +1135,7 @@
             },
             {
                 "choiceID": "m1o2",
-                "choiceTitle": "子供を身ごもっていた。この子は私たちの愛の結晶",
+                "choiceTitle": "子供を身ごもっていた。この子らは私たちの愛の結晶",
                 "condition": {
                     "qualifier": "min",
                     "phenotype": "lust",
@@ -1153,7 +1160,7 @@
                     },
                     {
                         "modifier": "child",
-                        "scale": 1
+                        "scale": 3
                     },
                     {
                         "modifier": "score",
@@ -1748,7 +1755,7 @@
         "description": "狩りの手法を巡って議論が起こった。既存の方法ではなく新しい方法を試してみるべきだろうか。",
         "choices": [{
                 "choiceID": "t1o1",
-                "choiceTitle": "これまで幾重にも積み重なってきた仲間たちの屍によって築き上げられた手法。そこに我々の血を注ごう",
+                "choiceTitle": "幾重にも積み重なってきた仲間たちの屍によって築き上げられた手法。そこに我々の血を注ごう",
                 "condition": {
                     "qualifier": "avg",
                     "phenotype": "curiosity",
@@ -1760,8 +1767,8 @@
                         "scale": -1
                     },
                     {
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "pacifist",
+                        "scale": -1
                     },
                     {
                         "modifier": "curiosity",
@@ -1772,6 +1779,9 @@
                         "scale": 2
                     },
                     {
+                        "modifier": "buff"
+                    },
+                    {
                         "modifier": "score",
                         "scale": 50
                     }
@@ -1779,7 +1789,7 @@
             },
             {
                 "choiceID": "t1o2",
-                "choiceTitle": "長きにわたり用いられてきたことには理由がある。変えないことも一つの決断だ",
+                "choiceTitle": "長きにわたり用いられてきたことには理由がある。変わらないということも一つの決断だ",
                 "condition": {
                     "qualifier": "avg",
                     "phenotype": "curiosity",
@@ -1801,6 +1811,10 @@
                     {
                         "modifier": "hunting",
                         "scale": 2
+                    },
+                    {
+                        "modifier": "health",
+                        "scale": 0.5
                     },
                     {
                         "modifier": "score",
@@ -2215,6 +2229,10 @@
                         "scale": 2
                     },
                     {
+                        "modifier": "acquire",
+                        "scale": 2
+                    },
+                    {
                         "modifier": "score",
                         "scale": 50
                     }
@@ -2332,7 +2350,7 @@
                 },
                 "outcome": [{
                         "modifier": "order",
-                        "scale": -1
+                        "scale": 1
                     },
                     {
                         "modifier": "egalitarian",
