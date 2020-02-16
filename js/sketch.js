@@ -23,13 +23,16 @@ let pops_width = pops_cell * pops_col;
 let events_per_ethic = 1;
 
 //sound
-let mp3_btn, mp3_move, mp3_natural_selection;
+let mp3_btn, mp3_move, mp3_natural_selection, mp3_dialog, mp3_birth;
+
+// img
+let footprint;
 
 //utility
 let debug = true;
 let frame_count = 0;
 let uber_mode = true;
-let uber_speed = uber_mode ? 10 : 1;
+let uber_speed = uber_mode ? 2 : 1;
 let easy_envi = false;
 let habitant_evolve = true;
 let how_many_evolves = 3;
@@ -37,22 +40,25 @@ let how_many_evolves = 3;
 
 // データを取り込む。マップ用。ajaxだとsetup drawが先行してしまいうまくいかない。
 //p5関数を使えばうまくいくが、p5要素となってしまう。できたらjqueryの方でやりたい
-// function preload() {
-// 	// $.ajax({
-// 	// 	url: "./xml/geography.xml",
-// 	// 	dataType: "xml"
-// 	// }).done((data) => {
-// 	// 	geography_data = data;
-// 	// 	console.log(geography_data);
+function preload() {
 
-// 	// }).fail(() => {
-// 	// 	console.error("ajax failed on preload");
-// 	// })
+	footprint = loadImage("img\\footprint.png");
 
-// 	geography_data = loadXML("./xml/geography.xml");
-// 	console.log(geography_data);
+	// $.ajax({
+	// 	url: "./xml/geography.xml",
+	// 	dataType: "xml"
+	// }).done((data) => {
+	// 	geography_data = data;
+	// 	console.log(geography_data);
 
-// }
+	// }).fail(() => {
+	// 	console.error("ajax failed on preload");
+	// })
+
+	// geography_data = loadXML("./xml/geography.xml");
+	// console.log(geography_data);
+
+}
 
 function setup() {
 	initialize();
@@ -79,6 +85,8 @@ function setup() {
 	mp3_btn = loadSound("sound\\zapsplat_multimedia_alert_notification_message_or_pop_up_001_45047.mp3");
 	mp3_move = loadSound("sound\\zapsplat_multimedia_game_tone_short_fast_positive_plucked_003_44890.mp3");
 	mp3_natural_selection = loadSound("sound\\zapsplat_multimedia_game_sound_menu_toggle_slide_select_001_45064.mp3");
+	mp3_dialog = loadSound("sound\\zapsplat_multimedia_pop_up_chime_short_high_pitched_004_45770.mp3");
+	mp3_birth = loadSound("sound\\zapsplat_multimedia_pop_up_chime_short_high_pitched_003_45769.mp3");
 
 
 	if (debug) fr = createP();
@@ -112,6 +120,7 @@ function mousePressed() {
 				$("#dialog").html("<div><p>探索を開始します</p><button>ok</button></div>");
 				$("#dialog button").click(() => {
 					game_manager.state = "explore";
+					mp3_dialog.play();
 				});
 				game_manager.focus = "forbidden";
 			}

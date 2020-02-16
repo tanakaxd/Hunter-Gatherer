@@ -4,7 +4,7 @@
         "description": "狂暴そうなクマが一人ぼっちで昼寝をしている。どうしよう？",
         "choices": [{
                 "choiceID": "m1o1",
-                "choiceTitle": "このチャンスを利用しない手はない。すぐさま奇襲だ！",
+                "choiceTitle": "このチャンスを利用しない手はない。一撃必殺！",
                 "condition": {
                     "qualifier": "max",
                     "phenotype": "aggressivity",
@@ -13,6 +13,10 @@
                 },
                 "outcome": [{
                         "modifier": "pacifist",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "order",
                         "scale": -1
                     },
                     {
@@ -25,7 +29,7 @@
                     },
                     {
                         "modifier": "health",
-                        "scale": 1.5
+                        "scale": 1
                     },
                     {
                         "modifier": "score",
@@ -47,6 +51,10 @@
                         "scale": 1
                     },
                     {
+                        "modifier": "pacifist",
+                        "scale": -1
+                    },
+                    {
                         "modifier": "hunting",
                         "scale": 2
                     },
@@ -56,7 +64,7 @@
                     },
                     {
                         "modifier": "health",
-                        "scale": 1.2
+                        "scale": 1
                     },
                     {
                         "modifier": "score",
@@ -78,16 +86,20 @@
                         "scale": 1
                     },
                     {
+                        "modifier": "pacifist",
+                        "scale": -1
+                    },
+                    {
                         "modifier": "hiding",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "deception",
                         "scale": 2
                     },
                     {
                         "modifier": "hunting",
                         "scale": 2
-                    },
-                    {
-                        "modifier": "pacifist",
-                        "scale": 1
                     },
                     {
                         "modifier": "score",
@@ -109,6 +121,10 @@
                         "scale": 1
                     },
                     {
+                        "modifier": "innovative",
+                        "scale": -1
+                    },
+                    {
                         "modifier": "fleeing",
                         "scale": 2
                     },
@@ -117,8 +133,8 @@
                         "scale": 0.5
                     },
                     {
-                        "modifier": "xenophile",
-                        "scale": 1
+                        "modifier": "curiosity",
+                        "scale": 0.5
                     },
                     {
                         "modifier": "score",
@@ -138,6 +154,10 @@
                 "outcome": [{
                         "modifier": "pacifist",
                         "scale": 1
+                    },
+                    {
+                        "modifier": "order",
+                        "scale": -1
                     },
                     {
                         "modifier": "fleeing",
@@ -168,6 +188,10 @@
                 },
                 "outcome": [{
                         "modifier": "pacifist",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "order",
                         "scale": 1
                     },
                     {
@@ -449,7 +473,7 @@
             },
             {
                 "choiceID": "e1o2",
-                "choiceTitle": "群れだけと言わず、ここの住人にもおすそ分けだ。一人群れに参加した",
+                "choiceTitle": "群れだけと言わず、ここの住人にもおすそ分けだ。二人群れに参加した",
                 "condition": {
                     "qualifier": "avg",
                     "phenotype": "openminded",
@@ -474,7 +498,7 @@
                     },
                     {
                         "modifier": "acquire",
-                        "scale": 1
+                        "scale": 2
                     },
                     {
                         "modifier": "score",
@@ -487,28 +511,28 @@
                 "choiceTitle": "見つけたものは見つけた人のもの。見つけたやつらで食べまくる",
                 "condition": {
                     "qualifier": "avg",
-                    "phenotype": "fleeing",
-                    "operator": "more",
-                    "criterion": 6
+                    "phenotype": "egalitarian",
+                    "operator": "less",
+                    "criterion": 4
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": 1
+                        "modifier": "egalitarian",
+                        "scale": -1
                     },
                     {
                         "modifier": "xenophile",
                         "scale": -1
                     },
                     {
-                        "modifier": "fleeing",
-                        "scale": 2
-                    },
-                    {
-                        "modifier": "aggressivity",
+                        "modifier": "equality",
                         "scale": 0.5
                     },
                     {
-                        "modifier": "hiding",
+                        "modifier": "openminded",
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "lust",
                         "scale": 2
                     },
                     {
@@ -521,30 +545,30 @@
                 "choiceID": "e1o4",
                 "choiceTitle": "これだけ大量にあれば、罠として使う分もある。獲物をおびき寄せて狩ろう",
                 "condition": {
-                    "qualifier": "avg",
-                    "phenotype": "aggressivity",
+                    "qualifier": "max",
+                    "phenotype": "hunting",
                     "operator": "more",
-                    "criterion": 6
+                    "criterion": 8
                 },
                 "outcome": [{
                         "modifier": "pacifist",
                         "scale": -1
                     },
                     {
-                        "modifier": "order",
+                        "modifier": "innovative",
                         "scale": 1
                     },
                     {
-                        "modifier": "negotiation",
-                        "scale": 0.5
-                    },
-                    {
-                        "modifier": "aggressivity",
+                        "modifier": "hunting",
                         "scale": 2
                     },
                     {
-                        "modifier": "xenophile",
-                        "scale": -1
+                        "modifier": "curiosity",
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "health",
+                        "scale": 0.5
                     },
                     {
                         "modifier": "score",
@@ -557,28 +581,28 @@
                 "choiceTitle": "なぜこんなところに大量の実があるのだろう。何か裏があるに違いない",
                 "condition": {
                     "qualifier": "avg",
-                    "phenotype": "deception",
-                    "operator": "more",
-                    "criterion": 6
+                    "phenotype": "curiosity",
+                    "operator": "less",
+                    "criterion": 4
                 },
                 "outcome": [{
                         "modifier": "pacifist",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "innovative",
                         "scale": -1
                     },
                     {
                         "modifier": "curiosity",
-                        "scale": 1
+                        "scale": 0.5
+                    },
+                    {
+                        "modifier": "aggressivity",
+                        "scale": 0.5
                     },
                     {
                         "modifier": "hiding",
-                        "scale": 2
-                    },
-                    {
-                        "modifier": "deception",
-                        "scale": 2
-                    },
-                    {
-                        "modifier": "hunting",
                         "scale": 2
                     },
                     {
@@ -597,7 +621,7 @@
                     "criterion": 0
                 },
                 "outcome": [{
-                        "modifier": "egalitarian",
+                        "modifier": "innovative",
                         "scale": -1
                     },
                     {
@@ -1221,7 +1245,7 @@
                 },
                 "outcome": [{
                         "modifier": "pacifist",
-                        "scale": 1
+                        "scale": -1
                     },
                     {
                         "modifier": "polygamy",
@@ -1233,7 +1257,7 @@
                     },
                     {
                         "modifier": "lust",
-                        "scale": 2
+                        "scale": 0.5
                     },
                     {
                         "modifier": "hunting",

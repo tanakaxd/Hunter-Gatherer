@@ -24,6 +24,7 @@ class LocalMap {
         this.fog = true;
         this.nest = false;
         this.visited = false;
+        this.hunted = 0;
 
         // this.traversable = true;
         // this.selectable = true;
@@ -74,9 +75,9 @@ class LocalMap {
     setFoods() {
         let $data = this.retreiveFoodsData(this.geography);
         let plus = easy_envi ? 30 : 0;
-        this.berries = randomGaussian($data.find("berries").text() - plus, 3); //text()は文字列を返す
-        this.meats = randomGaussian($data.find("meats").text() - plus, 3);
-        this.fishes = randomGaussian($data.find("fishes").text() - plus, 3);
+        this.berries = randomGaussian($data.find("berries").text() - plus, 4); //text()は文字列を返す
+        this.meats = randomGaussian($data.find("meats").text() - plus, 4);
+        this.fishes = randomGaussian($data.find("fishes").text() - plus, 4);
     }
 
     retreiveFoodsData(climate) {
@@ -112,6 +113,12 @@ class LocalMap {
         if (this.nest) {
             fill(0);
             rect(this.xy.x * this.cellWidth, this.xy.y * this.cellWidth, this.cellHeight / 2, this.cellWidth / 2)
+        }
+        if (this.visited) {
+            push();
+            translate(this.cellHeight / 2, this.cellWidth / 2);
+            image(footprint, this.xy.x * this.cellWidth, this.xy.y * this.cellWidth, this.cellHeight / 2, this.cellWidth / 2)
+            pop();
         }
     }
 }

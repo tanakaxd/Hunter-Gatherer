@@ -191,6 +191,7 @@ class Population {
 			}
 			// addlog(`${actual_size}人の新世代が誕生しました!`);
 			addlog(`${next_generation_size - infant_casualities}人の新世代が誕生しました`);
+			mp3_birth.play();
 			this.rest(-this.rested); // this.rested = 0;
 		}
 	}
@@ -208,6 +209,15 @@ class Population {
 
 	consoleEthics() {
 		console.table(this.ethics);
+	}
+
+	setEthics(ethic, scale) {
+		this.ethics[ethic] += scale;
+		if (this.ethics[ethic] < 0) {
+			this.ethics[ethic] = 0;
+		} else if (this.ethics[ethic] >= 10) {
+			this.ethics[ethic] = 10;
+		}
 	}
 
 	setPosition(yoffset) {

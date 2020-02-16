@@ -60,69 +60,69 @@ class Event {
         let modifiers = {
             //ethics modifier
             "egalitarian": (scale) => {
-                population.ethics.egalitarian += scale;
+                population.setEthics("egalitarian", scale);
             },
             "polygamy": (scale) => {
-                population.ethics.polygamy += scale;
+                population.setEthics("polygamy", scale);
             },
             "pacifist": (scale) => {
-                population.ethics.pacifist += scale;
+                population.setEthics("pacifist", scale);
             },
             "xenophile": (scale) => {
-                population.ethics.xenophile += scale;
+                population.setEthics("xenophile", scale);
             },
             "innovative": (scale) => {
-                population.ethics.innovative += scale;
+                population.setEthics("innovative", scale);
             },
             "order": (scale) => {
-                population.ethics.order += scale;
+                population.setEthics("order", scale);
             },
 
             //coefficient modifier
             "hunting": (scale) => {
-                population.fitness_coefficient.hunting += scale;
+                population.fitness_coefficient.hunting *= scale;
             },
             "foraging": (scale) => {
-                population.fitness_coefficient.foraging += scale;
+                population.fitness_coefficient.foraging *= scale;
             },
             "swimming": (scale) => {
-                population.fitness_coefficient.swimming += scale;
+                population.fitness_coefficient.swimming *= scale;
             },
             "hiding": (scale) => {
-                population.fitness_coefficient.hiding += scale;
+                population.fitness_coefficient.hiding *= scale;
             },
             "fighting": (scale) => {
-                population.fitness_coefficient.fighting += scale;
+                population.fitness_coefficient.fighting *= scale;
             },
             "fleeing": (scale) => {
-                population.fitness_coefficient.fleeing += scale;
+                population.fitness_coefficient.fleeing *= scale;
             },
             "negotiation": (scale) => {
-                population.fitness_coefficient.negotiation += scale;
+                population.fitness_coefficient.negotiation *= scale;
             },
             "deception": (scale) => {
-                population.fitness_coefficient.deception += scale;
+                population.fitness_coefficient.deception *= scale;
             },
             "attraction": (scale) => {
-                population.fitness_coefficient.attraction += scale;
+                population.fitness_coefficient.attraction *= scale;
             },
             "equality": (scale) => {
-                population.fitness_coefficient.equality += scale;
+                population.fitness_coefficient.equality *= scale;
             },
             "lust": (scale) => {
-                population.fitness_coefficient.lust += scale;
+                population.fitness_coefficient.lust *= scale;
             },
             "aggressivity": (scale) => {
-                population.fitness_coefficient.aggressivity += scale;
+                population.fitness_coefficient.aggressivity *= scale;
             },
             "openminded": (scale) => {
-                population.fitness_coefficient.openminded += scale;
+                population.fitness_coefficient.openminded *= scale;
             },
             "curiosity": (scale) => {
-                population.fitness_coefficient.curiosity += scale;
+                population.fitness_coefficient.curiosity *= scale;
             },
             "independency": (scale) => {
-                population.fitness_coefficient.independency += scale;
+                population.fitness_coefficient.independency *= scale;
             },
 
             //pops modifier
@@ -397,10 +397,12 @@ class Event {
         for (let choice of this.choices) {
             let condition = choice.condition;
             let bool = qualifiers[condition.qualifier](condition.phenotype, condition.criterion, condition.operator);
-            if (bool) {
+            if (bool === undefined) console.error("invalid qualifier");
+            if (bool || population.buffed) {
                 this.certified_choices.push(choice);
             }
         }
+        if (population.buffed) population.buffed = false;
 
         //作った配列をDOMに反映。該当する選択肢がない場合の処理。スコアに応じてクラスをつけて文字の色を変える
         if (this.certified_choices.length != 0) {

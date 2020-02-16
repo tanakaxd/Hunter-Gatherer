@@ -8,6 +8,7 @@ class EventManager {
     constructor() {
         this.current_event;
         this.loaded_events;
+        this.last_event = "";
     }
 
     popEvent() {
@@ -16,6 +17,7 @@ class EventManager {
         //どのイベントを発生させるかを決める
         //例えばxmlファイルを読み込んで、タイル種別のイベント比率に基づいてランダムに発生させる
         let eventID = this.chooseEvent();
+        this.last_event = eventID;
         // let eventID = "test1";
         // let eventID = "order1";
 
@@ -60,6 +62,7 @@ class EventManager {
     chooseEvent() {
 
         //探索イベント。現在未実装。選択肢なしで成果だけを表示するタイプ。ローカルマップの情報の一部、他タイルの情報等を取得。
+        //habitantに遭遇？
         if (game_manager.state == "explore") { //tile event?
             let events_pool = [];
             let eventID = "militarist1";
@@ -96,8 +99,11 @@ class EventManager {
                     }
                 }
             }
-
-            return random(events_pool);
+            let event = "";
+            do {
+                event = random(events_pool);
+            } while (event == this.last_event);
+            return event;
         } else {
             console.error("invalid state");
         }

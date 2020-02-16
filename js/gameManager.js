@@ -76,6 +76,7 @@ class GameManager {
                     $("#dialog").html("<div><p>夜の時間を開始します</p><button>ok</button></div>");
                     $("#dialog button").click(() => {
                         game_manager.state = "night";
+                        mp3_dialog.play();
                     });
                 }, 6000 / uber_speed);
                 this.state = "";
