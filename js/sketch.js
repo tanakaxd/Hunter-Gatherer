@@ -1,10 +1,19 @@
 //main
 let canvas, game_manager, scene_manager, global_map, population, event, info;
-let geography_data;
+let geography_data, legendary_items;
+let ethics_pool = {
+	"egalitarian": "authoritarian",
+	"polygamy": "monogamy",
+	"militarist": "pacifist",
+	"xenophile": "xenophobe",
+	"innovative": "traditional",
+	"chaos": "order"
+};
 
 //DOM
 let sliders = [];
-let fr;
+let fr, fr_counter;
+let frame_count = 0;
 
 //canvas settings
 let frame_rate = 60;
@@ -19,7 +28,8 @@ let map_size = 15; //横縦方向へのcellの数
 let map_width = cell_size * map_size;
 
 //game setting
-let player_size = 15;
+let player_size = 10;
+let player_size_max = 25;
 let habitant_size = 15;
 let base_mutation_rate = 0.03;
 let infant_mortality = 0.1;
@@ -37,7 +47,6 @@ let footprint;
 
 //utility
 let debug = true;
-let frame_count = 0;
 let uber_mode = true;
 let uber_speed = uber_mode ? 6 : 1;
 let easy_envi = false;
@@ -82,7 +91,7 @@ function setup() {
 	button5.mousePressed(Player.clearAllFog);
 	sliders[0] = select("#egalitarian");
 	sliders[1] = select("#polygamy");
-	sliders[2] = select("#pacifist");
+	sliders[2] = select("#militarist");
 	sliders[3] = select("#xenophile");
 	sliders[4] = select("#innovativeness");
 	sliders[5] = select("#chaos");
@@ -177,6 +186,9 @@ function mousePressed() {
 					let legend = animal.valueToLegend(animal.phenotype[key]);
 					$("#" + key + " td:nth-child(2)").html(legend).removeClass().addClass(legend);
 				}
+				for (key in animal.phenotype) {
+					$("#personality-" + key + " td:nth-child(2)").html(animal.valueToPlus(animal.phenotype[key]));
+				}
 			}
 		}
 	}
@@ -232,19 +244,10 @@ function initialize() {
 	global_map = new GlobalMap();
 	population = new Player();
 	global_map.examineAccessibility(population.gps);
+	global_map.evolveHabitant();
 
-	// 仕様上constructorでは無理。local_mapを生み出すのとhabitantを生み出すのは共にglobal_mapの生成時、その連鎖内にある。
-	if (habitant_evolve) {
-		for (let y = 0; y < map_size; y++) {
-			for (let x = 0; x < map_size; x++) {
-				for (let i = 0; i < how_many_evolves; i++) {
-					global_map.terrain[x][y].habitant.evolve();
-				}
-			}
-		}
-	}
 
-	$("#day").html(`Day: ${game_manager.day}`); //this.dayにすると古い方のgame_managerオブジェクトが呼ばれる
+	$("#day").html(`Day: ${game_manager.day}`);
 	$("#score").html(`Score: ${game_manager.score}`);
 	$("#rest").html(`Rest: ${population.rested}`);
 	$("#next-children").html(`Children: +${population.next_children}`);

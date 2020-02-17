@@ -15,10 +15,10 @@ class Population {
 			//jsでは連想配列のkeyに""があってもなくても同じ。jsonは必須
 			"egalitarian": random() * 10,
 			polygamy: random() * 10,
-			pacifist: random() * 10,
+			militarist: random() * 10,
 			xenophile: random() * 10,
 			innovative: random() * 10,
-			order: random() * 10
+			chaos: random() * 10
 		};
 		//例えばhuntingの高さを集団が重要視する。ethicsと同列の役割？
 		this.fitness_coefficient = {
@@ -215,14 +215,7 @@ class Population {
 		console.table(this.ethics);
 	}
 
-	setEthics(ethic, scale) {
-		this.ethics[ethic] += scale;
-		if (this.ethics[ethic] < 0) {
-			this.ethics[ethic] = 0;
-		} else if (this.ethics[ethic] >= 10) {
-			this.ethics[ethic] = 10;
-		}
-	}
+
 
 	setPosition(yoffset) {
 		//habitantの時はyoffset分下にずらす。

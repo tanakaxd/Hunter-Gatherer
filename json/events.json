@@ -1,7 +1,7 @@
 [{
         "eventID": "militarist1",
         "title": "天敵に奇襲チャンス！",
-        "description": "狂暴そうなクマが一人ぼっちで昼寝をしている。どうしよう？",
+        "description": "凶悪な武器を持ったニンゲンが一人ぼっちで昼寝をしている。どうしよう？",
         "choices": [{
                 "choiceID": "m1o1",
                 "choiceTitle": "このチャンスを利用しない手はない。一撃必殺！",
@@ -12,12 +12,12 @@
                     "criterion": 9.8
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": -1
+                        "modifier": "militarist",
+                        "scale": 1
                     },
                     {
-                        "modifier": "order",
-                        "scale": -1
+                        "modifier": "chaos",
+                        "scale": 1
                     },
                     {
                         "modifier": "aggressivity",
@@ -47,12 +47,12 @@
                     "criterion": 7
                 },
                 "outcome": [{
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "chaos",
+                        "scale": -1
                     },
                     {
-                        "modifier": "pacifist",
-                        "scale": -1
+                        "modifier": "militarist",
+                        "scale": 1
                     },
                     {
                         "modifier": "hunting",
@@ -82,12 +82,12 @@
                     "criterion": 6
                 },
                 "outcome": [{
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "chaos",
+                        "scale": -1
                     },
                     {
-                        "modifier": "pacifist",
-                        "scale": -1
+                        "modifier": "militarist",
+                        "scale": 1
                     },
                     {
                         "modifier": "hiding",
@@ -117,8 +117,8 @@
                     "criterion": 4
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": 1
+                        "modifier": "militarist",
+                        "scale": -1
                     },
                     {
                         "modifier": "innovative",
@@ -152,12 +152,12 @@
                     "criterion": 8
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": 1
+                        "modifier": "militarist",
+                        "scale": -1
                     },
                     {
-                        "modifier": "order",
-                        "scale": -1
+                        "modifier": "chaos",
+                        "scale": 1
                     },
                     {
                         "modifier": "fleeing",
@@ -179,7 +179,7 @@
             },
             {
                 "choiceID": "m1o6",
-                "choiceTitle": "物音を立ててしまった！　クマに襲われた",
+                "choiceTitle": "物音を立ててしまった！　ニンゲンに撃たれた",
                 "condition": {
                     "qualifier": "avg",
                     "phenotype": "hunting",
@@ -187,12 +187,12 @@
                     "criterion": 0
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": -1
+                        "modifier": "militarist",
+                        "scale": 1
                     },
                     {
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "chaos",
+                        "scale": -1
                     },
                     {
                         "modifier": "hunting",
@@ -205,7 +205,12 @@
                     {
                         "modifier": "health",
                         "option": "death",
-                        "scale": 1
+                        "scale": 2
+                    },
+                    {
+                        "modifier": "health",
+                        "option": "injury",
+                        "scale": 2
                     },
                     {
                         "modifier": "score",
@@ -229,8 +234,8 @@
                     "criterion": 9.8
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": 1
+                        "modifier": "militarist",
+                        "scale": -1
                     },
                     {
                         "modifier": "egalitarian",
@@ -264,8 +269,8 @@
                     "criterion": 7
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": 1
+                        "modifier": "militarist",
+                        "scale": -1
                     },
                     {
                         "modifier": "xenophile",
@@ -299,8 +304,8 @@
                     "criterion": 6
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": 1
+                        "modifier": "militarist",
+                        "scale": -1
                     },
                     {
                         "modifier": "xenophile",
@@ -334,12 +339,12 @@
                     "criterion": 6
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": -1
+                        "modifier": "militarist",
+                        "scale": 1
                     },
                     {
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "chaos",
+                        "scale": -1
                     },
                     {
                         "modifier": "negotiation",
@@ -369,8 +374,8 @@
                     "criterion": 6
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": -1
+                        "modifier": "militarist",
+                        "scale": 1
                     },
                     {
                         "modifier": "curiosity",
@@ -404,8 +409,8 @@
                     "criterion": 0
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": 1
+                        "modifier": "militarist",
+                        "scale": -1
                     },
                     {
                         "modifier": "xenophile",
@@ -511,7 +516,7 @@
                 "choiceTitle": "見つけたものは見つけた人のもの。見つけたやつらで食べまくる",
                 "condition": {
                     "qualifier": "avg",
-                    "phenotype": "egalitarian",
+                    "phenotype": "equality",
                     "operator": "less",
                     "criterion": 4
                 },
@@ -551,8 +556,8 @@
                     "criterion": 8
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": -1
+                        "modifier": "militarist",
+                        "scale": 1
                     },
                     {
                         "modifier": "innovative",
@@ -586,8 +591,8 @@
                     "criterion": 4
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": 1
+                        "modifier": "militarist",
+                        "scale": -1
                     },
                     {
                         "modifier": "innovative",
@@ -613,7 +618,7 @@
             },
             {
                 "choiceID": "e1o6",
-                "choiceTitle": "この土地の住人が罠のために蓄えた毒木の実だった。食べた三人が体調不良",
+                "choiceTitle": "この土地の住人が罠のために蓄えた毒性の実だった。食べた三人が体調不良",
                 "condition": {
                     "qualifier": "avg",
                     "phenotype": "hunting",
@@ -733,8 +738,8 @@
                     "criterion": 6
                 },
                 "outcome": [{
-                        "modifier": "order",
-                        "scale": -1
+                        "modifier": "chaos",
+                        "scale": 1
                     },
                     {
                         "modifier": "egalitarian",
@@ -772,8 +777,8 @@
                         "scale": -1
                     },
                     {
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "chaos",
+                        "scale": -1
                     },
                     {
                         "modifier": "negotiation",
@@ -807,8 +812,8 @@
                         "scale": 1
                     },
                     {
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "chaos",
+                        "scale": -1
                     },
                     {
                         "modifier": "fighting",
@@ -842,8 +847,8 @@
                         "scale": -1
                     },
                     {
-                        "modifier": "order",
-                        "scale": -1
+                        "modifier": "chaos",
+                        "scale": 1
                     },
                     {
                         "modifier": "equality",
@@ -996,8 +1001,8 @@
                         "scale": 1
                     },
                     {
-                        "modifier": "pacifist",
-                        "scale": 1
+                        "modifier": "militarist",
+                        "scale": -1
                     },
                     {
                         "modifier": "negotiation",
@@ -1066,8 +1071,8 @@
                         "scale": -1
                     },
                     {
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "chaos",
+                        "scale": -1
                     },
                     {
                         "modifier": "lust",
@@ -1178,8 +1183,8 @@
                     "criterion": 2
                 },
                 "outcome": [{
-                        "modifier": "order",
-                        "scale": -1
+                        "modifier": "chaos",
+                        "scale": 1
                     },
                     {
                         "modifier": "innovative",
@@ -1251,8 +1256,8 @@
                     "criterion": 8
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": -1
+                        "modifier": "militarist",
+                        "scale": 1
                     },
                     {
                         "modifier": "polygamy",
@@ -1405,8 +1410,8 @@
                         "scale": 1
                     },
                     {
-                        "modifier": "pacifist",
-                        "scale": 1
+                        "modifier": "militarist",
+                        "scale": -1
                     },
                     {
                         "modifier": "negotiation",
@@ -1436,8 +1441,8 @@
                     "criterion": 6
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": 1
+                        "modifier": "militarist",
+                        "scale": -1
                     },
                     {
                         "modifier": "polygamy",
@@ -1471,8 +1476,8 @@
                     "criterion": 6
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": -1
+                        "modifier": "militarist",
+                        "scale": 1
                     },
                     {
                         "modifier": "xenophile",
@@ -1509,8 +1514,8 @@
                         "scale": -1
                     },
                     {
-                        "modifier": "pacifist",
-                        "scale": -1
+                        "modifier": "militarist",
+                        "scale": 1
                     },
                     {
                         "modifier": "curiosity",
@@ -1585,8 +1590,8 @@
                         "scale": -1
                     },
                     {
-                        "modifier": "pacifist",
-                        "scale": -1
+                        "modifier": "militarist",
+                        "scale": 1
                     },
                     {
                         "modifier": "openminded",
@@ -1620,8 +1625,8 @@
                         "scale": -1
                     },
                     {
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "chaos",
+                        "scale": -1
                     },
                     {
                         "modifier": "equality",
@@ -1686,8 +1691,8 @@
                     "criterion": 8
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": 1
+                        "modifier": "militarist",
+                        "scale": -1
                     },
                     {
                         "modifier": "xenophile",
@@ -1767,8 +1772,8 @@
                         "scale": -1
                     },
                     {
-                        "modifier": "pacifist",
-                        "scale": -1
+                        "modifier": "militarist",
+                        "scale": 1
                     },
                     {
                         "modifier": "curiosity",
@@ -1836,8 +1841,8 @@
                         "scale": 1
                     },
                     {
-                        "modifier": "order",
-                        "scale": -1
+                        "modifier": "chaos",
+                        "scale": 1
                     },
                     {
                         "modifier": "curiosity",
@@ -1871,8 +1876,8 @@
                         "scale": 1
                     },
                     {
-                        "modifier": "order",
-                        "scale": -1
+                        "modifier": "chaos",
+                        "scale": 1
                     },
                     {
                         "modifier": "swimming",
@@ -1942,8 +1947,8 @@
                         "scale": 1
                     },
                     {
-                        "modifier": "order",
-                        "scale": -1
+                        "modifier": "chaos",
+                        "scale": 1
                     },
                     {
                         "modifier": "openminded",
@@ -1984,8 +1989,8 @@
                         "scale": 1
                     },
                     {
-                        "modifier": "order",
-                        "scale": -1
+                        "modifier": "chaos",
+                        "scale": 1
                     },
                     {
                         "modifier": "curiosity",
@@ -2022,8 +2027,8 @@
                         "scale": 1
                     },
                     {
-                        "modifier": "order",
-                        "scale": -1
+                        "modifier": "chaos",
+                        "scale": 1
                     },
                     {
                         "modifier": "curiosity",
@@ -2102,8 +2107,8 @@
                         "scale": 1
                     },
                     {
-                        "modifier": "pacifist",
-                        "scale": 1
+                        "modifier": "militarist",
+                        "scale": -1
                     },
                     {
                         "modifier": "negotiation",
@@ -2171,8 +2176,8 @@
                         "scale": -1
                     },
                     {
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "chaos",
+                        "scale": -1
                     },
                     {
                         "modifier": "independency",
@@ -2209,12 +2214,12 @@
                     "criterion": 9.8
                 },
                 "outcome": [{
-                        "modifier": "order",
-                        "scale": -1
+                        "modifier": "chaos",
+                        "scale": 1
                     },
                     {
-                        "modifier": "pacifist",
-                        "scale": -1
+                        "modifier": "militarist",
+                        "scale": 1
                     },
                     {
                         "modifier": "independency",
@@ -2252,8 +2257,8 @@
                         "scale": 1
                     },
                     {
-                        "modifier": "order",
-                        "scale": -1
+                        "modifier": "chaos",
+                        "scale": 1
                     },
                     {
                         "modifier": "deception",
@@ -2283,8 +2288,8 @@
                     "criterion": 6
                 },
                 "outcome": [{
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "chaos",
+                        "scale": -1
                     },
                     {
                         "modifier": "xenophile",
@@ -2318,8 +2323,8 @@
                         "scale": 1
                     },
                     {
-                        "modifier": "pacifist",
-                        "scale": 1
+                        "modifier": "militarist",
+                        "scale": -1
                     },
                     {
                         "modifier": "negotiation",
@@ -2349,8 +2354,8 @@
                     "criterion": 4
                 },
                 "outcome": [{
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "chaos",
+                        "scale": -1
                     },
                     {
                         "modifier": "egalitarian",
@@ -2388,8 +2393,8 @@
                         "scale": -1
                     },
                     {
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "chaos",
+                        "scale": -1
                     },
                     {
                         "modifier": "independency",
@@ -2425,8 +2430,8 @@
                     "criterion": 2
                 },
                 "outcome": [{
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "chaos",
+                        "scale": -1
                     },
                     {
                         "modifier": "polygamy",
@@ -2463,8 +2468,8 @@
                         "scale": 1
                     },
                     {
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "chaos",
+                        "scale": -1
                     },
                     {
                         "modifier": "hunting",
@@ -2494,8 +2499,8 @@
                     "criterion": 8
                 },
                 "outcome": [{
-                        "modifier": "pacifist",
-                        "scale": -1
+                        "modifier": "militarist",
+                        "scale": 1
                     },
                     {
                         "modifier": "egalitarian",
@@ -2534,8 +2539,8 @@
                         "scale": 1
                     },
                     {
-                        "modifier": "order",
-                        "scale": -1
+                        "modifier": "chaos",
+                        "scale": 1
                     },
                     {
                         "modifier": "negotiation",
@@ -2565,8 +2570,8 @@
                     "criterion": 4
                 },
                 "outcome": [{
-                        "modifier": "order",
-                        "scale": 1
+                        "modifier": "chaos",
+                        "scale": -1
                     },
                     {
                         "modifier": "egalitarian",
@@ -2604,8 +2609,8 @@
                         "scale": 1
                     },
                     {
-                        "modifier": "order",
-                        "scale": -1
+                        "modifier": "chaos",
+                        "scale": 1
                     },
                     {
                         "modifier": "independency",

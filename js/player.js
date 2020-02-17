@@ -3,6 +3,7 @@ class Player extends Population {
     constructor(gps) {
         super();
         this.size = player_size;
+        this.max_size = player_size_max;
         for (let x = 0; x < this.size; x++) {
             this.animals.push(new Animal());
         }
@@ -13,13 +14,16 @@ class Player extends Population {
         this.min = super.calcMin();
 
         this.ethics = {
-            egalitarian: 5,
-            polygamy: 5,
-            pacifist: 5,
-            xenophile: 5,
-            innovative: 5,
-            order: 5
+            egalitarian: 1,
+            polygamy: 1,
+            militarist: 1,
+            xenophile: 1,
+            innovative: 1,
+            chaos: 1
         };
+
+        this.dignified_ethic = "";
+        this.inventory = "";
 
         this.gps = gps || createVector(floor(map_size / 2), floor(map_size / 2));
         this.rested = 2;
@@ -96,5 +100,56 @@ class Player extends Population {
     setNextChildren(scale) {
         this.next_children = scale ? this.next_children + scale : 0;
         $("#next-children").html(`Children: +${this.next_children}`);
+    }
+
+    setEthics(ethic, scale) {
+
+        if (this.dignified_ethic == ethic || this.dignified_ethic == ethics_pool[ethic]) {
+            return false;
+        } else {
+            this.ethics[ethic] += scale;
+
+            let number = this.ethics[ethic];
+            // 上限突破
+            if (number <= 0 || number >= 10) {
+
+                // 初のmax到達。dignified_ethicの獲得とitemの獲得
+                if (this.dignified_ethic == "") {
+                    if (number >= 10) {
+                        this.dignified_ethic = ethic;
+                    } else {
+                        this.dignified_ethic = ethics_pool[ethic];
+                    }
+                    this.getLegendaryItem();
+                    this.modifyFitnesCoefficient();
+
+
+                    // min maxを0,10に制限
+                } else if (number < 0) {
+                    this.ethics[ethic] = 0;
+                } else if (number > 10) {
+                    this.ethics[ethic] = 10;
+                }
+            }
+        }
+    }
+
+    getLegendaryItem() {
+        // inventoryにアイテムが入る
+        $(legendary_items).find("item").each((index, element) => {
+            $(element).find("related_ethics").find("ethic").each((ind, ele) => {
+                if ($(ele).text() == this.dignified_ethic) {
+                    this.inventory = $(element).find("name").text();
+                    return false;
+                }
+            })
+        })
+
+        // ethicを固定化
+
+    }
+
+    modifyFitnesCoefficient() {
+
     }
 }

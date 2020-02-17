@@ -65,8 +65,8 @@ class Event {
             "polygamy": (scale) => {
                 population.setEthics("polygamy", scale);
             },
-            "pacifist": (scale) => {
-                population.setEthics("pacifist", scale);
+            "militarist": (scale) => {
+                population.setEthics("militarist", scale);
             },
             "xenophile": (scale) => {
                 population.setEthics("xenophile", scale);
@@ -74,8 +74,8 @@ class Event {
             "innovative": (scale) => {
                 population.setEthics("innovative", scale);
             },
-            "order": (scale) => {
-                population.setEthics("order", scale);
+            "chaos": (scale) => {
+                population.setEthics("chaos", scale);
             },
 
             //coefficient modifier
@@ -195,7 +195,7 @@ class Event {
                 } else if (option == "injury") {
                     for (let i = 0; i < scale; i++) {
                         let injured = random(population.animals);
-                        injured.health -= 1;
+                        injured.health -= 0.3;
                         if (injured.health <= 0) {
                             population.animals.splice(population.animals.indexOf(injured), 1);
                         }
@@ -268,8 +268,8 @@ class Event {
                 return scale > 0 ? `polygamyが${scale}上昇` : `monogamyが${-scale}上昇`;
 
             },
-            "pacifist": (scale) => {
-                return scale > 0 ? `pacifistが${scale}上昇` : `militaristが${-scale}上昇`;
+            "militarist": (scale) => {
+                return scale > 0 ? `militaristが${scale}上昇` : `pacifistが${-scale}上昇`;
 
             },
             "xenophile": (scale) => {
@@ -280,8 +280,8 @@ class Event {
                 return scale > 0 ? `innovativeが${scale}上昇` : `traditionalが${-scale}上昇`;
 
             },
-            "order": (scale) => {
-                return scale > 0 ? `orderが${scale}上昇` : `chaosが${-scale}上昇`;
+            "chaos": (scale) => {
+                return scale > 0 ? `chaosが${scale}上昇` : `orderが${-scale}上昇`;
 
             },
 

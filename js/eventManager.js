@@ -85,14 +85,14 @@ class EventManager {
                             events_pool.push("authoritarian" + j);
                         } else if (key == "polygamy") {
                             events_pool.push("monogamy" + j);
-                        } else if (key == "pacifist") {
-                            events_pool.push("militarist" + j);
+                        } else if (key == "militarist") {
+                            events_pool.push("pacifist" + j);
                         } else if (key == "xenophile") {
                             events_pool.push("xenophobe" + j);
                         } else if (key == "innovative") {
                             events_pool.push("traditional" + j);
-                        } else if (key == "order") {
-                            events_pool.push("chaos" + j);
+                        } else if (key == "chaos") {
+                            events_pool.push("order" + j);
                         } else {
                             console.error("invalid ethics name");
                         }

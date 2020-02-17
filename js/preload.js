@@ -22,6 +22,23 @@ $.ajax({
 
 }).fail(() => {
     console.error("ajax failed on preload");
-})
-// let geography_data = 0;
-// geography_data = 2;
+});
+
+$.ajax({
+    url: "./xml/legendary_items.xml",
+    dataType: "xml"
+}).done((data) => {
+    legendary_items = data;
+    // console.log(legendary_items);
+    // $(legendary_items).find("item").each((index, element) => {
+    //     console.log(element, index);
+
+    //     $(element).find("related_ethics").find("ethic").each((ind, ele) => {
+    //         console.log(ele, ind);
+    //         // return false;
+    //     })
+    // })
+
+}).fail(() => {
+    console.error("ajax failed on preload");
+});

@@ -91,6 +91,19 @@ class GlobalMap {
         }
     }
 
+    evolveHabitant() {
+        // 仕様上constructorでは無理。local_mapを生み出すのとhabitantを生み出すのは共にglobal_mapの生成時、その連鎖内にある。
+        if (habitant_evolve) {
+            for (let y = 0; y < map_size; y++) {
+                for (let x = 0; x < map_size; x++) {
+                    for (let i = 0; i < how_many_evolves; i++) {
+                        this.terrain[x][y].habitant.evolve();
+                    }
+                }
+            }
+        }
+    }
+
     getTerrain(p) {
         return this.terrain[p.x][p.y];
     }
