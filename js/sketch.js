@@ -9,6 +9,26 @@ let ethics_pool = {
 	"innovative": "traditional",
 	"chaos": "order"
 };
+let phenotype_pool = {
+	"hunting": 0,
+	"foraging": 0,
+	"swimming": 0,
+
+	"hiding": 0,
+	"fighting": 0,
+	"fleeing": 0,
+
+	"negotiation": 0,
+	"deception": 0,
+	"attraction": 0,
+
+	"equality": 0,
+	"lust": 0,
+	"aggressivity": 0,
+	"openminded": 0,
+	"curiosity": 0,
+	"independency": 0
+}
 
 //DOM
 let sliders = [];
@@ -38,17 +58,18 @@ let events_per_ethic = 1;
 let hunt_scale = 5; //一回のサバイバルで環境資源をどれだけ使用するか
 let habitant_evolve = true;
 let how_many_evolves = 5;
+let percent_to_survive = 0.3;
 
 //sound
 let mp3_btn, mp3_move, mp3_natural_selection, mp3_dialog, mp3_birth;
 
 // img
-let footprint;
+let footprint, nest;
 
 //utility
 let debug = true;
 let uber_mode = true;
-let uber_speed = uber_mode ? 6 : 1;
+let uber_speed = uber_mode ? 2 : 1;
 let easy_envi = false;
 
 
@@ -57,6 +78,7 @@ let easy_envi = false;
 function preload() {
 
 	footprint = loadImage("img\\footprint.png");
+	nest = loadImage("img\\nest.png");
 
 	// $.ajax({
 	// 	url: "./xml/geography.xml",
@@ -89,12 +111,12 @@ function setup() {
 	button3.mousePressed(restart);
 	button4.mousePressed(popEvent);
 	button5.mousePressed(Player.clearAllFog);
-	sliders[0] = select("#egalitarian");
-	sliders[1] = select("#polygamy");
-	sliders[2] = select("#militarist");
-	sliders[3] = select("#xenophile");
-	sliders[4] = select("#innovativeness");
-	sliders[5] = select("#chaos");
+	sliders[0] = select("#egalitarian-authoritarian");
+	sliders[1] = select("#polygamy-monogamy");
+	sliders[2] = select("#militarist-pacifist");
+	sliders[3] = select("#xenophile-xenophobe");
+	sliders[4] = select("#innovativeness-traditional");
+	sliders[5] = select("#chaos-order");
 
 	mp3_btn = loadSound("sound\\zapsplat_multimedia_alert_notification_message_or_pop_up_001_45047.mp3");
 	mp3_move = loadSound("sound\\zapsplat_multimedia_game_tone_short_fast_positive_plucked_003_44890.mp3");

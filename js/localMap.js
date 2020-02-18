@@ -125,13 +125,23 @@ class LocalMap {
         }
         rect(this.xy.x * this.cellWidth, this.xy.y * this.cellWidth, this.cellHeight, this.cellWidth);
         if (this.nest) {
-            fill(0);
-            rect(this.xy.x * this.cellWidth, this.xy.y * this.cellWidth, this.cellHeight / 2, this.cellWidth / 2)
+            push();
+            image(nest, this.xy.x * this.cellWidth, this.xy.y * this.cellWidth, this.cellHeight / 2, this.cellWidth / 2);
+            pop();
         }
         if (this.visited) {
             push();
             translate(this.cellHeight / 2, this.cellWidth / 2);
-            image(footprint, this.xy.x * this.cellWidth, this.xy.y * this.cellWidth, this.cellHeight / 2, this.cellWidth / 2)
+            image(footprint, this.xy.x * this.cellWidth, this.xy.y * this.cellWidth, this.cellHeight / 2, this.cellWidth / 2);
+            pop();
+        }
+        if (this.accessible && !global_map.night) {
+
+            push();
+            noFill();
+            stroke(55, 209, 52, 70);
+            strokeWeight(8);
+            rect(this.xy.x * this.cellWidth, this.xy.y * this.cellWidth, this.cellHeight, this.cellWidth);
             pop();
         }
     }

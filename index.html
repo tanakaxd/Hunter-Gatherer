@@ -34,6 +34,7 @@
 </head>
 
 <body>
+  <!-- <img src="./img/footprint.png" alt=""> -->
 
   <div id="dialog">
     <!-- 移動先のタイルを選択してください -->
@@ -44,56 +45,56 @@
       <div class="numbers">
         <div class="tooltip">
           <p class="number" id="day">Day: 1</p>
-          <div class="tips">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, inventore.</div>
+          <div class="tips">ゲーム内の経過日数だよ。30日を迎えると…（未実装）。</div>
         </div>
         <div class="tooltip">
           <p class="number" id="score">Score: 0</p>
-          <div class="tips">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, inventore.</div>
+          <div class="tips">一応ゲームの目的となる値</div>
         </div>
         <div class="tooltip">
           <p class="number" id="rest">Rest: 0</p>
-          <div class="tips">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, inventore.</div>
+          <div class="tips">群れの休息値だよ。夜を迎えると1上昇して、4に到達した時交配が行われて世代が新しく生まれ変わるよ。</div>
         </div>
         <div class="tooltip">
           <p class="number" id="next-children">Children: +0</p>
-          <div class="tips">Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, inventore.</div>
+          <div class="tips">次の交配で生まれてくる子孫の人数に足される値だよ。</div>
         </div>
       </div>
       <div class="ethics">
         <div class="ethic tooltip">
-          <div class="left">Authoritarian</div>
-          <input type="range" class="slider" id="egalitarian" min="0" max="10" step="0.2" disabled>
-          <div class="right">Egalitarian</div>
+          <div class="left" id="authoritarian">Authoritarian</div>
+          <input type="range" class="slider" id="egalitarian-authoritarian" min="0" max="10" step="0.2" disabled>
+          <div class="right" id="egalitarian">Egalitarian</div>
           <div class="tips">群れの中の力関係を表しているよ。左に行くと縦の関係性、右に行くと横の関係性が強くなるよ。</div>
         </div>
         <div class="ethic tooltip">
-          <div class="left">Monogamy</div>
-          <input type="range" class="slider" id="polygamy" min="0" max="10" step="0.2" disabled>
-          <div class="right">Polygamy</div>
+          <div class="left" id="monogamy">Monogamy</div>
+          <input type="range" class="slider" id="polygamy-monogamy" min="0" max="10" step="0.2" disabled>
+          <div class="right" id="polygamy">Polygamy</div>
           <div class="tips">交配する相手の多さを表しているよ。左に行くと一人だけ、右へ行くとより多くの相手と交配しようとするよ。</div>
         </div>
         <div class="ethic tooltip">
-          <div class="left">Pacifist</div>
-          <input type="range" class="slider" id="militarist" min="0" max="10" step="0.2" disabled>
-          <div class="right">Militarist</div>
+          <div class="left" id="pacifist">Pacifist</div>
+          <input type="range" class="slider" id="militarist-pacifist" min="0" max="10" step="0.2" disabled>
+          <div class="right" id="militarist">Militarist</div>
           <div class="tips">武力を好む度合いを表しているよ。左に行くとより武力行使に積極的になり、右へ行くとより消極的になるよ。</div>
         </div>
         <div class="ethic tooltip">
-          <div class="left">Xenophobe</div>
-          <input type="range" class="slider" id="xenophile" min="0" max="10" step="0.2" disabled>
-          <div class="right">Xenophile</div>
+          <div class="left" id="xenophobe">Xenophobe</div>
+          <input type="range" class="slider" id="xenophile-xenophobe" min="0" max="10" step="0.2" disabled>
+          <div class="right" id="xenophile">Xenophile</div>
           <div class="tips">異質な存在に対する態度を表しているよ。左へ行くとより避けるようになり、右へ行くとより歓迎するようになる。</div>
         </div>
         <div class="ethic tooltip">
-          <div class="left">Traditional</div>
-          <input type="range" class="slider" id="innovative" min="0" max="10" step="0.2" disabled>
-          <div class="right">Innovative</div>
+          <div class="left" id="traditional">Traditional</div>
+          <input type="range" class="slider" id="innovative-traditional" min="0" max="10" step="0.2" disabled>
+          <div class="right" id="innovative">Innovative</div>
           <div class="tips">行動の方向性を表しているよ。左へ行くとより伝統的/安定的、右へ行くとより革新的/冒険的な行動を好むようになるよ。</div>
         </div>
         <div class="ethic tooltip">
-          <div class="left">Order</div>
-          <input type="range" class="slider" id="chaos" min="0" max="10" step="0.2" disabled>
-          <div class="right">Chaos</div>
+          <div class="left" id="order">Order</div>
+          <input type="range" class="slider" id="chaos-order" min="0" max="10" step="0.2" disabled>
+          <div class="right" id="chaos">Chaos</div>
           <div class="tips">集団内のネットワークの密度を表しているよ。左へ行くとより分散的、右へ行くとより集中的になるよ。</div>
         </div>
       </div>
@@ -102,79 +103,88 @@
       <div class="hovering" id="tile-info">
       </div>
     </div>
-    <div class="pops-status">
-      <table>
-        <!-- <tr>
+    <div id="right-wrapper">
+      <div class="pops-status">
+        <table>
+          <!-- <tr>
           <th>項目</th>
           <th>値</th>
         </tr> -->
-        <tr class="" id="hunting">
-          <td>Hunting</td>
-          <td></td>
-        </tr>
-        <tr class="" id="foraging">
-          <td>Foraging</td>
-          <td></td>
-        </tr>
-        <tr class="" id="swimming">
-          <td>Swimming</td>
-          <td></td>
-        </tr>
-        <tr class="spacing">
-        </tr>
-        <tr class="" id="hiding">
-          <td>Hiding</td>
-          <td></td>
-        </tr>
-        <tr class="" id="fighting">
-          <td>Fighting</td>
-          <td></td>
-        </tr>
-        <tr class="" id="fleeing">
-          <td>Fleeing</td>
-          <td></td>
-        </tr>
-        <tr class="spacing">
-        </tr>
-        <tr class="" id="negotiation">
-          <td>Negotiation</td>
-          <td></td>
-        </tr>
-        <tr class="" id="deception">
-          <td>Deception</td>
-          <td></td>
-        </tr>
-        <tr class="" id="attraction">
-          <td>Attraction</td>
-          <td></td>
-        </tr>
-        <tr class="spacing">
-        </tr>
-        <tr class="" id="personality-equality">
-          <td>Equality</td>
-          <td></td>
-        </tr>
-        <tr class="" id="personality-lust">
-          <td>Lust</td>
-          <td></td>
-        </tr>
-        <tr class="" id="personality-aggressivity">
-          <td>Aggressivity</td>
-          <td></td>
-        </tr>
-        <tr class="" id="personality-openminded">
-          <td>Open-minded</td>
-          <td></td>
-        </tr>
-        <tr class="" id="personality-curiosity">
-          <td>Curiosity</td>
-          <td></td>
-        </tr>
-        <tr class="" id="personality-independency">
-          <td>Independency</td>
-          <td></td>
-        </tr>
-      </table>
+          <tr class="" id="hunting">
+            <td>Hunting</td>
+            <td></td>
+          </tr>
+          <tr class="" id="foraging">
+            <td>Foraging</td>
+            <td></td>
+          </tr>
+          <tr class="" id="swimming">
+            <td>Swimming</td>
+            <td></td>
+          </tr>
+          <tr class="spacing">
+          </tr>
+          <tr class="" id="hiding">
+            <td>Hiding</td>
+            <td></td>
+          </tr>
+          <tr class="" id="fighting">
+            <td>Fighting</td>
+            <td></td>
+          </tr>
+          <tr class="" id="fleeing">
+            <td>Fleeing</td>
+            <td></td>
+          </tr>
+          <tr class="spacing">
+          </tr>
+          <tr class="" id="negotiation">
+            <td>Negotiation</td>
+            <td></td>
+          </tr>
+          <tr class="" id="deception">
+            <td>Deception</td>
+            <td></td>
+          </tr>
+          <tr class="" id="attraction">
+            <td>Attraction</td>
+            <td></td>
+          </tr>
+          <tr class="spacing">
+          </tr>
+          <tr class="" id="personality-equality">
+            <td>Equality</td>
+            <td></td>
+          </tr>
+          <tr class="" id="personality-lust">
+            <td>Lust</td>
+            <td></td>
+          </tr>
+          <tr class="" id="personality-aggressivity">
+            <td>Aggressivity</td>
+            <td></td>
+          </tr>
+          <tr class="" id="personality-openminded">
+            <td>Open-minded</td>
+            <td></td>
+          </tr>
+          <tr class="" id="personality-curiosity">
+            <td>Curiosity</td>
+            <td></td>
+          </tr>
+          <tr class="" id="personality-independency">
+            <td>Independency</td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+      <div class="tooltip" id="legendary-item-slot">
+        <div id="legendary-item">
+          <img src="./img/Fang_Icon.png" alt="">
+        </div>
+        <div class="tips">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum, possimus veritatis? At quae
+          ea facere nostrum odio magni, unde exercitationem.</div>
+      </div>
     </div>
   </div>
 
@@ -192,20 +202,17 @@
 
   <div class="sliders">
     <label for="uber_speed">über_speed: </label>
-    <input type="range" id="uber_speed" min="1" max="6" step="1" value="2">
+    <input type="range" id="uber_speed" min="1" max="10" step="1" value="2">
   </div>
 
   <div class="popup" id="js-popup">
     <div class="popup-inner">
       <h4 id="event-title"></h4>
-      <div id="event-img"></div>
-      <div id="description"></div>
+      <div id="event-img-wrapper"><img id="event-img" src="" alt=""></div>
+      <p id="description"></p>
       <div id="choices"></div>
     </div>
     <div class="black-background" id="js-black-bg"></div>
   </div>
-
-
-</body>
 
 </html>

@@ -20,6 +20,7 @@ class EventManager {
         this.last_event = eventID;
         // let eventID = "test1";
         // let eventID = "polygamy1";
+        // let eventID = "militarist1";
 
         //そのイベントのjsonを取得
 

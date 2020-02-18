@@ -77,17 +77,48 @@ class GlobalMap {
                 this.terrain[x][y].accessible = false;
             }
         }
-        if (this.verifyCell(createVector(p.x - 1, p.y))) {
-            this.terrain[p.x - 1][p.y].accessible = true;
-        }
-        if (this.verifyCell(createVector(p.x + 1, p.y))) {
-            this.terrain[p.x + 1][p.y].accessible = true;
-        }
-        if (this.verifyCell(createVector(p.x, p.y + 1))) {
-            this.terrain[p.x][p.y + 1].accessible = true;
-        }
-        if (this.verifyCell(createVector(p.x, p.y - 1))) {
-            this.terrain[p.x][p.y - 1].accessible = true;
+        // if (this.verifyCell(createVector(p.x - 1, p.y))) {
+        //     this.terrain[p.x - 1][p.y].accessible = true;
+        // }
+        // if (this.verifyCell(createVector(p.x + 1, p.y))) {
+        //     this.terrain[p.x + 1][p.y].accessible = true;
+        // }
+        // if (this.verifyCell(createVector(p.x, p.y + 1))) {
+        //     this.terrain[p.x][p.y + 1].accessible = true;
+        // }
+        // if (this.verifyCell(createVector(p.x, p.y - 1))) {
+        //     this.terrain[p.x][p.y - 1].accessible = true;
+        // }
+        // if (population.inventory == "fang_of_liberty") {
+
+        // }
+        let scale = population.inventory == "fang_of_liberty" ? 3 : 2;
+        // let unit = 1;
+        let y_count = 0;
+        let x_start = 0;
+        let x_repeat = 0;
+        let x_rn = 0;
+
+        for (let y = -scale; y <= scale; y++) {
+            // if (y == 0) {
+            //     unit *= -1;
+            // }
+
+            x_start = y <= 0 ? -y_count : y - scale;
+            x_repeat = y <= 0 ? 1 + y_count * 2 : scale * 2 + 1 - 2 * y;
+            x_rn = x_start;
+
+            for (let x = x_start; x < x_start + x_repeat; x++) {
+                if (this.verifyCell(createVector(p.x + x_rn, p.y + y))) {
+                    this.terrain[p.x + x_rn][p.y + y].accessible = true;
+                }
+                x_rn++;
+                // x_rn += unit;
+                // if (x_rn == 0) {
+                //     unit *= -1;
+                // }
+            }
+            y_count++;
         }
     }
 

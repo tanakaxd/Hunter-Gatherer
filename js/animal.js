@@ -19,6 +19,8 @@ class Animal {
 		this.wh = pops_cell / pops_scale;
 		this.scale = pops_scale;
 		this.r;
+
+		this.alpha = false;
 	}
 
 	//現時点ではdnaオブジェクトが持つ数値の配列をkeyをもつオブジェクト（連想配列）に変換する役割
@@ -97,8 +99,10 @@ class Animal {
 
 		let avg = terrain.habitant.calcAvg();
 		//xenophile傾向によって関わりの度合いが変化する？
-		let c = max([phenotype.negotiation - avg.deception, phenotype.deception - avg.attraction, phenotype.attraction - avg.negotiation]) *
-			(terrain.ecological_density ** 2) / 10; //-1~1
+		// let c = max([phenotype.negotiation - avg.deception, phenotype.deception - avg.attraction, phenotype.attraction - avg.negotiation]) *
+		// 	(terrain.ecological_density ** 2) / 10; //-1~1
+		let c = (max([phenotype.negotiation, phenotype.deception, phenotype.attraction]) - max([avg.deception, avg.attraction, avg.negotiation])) *
+			(terrain.ecological_density ** 2) / 10;
 
 		this.health = this.health * (a / 100) + b + c;
 		if (this.health > 1) this.health = 1;

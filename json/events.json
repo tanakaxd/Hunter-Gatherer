@@ -1,6 +1,7 @@
 [{
         "eventID": "militarist1",
         "title": "天敵に奇襲チャンス！",
+        "img_url": "img/dotified_mini/ダウンロード.png",
         "description": "凶悪な武器を持ったニンゲンが一人ぼっちで昼寝をしている。どうしよう？",
         "choices": [{
                 "choiceID": "m1o1",
@@ -223,6 +224,7 @@
     {
         "eventID": "pacifist1",
         "title": "襲撃される！",
+        "img_url": "img/dotified_mini/ダウンロード (9).png",
         "description": "見知らぬやつらが襲い掛かってきた。相手は3人とみられる。どうしよう？",
         "choices": [{
                 "choiceID": "p1o1",
@@ -440,6 +442,7 @@
     {
         "eventID": "egalitarian1",
         "title": "大量の木の実を発見",
+        "img_url": "img/dotified_mini/ダウンロード (10).png",
         "description": "ちょうど群れ全員にいきわたるほどの量だ。どうしよう？",
         "choices": [{
                 "choiceID": "e1o1",
@@ -657,6 +660,7 @@
     {
         "eventID": "authoritarian1",
         "title": "群れを導くリーダー",
+        "img_url": "img/dotified_mini/ダウンロード (2).png",
         "description": "自然と群れにリーダー的存在が現れた。群れの決定はその者を通して行われることが多くなった。",
         "choices": [{
                 "choiceID": "a1o1",
@@ -873,6 +877,8 @@
     {
         "eventID": "polygamy1",
         "title": "毛づくろいと絆",
+        "img_url": "img/dotified_mini/ダウンロード (3).png",
+
         "description": "スキンシップはひいては雄雌の関係に発展しがちだ。対象に制限を設けるべきだろうか",
         "choices": [{
                 "choiceID": "p1o1",
@@ -1098,6 +1104,8 @@
     {
         "eventID": "monogamy1",
         "title": "誠実な愛",
+        "img_url": "img/dotified_mini/ダウンロード (4).png",
+
         "description": "誓い合った相手を亡くした女がいた。夜な夜な一人で泣いている",
         "choices": [{
                 "choiceID": "m1o1",
@@ -1321,6 +1329,8 @@
     {
         "eventID": "xenophile1",
         "title": "見知らぬ群れを発見",
+        "img_url": "img/dotified_mini/ダウンロード (5).png",
+
         "description": "見知らぬ群れがこちらに向かってくる。攻撃を準備しているそぶりは全く見られない",
         "choices": [{
                 "choiceID": "xl1o1",
@@ -1541,6 +1551,8 @@
     {
         "eventID": "xenophobe1",
         "title": "選ばれしもの",
+        "img_url": "img/dotified_mini/ダウンロード (6).png",
+
         "description": "我々は選ばれしもの。それでも生きるため他の群れと手を取り合うべきだろうか。",
         "choices": [{
                 "choiceID": "xb1o1",
@@ -1757,6 +1769,8 @@
     {
         "eventID": "traditional1",
         "title": "磨かれた手法",
+        "img_url": "img/dotified_mini/ダウンロード (7).png",
+
         "description": "狩りの手法を巡って議論が起こった。既存の方法ではなく新しい方法を試してみるべきだろうか。",
         "choices": [{
                 "choiceID": "t1o1",
@@ -1974,6 +1988,8 @@
     {
         "eventID": "innovative1",
         "title": "未知の洞窟",
+        "img_url": "img/dotified_mini/ダウンロード (8).png",
+
         "description": "群れの一員が洞窟を発見した。敵がいるか、食料があるか、住処にできるか。冒険してみる？",
         "choices": [{
                 "choiceID": "i1o1",
@@ -2044,17 +2060,17 @@
                     {
                         "modifier": "local",
                         "option": "berries",
-                        "scale": 20
+                        "scale": 10
                     },
                     {
                         "modifier": "local",
                         "option": "meats",
-                        "scale": 20
+                        "scale": 10
                     },
                     {
                         "modifier": "local",
                         "option": "fishes",
-                        "scale": 20
+                        "scale": 10
                     },
                     {
                         "modifier": "score",
@@ -2203,6 +2219,8 @@
     {
         "eventID": "chaos1",
         "title": "一人で行く",
+        "img_url": "img/dotified_mini/ダウンロード (9).png",
+
         "description": "群れの一人が外敵の来襲を察知。群れの仲間にこれを伝えるべきか？　相手の警戒が薄い今、一人で奇襲するべきか？",
         "choices": [{
                 "choiceID": "c1o1",
@@ -2419,6 +2437,8 @@
     {
         "eventID": "order1",
         "title": "疑念",
+        "img_url": "img/dotified_mini/ダウンロード (11).png",
+
         "description": "二人組で狩りをしていたところ、一人が負傷して動けなくなった。この場所は危険だが、怪我人を連れて巣に戻るのは一人では難しい",
         "choices": [{
                 "choiceID": "o1o1",
@@ -2636,51 +2656,145 @@
     {
         "eventID": "test1",
         "title": "test",
-        "description": "test",
+        "img_url": "img/4095c1f7.jpg",
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, aperiam, libero alias asperiores adipisci cumque quisquam cum quo iste hic vitae aspernatur laudantium sunt dolor facilis ratione consequuntur sapiente exercitationem?",
         "choices": [{
-            "choiceID": "t1o1",
-            "choiceTitle": "test",
-            "condition": {
-                "qualifier": "avg",
-                "phenotype": "independency",
-                "operator": "less",
-                "criterion": 10
+                "choiceID": "t1o1",
+                "choiceTitle": "test",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "hunting",
+                    "operator": "more",
+                    "criterion": 4
+                },
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "hunting",
+                        "scale": 2
+                    }
+                ]
+            }, {
+                "choiceID": "t1o2",
+                "choiceTitle": "test2",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "independency",
+                    "operator": "less",
+                    "criterion": 10
+                },
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "foraging",
+                        "scale": 0.5
+                    }
+                ]
             },
-            "outcome": [{
-                    "modifier": "innovative",
-                    "scale": 1
+            {
+                "choiceID": "t1o2",
+                "choiceTitle": "test2",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "independency",
+                    "operator": "less",
+                    "criterion": 10
                 },
-                {
-                    "modifier": "xenophile",
-                    "scale": -1
-                },
-                {
-                    "modifier": "hunting",
-                    "scale": 2
-                }
-            ]
-        }, {
-            "choiceID": "t1o2",
-            "choiceTitle": "test2",
-            "condition": {
-                "qualifier": "avg",
-                "phenotype": "independency",
-                "operator": "less",
-                "criterion": 10
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "foraging",
+                        "scale": 0.5
+                    }
+                ]
             },
-            "outcome": [{
-                    "modifier": "innovative",
-                    "scale": -1
+            {
+                "choiceID": "t1o2",
+                "choiceTitle": "test2",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "independency",
+                    "operator": "less",
+                    "criterion": 10
                 },
-                {
-                    "modifier": "xenophile",
-                    "scale": 1
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "foraging",
+                        "scale": 0.5
+                    }
+                ]
+            },
+            {
+                "choiceID": "t1o2",
+                "choiceTitle": "test2",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "independency",
+                    "operator": "less",
+                    "criterion": 10
                 },
-                {
-                    "modifier": "foraging",
-                    "scale": 0.5
-                }
-            ]
-        }]
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "foraging",
+                        "scale": 0.5
+                    }
+                ]
+            },
+            {
+                "choiceID": "t1o2",
+                "choiceTitle": "test2",
+                "condition": {
+                    "qualifier": "avg",
+                    "phenotype": "independency",
+                    "operator": "less",
+                    "criterion": 10
+                },
+                "outcome": [{
+                        "modifier": "innovative",
+                        "scale": -1
+                    },
+                    {
+                        "modifier": "xenophile",
+                        "scale": 1
+                    },
+                    {
+                        "modifier": "foraging",
+                        "scale": 0.5
+                    }
+                ]
+            }
+        ]
     }
 ]

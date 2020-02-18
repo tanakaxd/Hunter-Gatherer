@@ -99,8 +99,13 @@ class Population {
 		for (let i = this.animals.length - 1; i >= 0; i--) {
 			this.animals[i].calcHealth(global_map.getTerrain(this.gps));
 			if (this.animals[i].health <= 0) {
-				this.animals.splice(i, 1);
-				casualities++;
+				if (random() < percent_to_survive && population.inventory == "fang_of_prestige") {
+					this.animals[i].health = 0.01;
+					addlog("fang_of_prestigeの効果で一人が生きながらえた！");
+				} else {
+					this.animals.splice(i, 1);
+					casualities++;
+				}
 			}
 		}
 		if (debug && this instanceof Player) {
@@ -140,7 +145,9 @@ class Population {
 		let nextGeneration = [];
 
 		//サイズは可変。fertilityというphenotypeを作って一定以上なければ出生時に死亡させる？
-		let next_generation_size = this instanceof Player ? this.animals.length + this.next_children : this.size;
+		let extra = this.inventory == "fang_of_serenity" ? 2 : 0;
+
+		let next_generation_size = this instanceof Player ? this.animals.length + this.next_children + extra : this.size;
 		let have_nest = this instanceof Player ? global_map.getTerrain(this.gps).nest : true;
 		// let actual_size = next_generation_size;
 		let mutation_rate_modifier = map(this.ethics.xenophile, 0, 10, 0.5, 2);
@@ -182,6 +189,8 @@ class Population {
 		}
 
 		this.animals = nextGeneration;
+		console.log(matingpool.length);
+
 		this.matingpool = [];
 		this.generation++;
 		this.calcStats();

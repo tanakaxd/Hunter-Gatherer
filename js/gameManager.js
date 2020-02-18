@@ -115,7 +115,7 @@ class GameManager {
                 }, 1000 / uber_speed);
 
                 setTimeout(() => {
-                    if (population.animals.length <= 1) {
+                    if (population.animals.length <= 1 || game_manager.day >= 30) {
                         game_manager.gameOver();
                     } else if (population.rested >= rest_to_reproduce) {
                         population.evaluate();
@@ -141,7 +141,7 @@ class GameManager {
     }
 
     gameOver() {
-        alert("THIS GAME IS OVER");
+        alert(`THIS GAME IS OVER. YOUR FINAL SCORE: ${game_manager.score}`);
         initialize();
 
     }

@@ -14,16 +14,22 @@ class Player extends Population {
         this.min = super.calcMin();
 
         this.ethics = {
-            egalitarian: 1,
-            polygamy: 1,
-            militarist: 1,
-            xenophile: 1,
-            innovative: 1,
-            chaos: 1
+            egalitarian: 5,
+            polygamy: 5,
+            militarist: 5,
+            xenophile: 5,
+            innovative: 5,
+            chaos: 5
         };
 
         this.dignified_ethic = "";
         this.inventory = "";
+        this.upgraded_phenotype = {};
+        for (let key in phenotype_pool) {
+            this.upgraded_phenotype[key] = 0;
+        }
+
+
 
         this.gps = gps || createVector(floor(map_size / 2), floor(map_size / 2));
         this.rested = 2;
@@ -79,7 +85,7 @@ class Player extends Population {
 
     adjustSlider() {
         for (let key in this.ethics) {
-            $("#" + key).val(this.ethics[key]);
+            $("#" + key + "-" + ethics_pool[key]).val(this.ethics[key]);
         }
     }
 
@@ -105,12 +111,13 @@ class Player extends Population {
     setEthics(ethic, scale) {
 
         if (this.dignified_ethic == ethic || this.dignified_ethic == ethics_pool[ethic]) {
+            // dignified_ethicは変化しない
             return false;
         } else {
             this.ethics[ethic] += scale;
 
             let number = this.ethics[ethic];
-            // 上限突破
+            // 上限突破時の処理
             if (number <= 0 || number >= 10) {
 
                 // 初のmax到達。dignified_ethicの獲得とitemの獲得
@@ -122,7 +129,7 @@ class Player extends Population {
                     }
                     this.getLegendaryItem();
                     this.modifyFitnesCoefficient();
-
+                    $("#" + this.dignified_ethic).css("color", "white").css("background-color", "black");
 
                     // min maxを0,10に制限
                 } else if (number < 0) {
@@ -135,21 +142,88 @@ class Player extends Population {
     }
 
     getLegendaryItem() {
+        let $item;
+
         // inventoryにアイテムが入る
         $(legendary_items).find("item").each((index, element) => {
             $(element).find("related_ethics").find("ethic").each((ind, ele) => {
                 if ($(ele).text() == this.dignified_ethic) {
                     this.inventory = $(element).find("name").text();
+                    $item = $(element);
                     return false;
                 }
             })
         })
 
-        // ethicを固定化
+        // 特定の能力の換算値上昇
+        for (let key in phenotype_pool) {
+            $item.find("boosted_ability").find("ability").each((index, element) => {
+                if (key == $(element).text()) {
+                    this.upgraded_phenotype[key] = 1;
+                }
+            })
+        }
+
+        //DOMに登録
+        let description = "";
+        description += "名前: "
+        description += $item.find("name").text();
+        description += "<br>"
+        description += $item.find("description").text();
+        console.log(description);
+        console.log(isString(description));
+
+        function isString(obj) {
+            return typeof (obj) == "string" || obj instanceof String;
+        };
+
+        $("#legendary-item+.tips").html(description);
+        $("#legendary-item-slot").css("visibility", "visible");
 
     }
 
     modifyFitnesCoefficient() {
+        switch (this.dignified_ethic) {
+            case "egalitarian":
+                this.fitness_coefficient.equality *= 8;
+                break;
+            case "polygamy":
+                this.fitness_coefficient.polygamy *= 8;
+                break;
+            case "militarist":
+                this.fitness_coefficient.aggressivity *= 8;
+                break;
+            case "xenophile":
+                this.fitness_coefficient.openminded *= 8;
+                break;
+            case "innovative":
+                this.fitness_coefficient.curiosity *= 8;
+                break;
+            case "chaos":
+                this.fitness_coefficient.independency *= 8;
+                break;
+            case "authoritarian":
+                this.fitness_coefficient.equality /= 8;
+                break;
+            case "monogamy":
+                this.fitness_coefficient.polygamy /= 8;
+                break;
+            case "pacifist":
+                this.fitness_coefficient.aggressivity /= 8;
+                break;
+            case "xenophobe":
+                this.fitness_coefficient.openminded /= 8;
+                break;
+            case "traditional":
+                this.fitness_coefficient.curiosity /= 8;
+                break;
+            case "order":
+                this.fitness_coefficient.independency /= 8;
+                break;
+        }
+    }
+
+    fightWithHonor() {
 
     }
 }

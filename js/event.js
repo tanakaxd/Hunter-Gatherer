@@ -13,6 +13,7 @@ class Event {
     constructor(event_data) {
         this.eventID = event_data.eventID;
         this.title = event_data.title;
+        this.img_url = event_data.img_url;
         this.description = event_data.description;
         this.choices = event_data.choices;
         this.conditions = [];
@@ -28,21 +29,21 @@ class Event {
         let qualifiers = {
             "avg": (phenotype, criterion, operator) => {
                 if (operator == "more") {
-                    return population.avg[phenotype] >= criterion;
+                    return population.avg[phenotype] + population.upgraded_phenotype[phenotype] >= criterion;
                 } else {
                     return population.avg[phenotype] <= criterion;
                 }
             },
             "max": (phenotype, criterion, operator) => {
                 if (operator == "more") {
-                    return population.max[phenotype] >= criterion;
+                    return population.max[phenotype] + population.upgraded_phenotype[phenotype] >= criterion;
                 } else {
                     return population.max[phenotype] <= criterion;
                 }
             },
             "min": (phenotype, criterion, operator) => {
                 if (operator == "more") {
-                    return population.min[phenotype] >= criterion;
+                    return population.min[phenotype] + population.upgraded_phenotype[phenotype] >= criterion;
                 } else {
                     return population.min[phenotype] <= criterion;
                 }
@@ -130,6 +131,7 @@ class Event {
                 let habitants = global_map.getTerrain(population.gps).habitant.animals;
                 let animals = population.animals;
 
+                if (population.inventory == "fang_of_liberty") scale++;
                 for (let i = 0; i < scale; i++) {
                     let acquired = habitants.splice(random(0, habitants.length), 1); //spliceの返り値は配列
                     // console.log(acquired);
@@ -197,14 +199,26 @@ class Event {
                         let injured = random(population.animals);
                         injured.health -= 0.3;
                         if (injured.health <= 0) {
-                            population.animals.splice(population.animals.indexOf(injured), 1);
+                            if (random() < percent_to_survive && population.inventory == "fang_of_prestige") {
+                                injured.health = 0.01;
+                                addlog("fang_of_prestigeの効果で一人が生きながらえた！");
+                            } else {
+                                population.animals.splice(population.animals.indexOf(injured), 1);
+                                addlog("負傷が致命傷となり一人が死亡");
+                            }
                         }
                     }
                 } else {
                     population.animals.forEach((animal, index) => {
                         animal.health += scale;
                         if (animal.health <= 0) {
-                            population.animals.splice(index, 1);
+                            if (random() < percent_to_survive && population.inventory == "fang_of_prestige") {
+                                animal.health = 0.01;
+                                addlog("fang_of_prestigeの効果で一人が生きながらえた！");
+                            } else {
+                                population.animals.splice(index, 1);
+                                addlog("負傷が致命傷となり一人が死亡");
+                            }
                         } else if (animal.health > 1) {
                             animal.health = 1;
                         }
@@ -334,7 +348,8 @@ class Event {
 
             //pops modifier
             "acquire": (scale) => {
-                return `${scale}人が群れに加入`;
+                let extra = population.inventory == "fang_of_liberty" ? " fang_of_libertyの効果でさらにもう一人！" : "";
+                return `${scale}人が群れに加入` + extra;
 
             },
             "release": (scale) => {
@@ -450,8 +465,8 @@ class Event {
                     if (modifiers[func.modifier] === undefined) {
                         console.error("invalid modifier name");
                     } else {
-                        modifiers[func.modifier](func.scale, func.option);
                         addlog(outliners[func.modifier](func.scale, func.option));
+                        modifiers[func.modifier](func.scale, func.option);
                     }
                 }
                 population.adjustSlider();
@@ -485,7 +500,7 @@ class Event {
 
         //title img descriptionをhtml要素に登録
         $("#event-title").html(this.title);
-        // $("#event-img").html(this.img);
+        $("#event-img").attr("src", this.img_url);
         $("#description").html(this.description);
 
 
