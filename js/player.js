@@ -128,6 +128,7 @@ class Player extends Population {
                         this.dignified_ethic = ethics_pool[ethic];
                     }
                     this.getLegendaryItem();
+                    global_map.examineAccessibility(this.gps);
                     this.modifyFitnesCoefficient();
                     $("#" + this.dignified_ethic).css("color", "white").css("background-color", "black");
 

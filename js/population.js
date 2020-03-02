@@ -189,7 +189,7 @@ class Population {
 		}
 
 		this.animals = nextGeneration;
-		console.log(matingpool.length);
+		// console.log(this.matingpool.length);
 
 		this.matingpool = [];
 		this.generation++;
@@ -209,10 +209,10 @@ class Population {
 		}
 	}
 
-	consolePopulation(full) {
+	consolePopulation(option) {
 		if (debug) {
 			console.table(this.avg);
-			if (full == "full") {
+			if (option == "full") {
 				this.animals.forEach((animal) => {
 					console.table(animal.phenotype);
 				})

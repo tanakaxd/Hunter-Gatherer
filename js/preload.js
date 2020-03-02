@@ -42,3 +42,25 @@ $.ajax({
 }).fail(() => {
     console.error("ajax failed on preload");
 });
+
+
+$.ajax({
+        url: "./json/events.json",
+        data: {
+            // eventID: "001"
+            // jsonデータの一部のみを注文する方法があるのか？多分サーバー側でphpとか動かせれば可能だが、
+            // この場合はファイルそのものを注文するしかないっぽい
+        },
+        dataType: "json"
+    })
+    .done((events_data) => {
+        console.log(events_data);
+        events_data.forEach((event, index) => {
+            if (event.eventID == eventID) {
+                specific_event = event;
+            }
+        });
+    })
+    .fail(function () {
+        console.error('$.ajax failed!');
+    })
