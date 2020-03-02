@@ -55,11 +55,11 @@ $.ajax({
     })
     .done((events_data) => {
         console.log(events_data);
-        events_data.forEach((event, index) => {
-            if (event.eventID == eventID) {
-                specific_event = event;
-            }
-        });
+        // events_data.forEach((event, index) => {
+        //     if (event.eventID == eventID) {
+        //         specific_event = event;
+        //     }
+        // });
     })
     .fail(function () {
         console.error('$.ajax failed!');
