@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<legendary_item_list>
+    <item>
+        <id>1</id>
+        <name>fang_of_prestige</name>
+        <description>ユニーク効果: healthが無くなった時、30%の確率で生存できる。イベント時、以下の能力が通常より高く換算される：hunting, fighting, deception</description>
+        <related_ethics>
+            <ethic>authoritarian</ethic>
+            <ethic>militarist</ethic>
+            <ethic>xenophobe</ethic>
+            <ethic>monogamy</ethic>
+        </related_ethics>
+        <boosted_ability>
+            <ability>hunting</ability>
+            <ability>fighting</ability>
+            <ability>deception</ability>
+        </boosted_ability>
+        <effects>
+            <effect></effect>
+            <effect></effect>
+        </effects>
+        <img_path></img_path>
+    </item>
+    <item>
+        <id>2</id>
+        <name>fang_of_liberty</name>
+        <description>ユニーク効果: 3マス移動可能になる。住人を獲得するとき一人追加で得る。イベント時、以下の能力が通常より高く換算される：swimming, fleeing, negotiation</description>
+        <related_ethics>
+            <ethic>polygamy</ethic>
+            <ethic>xenophile</ethic>
+            <ethic>chaos</ethic>
+            <ethic>innovative</ethic>
+        </related_ethics>
+        <boosted_ability>
+            <ability>swimming</ability>
+            <ability>fleeing</ability>
+            <ability>negotiation</ability>
+        </boosted_ability>
+        <effects>
+            <effect></effect>
+            <effect></effect>
+        </effects>
+        <img_path></img_path>
+    </item>
+    <item>
+        <id>3</id>
+        <name>fang_of_serenity</name>
+        <description>ユニーク効果: 交配時、次世代の数が通常より二人多くなる。イベント時、以下の能力が通常より高く換算される：foraging, hiding, attraction</description>
+        <related_ethics>
+            <ethic>traditional</ethic>
+            <ethic>order</ethic>
+            <ethic>pacifist</ethic>
+            <ethic>egalitarian</ethic>
+        </related_ethics>
+        <boosted_ability>
+            <ability>foraging</ability>
+            <ability>hiding</ability>
+            <ability>attraction</ability>
+        </boosted_ability>
+        <effects>
+            <effect></effect>
+            <effect></effect>
+        </effects>
+        <img_path></img_path>
+    </item>
+</legendary_item_list>

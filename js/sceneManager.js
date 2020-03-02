@@ -1,26 +1,23 @@
-// グローバルマップ
-// ローカルマップ
-// イベント
-// 情報
-// のシーンの遷移を担当するクラス
-// dom操作も行う
-
-// ユーザーからの入力に応じて、 draw() の内容をスイッチするギミック
+// シーンの遷移を担当するクラス
+// ゲーム状況に応じて、 canvas内に描写する要素をスイッチするギミック
 
 class SceneManager {
+
     constructor() {
         // どの要素を描画するか
+        //canvas
         this.global_map_scene = true;
-        this.buttons = true;
-        this.sliders = true;
         this.animals = true;
         this.habitant = true;
         this.local_map_scene = false;
         this.event_scene = false;
-        this.info_scene = true;
-        this.logs = true;
-        this.dialog = true;
-        // this.popupEvent();
+
+        //DOM
+        // this.buttons = true;
+        // this.sliders = true;
+        // this.logs = true;
+        // this.dialog = true;
+        // this.info_scene = true;
     }
 
     changeScene() {
@@ -31,7 +28,6 @@ class SceneManager {
 
     }
 
-
     run() {
         if (this.global_map_scene) {
             global_map.show();
@@ -41,6 +37,7 @@ class SceneManager {
             for (let animal of population.animals) {
                 animal.show();
                 animal.r.show();
+                animal.showHealth();
             }
         }
         if (this.habitant) {
@@ -49,14 +46,5 @@ class SceneManager {
                 animal.r.show();
             }
         }
-
-
-
-        // for (let i = 0; i < Object.keys(population.ethics).length; i++) {
-
-        // }
-
-        // info.display();
     }
-
 }
